@@ -367,37 +367,37 @@
                 <div class="card-title">
                     🔒 अपनी बुकिंग/बातचीत शुरू करें
                 </div>
-                <form onsubmit="event.preventDefault(); alert('आपकी डिटेल्स दर्ज हो गई हैं। जल्द ही कनेक्ट किया जाएगा।');">
+                <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
                     
                     <div class="form-group">
                         <label>असली नाम <span class="label-hint">(केवल रिकॉर्ड हेतु)</span></label>
-                        <input type="text" placeholder="अपना नाम दर्ज करें" required>
+                        <input type="text" id="realName" placeholder="अपना नाम दर्ज करें" required>
                     </div>
 
                     <div class="form-group">
                         <label>निकनेम / पुकारने का नाम <span class="label-hint">(कॉल/बातचीत हेतु)</span></label>
-                        <input type="text" placeholder="जिस नाम से आप बात करना चाहते हैं" required>
+                        <input type="text" id="nickname" placeholder="जिस नाम से आप बात करना चाहते हैं" required>
                     </div>
 
                     <div class="form-group">
                         <label>मोबाइल नंबर</label>
-                        <input type="tel" placeholder="10-अंकों का फ़ोन नंबर" required>
+                        <input type="tel" id="mobile" placeholder="10-अंकों का फ़ोन नंबर" required>
                     </div>
 
                     <div class="form-group">
                         <label>बातचीत का विषय चुनिए</label>
-                        <select required>
+                        <select id="topic" required>
                             <option value="">-- विषय सेलेक्ट करें --</option>
-                            <option>लव लाइफ व रिलेशनशिप (Love Life & Relationship)</option>
-                            <option>इंटीमेट झिझक व कम्फर्ट (Intimate Hesitation & Comfort)</option>
-                            <option>ब्रेकअप, इग्नोर व दिल टूटना (Breakup & Heartbreak)</option>
-                            <option>अकेलापन व पर्सनल शेयरिंग (Loneliness & Personal Share)</option>
+                            <option value="लव लाइफ व रिलेशनशिप">लव लाइफ व रिलेशनशिप (Love Life & Relationship)</option>
+                            <option value="इंटीमेट झिझक व कम्फर्ट">इंटीमेट झिझक व कम्फर्ट (Intimate Hesitation & Comfort)</option>
+                            <option value="ब्रेकअप, इग्नोर व दिल टूटना">ब्रेकअप, इग्नोर व दिल टूटना (Breakup & Heartbreak)</option>
+                            <option value="अकेलापन व पर्सनल शेयरिंग">अकेलापन व पर्सनल शेयरिंग (Loneliness & Personal Share)</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>अपनी बात या सवाल लिखें <span class="label-hint">(ऑप्शनल)</span></label>
-                        <textarea rows="3" placeholder="आप किस बारे में बात करना चाहते हैं..."></textarea>
+                        <textarea id="message" rows="3" placeholder="आप किस बारे में बात करना चाहते हैं..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-submit">सबमिट करें व स्लॉट बुक करें</button>
@@ -571,89 +571,4 @@
                     <span class="user-tag">इग्नोर होना</span>
                 </div>
                 <div class="rating">★★★★★</div>
-                <div class="review-text">"पार्टनर अचानक इग्नोर करने लगा था। समझ नहीं आ रहा था क्या करूँ। यहाँ की सलाह से मुझे सही रास्ता दिखा।"</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">खुशी B.</span>
-                    <span class="user-tag">धोखा व स्ट्रेस</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"रिश्ते में मिले धोखे के बाद मन बहुत भारी रहता था। अपनी फीलिंग्स शेयर करके बहुत राहत महसूस हुई।"</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">महक S.</span>
-                    <span class="user-tag">वन-साइड लव</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"एकतरफ़ा प्यार का दर्द सिर्फ वही समझ सकता है जो इससे गुजरा हो। यहाँ मुझे सही समझ और गाइडेंस मिली।"</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">इशिता P.</span>
-                    <span class="user-tag">ब्रेकअप रिकवरी</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"मूव ऑन करना इतना मुश्किल लग रहा था, पर कॉल के बाद मन काफी हल्का हो गया। बहुत-बहुत शुक्रिया!"</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">आरव J.</span>
-                    <span class="user-tag">ब्रेकअप स्ट्रेस</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"4 साल के रिश्ते के बाद अलग होना आसान नहीं था। यहाँ से जो इमोशनल सपोर्ट मिला, उसने मुझे काफी संभाला।"</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">विकास M.</span>
-                    <span class="user-tag">वन-साइड लव</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"अटैचमेंट की वजह से काम में मन नहीं लग रहा था। बात करके क्लैरिटी मिली कि आगे कैसे बढ़ना है।"</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">श्रेया D.</span>
-                    <span class="user-tag">रिलेशनशिप उलझन</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"रिश्ते में कन्फ्यूजन बहुत ज्यादा था। बात करने के बाद दिमाग एकदम क्लियर हो गया।"</div>
-            </div>
-
-            <!-- Category 3: Loneliness & Overthinking (2 Reviews) -->
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">कीर्ति L.</span>
-                    <span class="user-tag">अकेलापन</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"कभी-कभी बस किसी ऐसे इंसान से बात करने की जरूरत होती है जो आपको जज न करे। DilKholSafe मेरे लिए वही जगह है।"</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">राहुल A.</span>
-                    <span class="user-tag">ओवरथिंकिंग</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"रात में होने वाली ओवरथिंकिंग से बहुत परेशान था। अपनी बात कहकर मन को बहुत शांति मिली।"</div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <footer>
-        <p>© 2026 DilKholSafe | 100% गोपनीय व सुरक्षित प्लेटफॉर्म</p>
-    </footer>
-
-</body>
-</html>
+                <div class="review-text">"पार्टनर अचानक इग्नोर
