@@ -29,9 +29,8 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .card-hover:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: rgba(244, 63, 94, 0.5);
-            box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.25);
         }
     </style>
 </head>
@@ -39,8 +38,8 @@
 
     <div class="max-w-3xl mx-auto space-y-6">
 
-        <!-- Top Header & Brand Banner -->
-        <header class="glass-card p-6 rounded-3xl text-center space-y-3 neon-glow-rose relative overflow-hidden border-rose-500/30">
+        <!-- 1. Top Header & VIP Security Banner -->
+        <header class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-3 neon-glow-rose relative overflow-hidden border-rose-500/30">
             <div class="absolute -top-10 -left-10 w-36 h-36 bg-rose-600/25 rounded-full blur-3xl"></div>
             <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-purple-600/25 rounded-full blur-3xl"></div>
             
@@ -53,21 +52,41 @@
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300">DilKholSafe</span>
                     <span class="text-[10px] bg-rose-950/90 text-rose-300 border border-rose-500/50 px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-widest">हमराज़ VIP</span>
                 </h1>
-                <p class="text-xs sm:text-sm text-slate-300 font-semibold mt-1">बिना किसी झिझक या डर के अपने मन की हर गुप्त बात कहें</p>
+                <p class="text-xs sm:text-sm text-slate-300 font-semibold mt-1">बिना किसी झिझक या डर के अपने मन की हर बात कहें</p>
             </div>
 
-            <!-- Confidentiality Security Badge -->
-            <div class="bg-slate-900/90 border border-emerald-500/40 p-3 rounded-2xl flex items-center justify-center gap-2 text-xs text-emerald-400 font-bold shadow-inner">
-                <span class="relative flex h-2.5 w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </span>
-                <span>🛡️ 100% गोपनीय व सुरक्षित ज़ोन (स्क्रीनशॉट / रिकॉर्डिंग पूरी तरह वर्जित)</span>
+            <!-- Enhanced Privacy & Screenshot Restriction Notice -->
+            <div class="bg-slate-900/90 border border-emerald-500/40 p-3 rounded-2xl space-y-1 text-center shadow-inner">
+                <div class="flex items-center justify-center gap-2 text-xs text-emerald-400 font-extrabold">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span>🛡️ 100% गोपनीय व सुरक्षित ज़ोन</span>
+                </div>
+                <p class="text-[11px] text-slate-300 font-medium leading-relaxed">
+                    आपका नाम, मोबाइल नंबर और निजी जानकारी पूरी तरह गुप्त रखी जाती है। सुरक्षा कारणों से इस प्लेटफ़ॉर्म पर <span class="text-rose-400 font-bold">स्क्रीनशॉट लेना और स्क्रीन रिकॉर्डिंग करना सख्त मना और प्रतिबंधित है</span>।
+                </p>
             </div>
         </header>
 
-        <!-- Topics We Talk About Section (4 Neon Cards) -->
+        <!-- 2. 22 Verified Customer Reviews (80%+ Female Reviews) -->
         <section class="space-y-3">
+            <div class="flex justify-between items-center px-1">
+                <h2 class="text-xs font-black text-slate-200 tracking-wider uppercase flex items-center gap-1.5">
+                    <span>⭐ लोगों के वास्तविक अनुभव (Verified 5-Star Feedback)</span>
+                </h2>
+                <span class="text-[10px] bg-emerald-950/90 text-emerald-400 font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-500/40">100% सेफ़</span>
+            </div>
+
+            <!-- 2 Columns Grid Layout -->
+            <div id="reviewsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- 22 Reviews injected dynamically -->
+            </div>
+        </section>
+
+        <!-- 3. Topics We Talk About Section (4 Neon Cards Before Booking Form) -->
+        <section class="space-y-3 pt-2">
             <h2 class="text-xs font-black text-rose-400 tracking-wider uppercase px-1 flex items-center gap-2">
                 <span>💬 हम किन-किन विषयों पर खुलकर बात करते हैं?</span>
             </h2>
@@ -111,23 +130,8 @@
             </div>
         </section>
 
-        <!-- FIRST: 22 Verified Customer Reviews (2-Column Grid Layout with 5 Stars) -->
-        <section class="space-y-3 pt-2">
-            <div class="flex justify-between items-center px-1">
-                <h2 class="text-xs font-black text-slate-200 tracking-wider uppercase flex items-center gap-1.5">
-                    <span>⭐ लोगों के वास्तविक अनुभव (Verified 5-Star Feedback)</span>
-                </h2>
-                <span class="text-[10px] bg-emerald-950/90 text-emerald-400 font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-500/40">100% सेफ़</span>
-            </div>
-
-            <!-- 2 Columns Grid Layout -->
-            <div id="reviewsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <!-- 22 Female Dominant Reviews injected dynamically -->
-            </div>
-        </section>
-
-        <!-- SECOND: Booking Form Section -->
-        <section class="glass-card p-5 sm:p-6 rounded-3xl space-y-4 neon-glow-rose border border-rose-500/40 mt-4">
+        <!-- 4. VIP Booking Form Section -->
+        <section class="glass-card p-5 sm:p-6 rounded-3xl space-y-4 neon-glow-rose border border-rose-500/40">
             <div class="text-center space-y-1">
                 <h2 class="text-base sm:text-lg font-black text-white flex items-center justify-center gap-2">
                     <span>📅 अपना सीक्रेट स्लॉट बुक करें</span>
@@ -156,8 +160,8 @@
                     <div>
                         <label class="block text-[11px] font-bold text-slate-300 mb-1">बातचीत का माध्यम चुनें:</label>
                         <select id="mode" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500 transition">
-                            <option value="Voice Call">📞 प्राइवेट वॉइस कॉल (Voice Call)</option>
-                            <option value="Chat">💬 लाइव सीक्रेट चैट (Chat)</option>
+                            <option value="Voice Call">📞 इन-ऐप ऑडियो कॉल (Voice Call)</option>
+                            <option value="Chat">💬 इन-ऐप सीक्रेट लाइव चैट (In-App Chat)</option>
                         </select>
                     </div>
                 </div>
@@ -199,15 +203,38 @@
                 </button>
             </form>
 
-            <!-- Live Call Window Area (If Selected Voice Call) -->
-            <div id="userCallContainer" class="hidden space-y-2 pt-3 border-t border-slate-800">
-                <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold text-emerald-400 animate-pulse flex items-center gap-1.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> 'हमराज़' से ऑडियो कॉल कनेक्टेड है...
+            <!-- Live Session Container (In-App Voice Call & In-App Chat with Countdown Timer) -->
+            <div id="userSessionContainer" class="hidden space-y-3 pt-3 border-t border-slate-800">
+                <div class="flex justify-between items-center bg-slate-900/90 p-3 rounded-xl border border-rose-500/30">
+                    <span id="sessionStatusText" class="text-xs font-black text-emerald-400 animate-pulse flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> 'हमराज़' से लाइव सत्र कनेक्टेड है...
                     </span>
-                    <button onclick="endUserCall()" class="bg-rose-600 hover:bg-rose-500 text-white text-[10px] px-3 py-1 rounded-lg font-bold">कॉल बंद करें</button>
+                    
+                    <!-- Live Countdown Timer -->
+                    <div class="bg-rose-950/90 border border-rose-500/50 text-rose-300 font-mono font-bold text-xs px-3 py-1 rounded-lg flex items-center gap-1 shadow-md">
+                        <span>⏱️</span> <span id="sessionTimer">15:00</span>
+                    </div>
+
+                    <button onclick="endUserSession()" class="bg-rose-600 hover:bg-rose-500 text-white text-[10px] px-3 py-1.5 rounded-lg font-bold transition">सत्र समाप्त करें</button>
                 </div>
-                <div id="userCallRoom" class="w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40"></div>
+
+                <!-- Voice Call Screen -->
+                <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40"></div>
+
+                <!-- In-App Chat Screen -->
+                <div id="userChatRoom" class="hidden glass-card p-3 rounded-xl border border-sky-500/30 space-y-2">
+                    <div id="chatMessages" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950/80 rounded-lg text-xs border border-slate-800">
+                        <div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 यह चैट 100% एन्क्रिप्टेड व गोपनीय है।</div>
+                        <div class="bg-rose-950/60 border border-rose-500/30 text-slate-200 p-2.5 rounded-xl max-w-[85%] font-medium">
+                            <span class="text-rose-400 font-bold block text-[10px] mb-0.5">हमराज़:</span>
+                            नमस्कार! मैं 'हमराज़' हूँ। आपकी बात पूरी तरह गुप्त है, बताइए मैं आपकी क्या मदद कर सकता हूँ?
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" id="chatInput" placeholder="अपना संदेश यहाँ लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                        <button onclick="sendChatMessage()" class="bg-gradient-to-r from-rose-600 to-pink-600 text-white text-xs px-4 py-2.5 rounded-xl font-extrabold active:scale-95">भेजें</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -216,33 +243,34 @@
     <script>
         let selectedMins = 15;
         let userJitsiApi = null;
+        let timerInterval = null;
 
-        // 22 Masterstroke Verified Reviews (18 Females, 4 Males | 22 to 35 Age Group)
+        // 22 Masterstroke Verified Reviews (18 Females, 4 Males)
         const fullDefaultReviews = [
-            // --- 13 SEXUAL TALK & PHYSICAL HESITATIONS (11 Females, 2 Males) ---
-            { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर और झिझक महसूस होती थी। DilKholSafe के 'हमराज़' से 30 मिनट बात करके मेरे सारे अनकहे डाउट्स दूर हो गए। लड़कियों के लिए यह सबसे सुरक्षित प्लेटफॉर्म है, आप बिना किसी डर के यहाँ अपनी बात रख सकती हैं!" },
-            { name: "रिया जी. (22 वर्ष)", msg: "अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर बहुत घबराहट थी। यहाँ नाम भी निकनेम यूज़ होता है तो पहचान पूरी तरह गुप्त रहती है। DilKholSafe ऐप हर उस लड़की को एक बार ज़रूर ट्राई करना चाहिए जो किसी से अपने सीक्रेट्स शेयर नहीं कर पाती।" },
+            // --- 13 SEXUAL TALK & PHYSICAL HESITATIONS ---
+            { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर और झिझक महसूस होती थी। DilKholSafe के 'हमराज़' से 30 मिनट बात करके मेरे सारे अनकहे डाउट्स दूर हो गए। लड़कियों के लिए यह सबसे सुरक्षित प्लेटफ़ॉर्म है!" },
+            { name: "रिया जी. (22 वर्ष)", msg: "अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर बहुत घबराहट थी। यहाँ नाम भी निकनेम यूज़ होता है तो पहचान पूरी तरह गुप्त रहती है। DilKholSafe ऐप हर उस लड़की को एक बार ज़रूर ट्राई करना चाहिए।" },
             { name: "स्नेहा (25 वर्ष, गेस्ट)", msg: "शादी से ठीक पहले मन में शारीरिक संबंधों को लेकर बहुत से सवाल और झिझक थी। 'हमराज़' ने बहुत ही दोस्ताना और सम्मानजनक तरीके से हर बात समझाई। 100% प्राइवेट व सेफ़ सर्विस!" },
-            { name: "पूजा शर्मा (29 वर्ष)", msg: "पति के साथ शादीशुदा जिंदगी की कुछ ऐसी सीक्रेट बातें थीं जिन्हें मैं सहेली से भी शेयर नहीं कर सकती थी। DilKholSafe पर बात करके मन का सारा भारीपन खत्म हो गया। बहुत ही प्रोफेशनल काउंसलिंग मिली।" },
-            { name: "नेहा जी. (26 वर्ष)", msg: "यौन स्वास्थ्य और शारीरिक झिझक पर पहली बार किसी से इतनी बेझिझक बात कर पाई। यहाँ कोई आपको जज नहीं करता। लड़कियों की प्राइवेसी का यहाँ पूरा सम्मान रखा जाता है।" },
-            { name: "अंजलि गुप्ता (28 वर्ष)", msg: "प्राइवेट लाइफ के सीक्रेट्स किसी से भी शेयर करने में डर लगता था। पर DilKholSafe की प्राइवेसी पॉलिसी सच में कमाल की है। यहाँ बात करके मुझे अपनी ज़िंदगी को समझने की नई राह मिली।" },
+            { name: "पूजा शर्मा (29 वर्ष)", msg: "पति के साथ शादीशुदा जिंदगी की कुछ ऐसी सीक्रेट बातें थीं जिन्हें मैं सहेली से भी शेयर नहीं कर सकती थी। DilKholSafe पर बात करके मन का सारा भारीपन खत्म हो गया।" },
+            { name: "नेहा जी. (26 वर्ष)", msg: "यौन स्वास्थ्य और शारीरिक झिझक पर पहली बार किसी से इतनी बेझिझक बात कर पाई। यहाँ कोई आपको जज नहीं करता। लड़कियों की प्राइवेसी का पूरा सम्मान रखा जाता है।" },
+            { name: "अंजलि गुप्ता (28 वर्ष)", msg: "प्राइवेट लाइफ के सीक्रेट्स किसी से भी शेयर करने में डर लगता था। पर DilKholSafe की प्राइवेसी पॉलिसी सच में कमाल की है। यहाँ बात करके मुझे नई राह मिली।" },
             { name: "दिव्या के. (31 वर्ष)", msg: "कॉल पर बात करके लगा ही नहीं कि किसी अनजान से बात हो रही है। बहुत ही कम्फर्टेबल और अपनापन भरा माहौल रहा। हर महिला के लिए यह सबसे भरोसेमंद काउंसलिंग ऐप है।" },
-            { name: "रितु सिंह (27 वर्ष)", msg: "शादी से पहले मन में बहुत सी शंकाएँ थीं। DilKholSafe पर 15 मिनट का सेशन लिया और मेरी सारी झिझक दूर हो गई। सच में यह ऐप मेरी उम्मीदों से कई गुना बेहतर निकला!" },
+            { name: "रितु सिंह (27 वर्ष)", msg: "शादी से पहले मन में बहुत सी शंकाएँ थीं। DilKholSafe पर 15 मिनट का सेशन लिया और मेरी सारी झिझक दूर हो गई। सच में यह ऐप मेरी उम्मीदों से बेहतर निकला!" },
             { name: "साक्षी पटेल (23 वर्ष)", msg: "पहली बार अपने मन का डर और शारीरिक हिचकिचाहट किसी से बोली। मन इतना हल्का हो गया जैसे कोई बड़ा बोझ उतर गया हो। थैंक यू DilKholSafe!" },
             { name: "पिंकी आर. (33 वर्ष)", msg: "शादीशुदा जिंदगी में आ रही शारीरिक दूरियाँ दूर करने में 'हमराज़' की सलाह बहुत काम आई। अगर आप भी परेशान हैं, तो बिना हिचकिचाहट के यहाँ स्लॉट बुक करें।" },
             { name: "स्वाति एम. (35 वर्ष)", msg: "प्राइवेट सीक्रेट्स को सुरक्षित रखते हुए इतनी बेहतरीन काउंसलिंग मिलना आज के समय में बहुत मुश्किल है। DilKholSafe ने मेरा भरोसा पूरी तरह जीत लिया।" },
             { name: "राहुल एम. (26 वर्ष)", msg: "गर्लफ्रेंड से शारीरिक झिझक व परफ़ॉर्मेंस स्ट्रेस को लेकर बहुत तनाव में था। यहाँ 'हमराज़' से बात करके सारा डर खत्म हो गया।" },
             { name: "विकास यादव (28 वर्ष)", msg: "अपनी पर्सनल प्रॉब्लम्स किसी दोस्त से नहीं कह पा रहा था। DilKholSafe पर खुलकर बात की और बहुत व्यावहारिक समाधान मिला।" },
 
-            // --- 6 LOVE LIFE & RELATIONSHIPS (4 Males, 2 Females) ---
+            // --- 6 LOVE LIFE & RELATIONSHIPS ---
             { name: "अदिति रॉय (24 वर्ष)", msg: "अपनी पहली रिलेशनशिप की उलझन यहाँ शेयर की। बहुत ही समझदारी भरी और सही सलाह मिली। अब मेरा रिश्ता बहुत स्मूथ चल रहा है।" },
             { name: "मुस्कान जे. (23 वर्ष)", msg: "पार्टनर के साथ शक और गलतफहमी की वजह से रिश्ता टूट रहा था। DilKholSafe पर गाइडेंस लेकर सब सही हो गया।" },
             { name: "अमित शर्मा (27 वर्ष)", msg: "ब्रेकअप के बाद बहुत अकेलापन और तनाव था। 'हमराज़' ने दोस्त बनकर संभाला और मुझे डिप्रेशन से बाहर निकाला।" },
             { name: "सचिन के. (29 वर्ष)", msg: "कम्यूनिकेशन गैप की वजह से लव लाइफ में रोज़ झगड़े हो रहे थे। यहाँ 30 मिनट बात करके रिश्ते को सँभालने का तरीका समझ आया।" },
-            { name: "करण सिंह (32 वर्ष)", msg: "एकतरफा प्यार और मानसिक उलझन सुलझाने के लिए यह बेस्ट प्लेटफॉर्म है। पूरा पैसा वसूल सर्विस!" },
+            { name: "करण सिंह (32 वर्ष)", msg: "एकतरफा प्यार और मानसिक उलझन सुलझाने के लिए यह बेस्ट प्लेटफ़ॉर्म है। पूरा पैसा वसूल सर्विस!" },
             { name: "दुग्गू (25 वर्ष, गेस्ट)", msg: "रिलेशनशिप स्ट्रेस कम करने के लिए DilKholSafe ऐप से बेहतर कोई जगह नहीं हो सकती।" },
 
-            // --- 3 STRESS & DEPRESSION (2 Females, 1 Male) ---
+            // --- 3 STRESS & DEPRESSION ---
             { name: "महक के. (24 वर्ष)", msg: "ओवरथिंकिंग और एंग्जाइटी से रात को नींद नहीं आती थी। 'हमराज़' से बात करके बहुत गहरा सुकून मिला। मन एकदम हल्का हो गया।" },
             { name: "रिद्धिमा वी. (28 वर्ष)", msg: "अकेलेपन से डिप्रेशन सा लग रहा था। DilKholSafe पर अपनी बातें शेयर कीं और मुझे जीने का नया नज़रिया मिला।" },
             { name: "रोहन (30 वर्ष)", msg: "मानसिक तनाव से राहत पाने के लिए यह सबसे सुरक्षित और गोपनीय जगह है।" }
@@ -292,41 +320,92 @@
             existing.unshift(booking);
             localStorage.setItem('dks_bookings', JSON.stringify(existing));
 
+            startInAppSession(booking);
+        }
+
+        function startInAppSession(booking) {
+            document.getElementById('userSessionContainer').classList.remove('hidden');
+            document.getElementById('userCallRoom').classList.add('hidden');
+            document.getElementById('userChatRoom').classList.add('hidden');
+
+            startCountdownTimer(booking.selectedMinutes);
+
             if(booking.mode === 'Voice Call') {
-                startUserCall();
+                document.getElementById('sessionStatusText').innerText = "📞 'हमराज़' से ऑडियो कॉल कनेक्टेड है...";
+                document.getElementById('userCallRoom').classList.remove('hidden');
+                
+                if(userJitsiApi) userJitsiApi.dispose();
+
+                const domain = 'meet.jit.si';
+                const roomName = 'DilKholSafe_Private_Room_2026';
+                
+                const options = {
+                    roomName: roomName,
+                    width: '100%',
+                    height: '100%',
+                    parentNode: document.querySelector('#userCallRoom'),
+                    userInfo: { displayName: booking.nickName || "Guest" },
+                    configOverwrite: {
+                        startWithAudioMuted: false,
+                        startWithVideoMuted: true,
+                        prejoinPageEnabled: false
+                    }
+                };
+
+                userJitsiApi = new JitsiMeetExternalAPI(domain, options);
             } else {
-                alert("आपकी बुकिंग सफलतापूर्वक दर्ज हो गई है! 'हमराज़' जल्द ही आपके व्हाट्सएप पर चैट कनेक्ट करेंगे।");
-                document.getElementById('bookingForm').reset();
+                document.getElementById('sessionStatusText').innerText = "💬 'हमराज़' से लाइव सीक्रेट चैट चालू है...";
+                document.getElementById('userChatRoom').classList.remove('hidden');
             }
+
+            document.getElementById('userSessionContainer').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function startUserCall() {
-            document.getElementById('userCallContainer').classList.remove('hidden');
-            if(userJitsiApi) userJitsiApi.dispose();
+        function startCountdownTimer(durationMins) {
+            clearInterval(timerInterval);
+            let timeInSeconds = durationMins * 60;
+            const timerDisplay = document.getElementById('sessionTimer');
 
-            const domain = 'meet.jit.si';
-            const roomName = 'DilKholSafe_Private_Room_2026';
-            
-            const options = {
-                roomName: roomName,
-                width: '100%',
-                height: '100%',
-                parentNode: document.querySelector('#userCallRoom'),
-                userInfo: { displayName: document.getElementById('nickName').value || "Guest" },
-                configOverwrite: {
-                    startWithAudioMuted: false,
-                    startWithVideoMuted: true,
-                    prejoinPageEnabled: false
+            timerInterval = setInterval(() => {
+                let mins = Math.floor(timeInSeconds / 60);
+                let secs = timeInSeconds % 60;
+
+                mins = mins < 10 ? '0' + mins : mins;
+                secs = secs < 10 ? '0' + secs : secs;
+
+                timerDisplay.innerText = `${mins}:${secs}`;
+
+                if (--timeInSeconds < 0) {
+                    clearInterval(timerInterval);
+                    alert("आपका सेशन का समय समाप्त हो गया है। बातचीत जारी रखने के लिए कृपया अगला स्लॉट बुक करें।");
+                    endUserSession();
                 }
-            };
-
-            userJitsiApi = new JitsiMeetExternalAPI(domain, options);
-            document.getElementById('userCallContainer').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
         }
 
-        function endUserCall() {
+        function sendChatMessage() {
+            let input = document.getElementById('chatInput');
+            let msg = input.value.trim();
+            if(!msg) return;
+
+            let chatBox = document.getElementById('chatMessages');
+            let nick = document.getElementById('nickName').value || "आप";
+
+            chatBox.innerHTML += `
+                <div class="bg-slate-900 border border-slate-700 text-white p-2.5 rounded-xl max-w-[85%] ml-auto text-right font-medium">
+                    <span class="text-sky-400 font-bold block text-[10px] mb-0.5">${nick}:</span>
+                    ${msg}
+                </div>
+            `;
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function endUserSession() {
+            clearInterval(timerInterval);
             if(userJitsiApi) { userJitsiApi.dispose(); userJitsiApi = null; }
-            document.getElementById('userCallContainer').classList.add('hidden');
+            document.getElementById('userSessionContainer').classList.add('hidden');
+            document.getElementById('bookingForm').reset();
         }
 
         // Initial Load
