@@ -321,6 +321,18 @@
             margin-bottom: 10px;
         }
 
+        .success-msg {
+            display: none;
+            background-color: #dcfce7;
+            color: #15803d;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #86efac;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
         footer {
             text-align: center;
             padding: 20px;
@@ -336,7 +348,6 @@
     <header>
         <div class="logo-container">
             <svg class="logo-svg" viewBox="0 0 24 24">
-                <!-- Shield + Heart & Lock Combo -->
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#e11d48" stroke-width="2" fill="none"/>
                 <path d="M12 8a3 3 0 0 0-3 3v2h6v-2a3 3 0 0 0-3-3z" fill="#ffffff"/>
                 <rect x="8" y="13" width="8" height="5" rx="1" fill="#e11d48"/>
@@ -367,26 +378,27 @@
                 <div class="card-title">
                     🔒 अपनी बुकिंग/बातचीत शुरू करें
                 </div>
-                <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+                
+                <form id="bookingForm" action="https://formspree.io/f/xeeypawb" method="POST">
                     
                     <div class="form-group">
                         <label>असली नाम <span class="label-hint">(केवल रिकॉर्ड हेतु)</span></label>
-                        <input type="text" id="realName" placeholder="अपना नाम दर्ज करें" required>
+                        <input type="text" name="Real Name" placeholder="अपना नाम दर्ज करें" required>
                     </div>
 
                     <div class="form-group">
                         <label>निकनेम / पुकारने का नाम <span class="label-hint">(कॉल/बातचीत हेतु)</span></label>
-                        <input type="text" id="nickname" placeholder="जिस नाम से आप बात करना चाहते हैं" required>
+                        <input type="text" name="Nickname" placeholder="जिस नाम से आप बात करना चाहते हैं" required>
                     </div>
 
                     <div class="form-group">
                         <label>मोबाइल नंबर</label>
-                        <input type="tel" id="mobile" placeholder="10-अंकों का फ़ोन नंबर" required>
+                        <input type="tel" name="Mobile" placeholder="10-अंकों का फ़ोन नंबर" required>
                     </div>
 
                     <div class="form-group">
                         <label>बातचीत का विषय चुनिए</label>
-                        <select id="topic" required>
+                        <select name="Topic" required>
                             <option value="">-- विषय सेलेक्ट करें --</option>
                             <option value="लव लाइफ व रिलेशनशिप">लव लाइफ व रिलेशनशिप (Love Life & Relationship)</option>
                             <option value="इंटीमेट झिझक व कम्फर्ट">इंटीमेट झिझक व कम्फर्ट (Intimate Hesitation & Comfort)</option>
@@ -397,11 +409,15 @@
 
                     <div class="form-group">
                         <label>अपनी बात या सवाल लिखें <span class="label-hint">(ऑप्शनल)</span></label>
-                        <textarea id="message" rows="3" placeholder="आप किस बारे में बात करना चाहते हैं..."></textarea>
+                        <textarea name="Message" rows="3" placeholder="आप किस बारे में बात करना चाहते हैं..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-submit">सबमिट करें व स्लॉट बुक करें</button>
                 </form>
+
+                <div id="statusMsg" class="success-msg">
+                    ✅ आपकी बुकिंग सफलतापूर्वक दर्ज कर ली गई है! हम जल्द ही आपसे संपर्क करेंगे।
+                </div>
 
                 <!-- Payment Placeholder Box -->
                 <div class="payment-box">
@@ -464,7 +480,6 @@
 
         <div class="reviews-grid">
             
-            <!-- Category 1: Intimate / Sexuality / Marriage Comfort (10 Reviews) -->
             <div class="review-card">
                 <div class="review-user">
                     <span class="user-name">अनन्या S.</span>
@@ -555,7 +570,6 @@
                 <div class="review-text">"गर्लफ्रेंड के साथ बात करने में जो हिचकिचाहट थी, उसका सही हल मिला। काफी हेल्पफुल रहा।"</div>
             </div>
 
-            <!-- Category 2: Breakup / One-sided love / Heartbreak (8 Reviews) -->
             <div class="review-card">
                 <div class="review-user">
                     <span class="user-name">दिव्या K.</span>
@@ -565,10 +579,4 @@
                 <div class="review-text">"3 साल का रिश्ता टूटने के बाद मैं पूरी तरह टूट चुकी थी। यहाँ बात करके मुझे खुद को संभालने की हिम्मत मिली।"</div>
             </div>
 
-            <div class="review-card">
-                <div class="review-user">
-                    <span class="user-name">तन्वी R.</span>
-                    <span class="user-tag">इग्नोर होना</span>
-                </div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"पार्टनर अचानक इग्नोर
+            <
