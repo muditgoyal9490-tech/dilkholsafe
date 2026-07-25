@@ -4,592 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DilKholSafe - अपनी बात दिल खोलकर कहें</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ZegoCloud Call SDK -->
     <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
-    <style>
-        :root {
-            --primary: #1e3a8a;
-            --primary-light: #3b82f6;
-            --accent: #e11d48;
-            --accent-hover: #be123c;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --border: #e2e8f0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .logo-svg {
-            width: 48px;
-            height: 48px;
-            fill: none;
-            stroke: #e11d48;
-            stroke-width: 2;
-        }
-
-        .brand-name {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(to right, #ffffff, #f43f5e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 400;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px 15px;
-        }
-
-        .trust-banner {
-            background-color: #eff6ff;
-            border-left: 4px solid var(--primary-light);
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .trust-banner svg {
-            width: 32px;
-            height: 32px;
-            flex-shrink: 0;
-            stroke: var(--primary-light);
-        }
-
-        .trust-text {
-            font-size: 0.95rem;
-            color: #1e40af;
-            font-weight: 500;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 768px) {
-            .grid-layout {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--border);
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-main);
-        }
-
-        .label-hint {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: normal;
-        }
-
-        input[type="text"], input[type="tel"], select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: border-color 0.2s;
-            background-color: #f8fafc;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary-light);
-            background-color: #ffffff;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
-        }
-
-        .btn-submit:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .category-list {
-            list-style: none;
-        }
-
-        .category-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px dashed var(--border);
-        }
-
-        .category-item:last-child {
-            border-bottom: none;
-        }
-
-        .category-icon {
-            background: #ffe4e6;
-            color: var(--accent);
-            padding: 8px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .category-desc h4 {
-            font-size: 1rem;
-            color: var(--text-main);
-            margin-bottom: 2px;
-        }
-
-        .category-desc p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Call & Chat Access Section (Initially Hidden) */
-        #accessSection {
-            display: none;
-            background: #f0fdf4;
-            border: 2px solid #22c55e;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .btn-call {
-            background-color: #16a34a;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
-        }
-
-        .btn-call:hover {
-            background-color: #15803d;
-        }
-
-        #callContainer {
-            width: 100%;
-            height: 400px;
-            margin-top: 15px;
-            display: none;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #cbd5e1;
-        }
-
-        .payment-box {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .upi-badge {
-            display: inline-block;
-            background: #10b981;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .reviews-header {
-            text-align: center;
-            margin: 40px 0 20px 0;
-        }
-
-        .reviews-header h2 {
-            font-size: 1.6rem;
-            color: var(--primary);
-        }
-
-        .reviews-header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        @media (min-width: 640px) {
-            .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (min-width: 1024px) {
-            .reviews-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        .review-card {
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 16px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .review-user {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .user-name { font-weight: 700; font-size: 0.9rem; color: var(--primary); }
-        .user-tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; background: #f1f5f9; color: var(--text-muted); font-weight: 600; }
-        .rating { color: #f59e0b; font-size: 0.85rem; margin-bottom: 8px; }
-        .review-text { font-size: 0.85rem; color: #334155; line-height: 1.5; }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
-        }
-    </style>
 </head>
-<body>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-start p-4">
 
-    <header>
-        <div class="logo-container">
-            <svg class="logo-svg" viewBox="0 0 24 24">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#e11d48" stroke-width="2" fill="none"/>
-                <path d="M12 8a3 3 0 0 0-3 3v2h6v-2a3 3 0 0 0-3-3z" fill="#ffffff"/>
-                <rect x="8" y="13" width="8" height="5" rx="1" fill="#e11d48"/>
-            </svg>
-            <span class="brand-name">DilKholSafe</span>
-        </div>
-        <p class="tagline">अपनी बात दिल खोलकर कहें — बिना पहचान उजागर होने के डर से।</p>
+    <!-- Header -->
+    <header class="text-center my-6">
+        <h1 class="text-4xl font-extrabold text-rose-500 tracking-wide">DilKholSafe</h1>
+        <p class="text-slate-300 mt-2 text-sm sm:text-base">अपनी बात दिल खोलकर कहें — बिना पहचान उजागर होने के डर से।</p>
     </header>
 
-    <div class="container">
+    <!-- Main Container -->
+    <main class="w-full max-w-md bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-6 space-y-6">
 
-        <div class="trust-banner">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="M9 12l2 2 4-4"/>
-            </svg>
-            <div class="trust-text">
-                <strong>100% गोपनीय व सुरक्षित (100% Anonymous & Confidential)</strong><br>
-                आपकी असली पहचान पूरी तरह गुप्त रखी जाएगी। आपकी बातें सिर्फ आपके और सलाहकार के बीच रहेंगी।
-            </div>
+        <!-- Privacy Badge -->
+        <div class="bg-rose-500/10 border border-rose-500/30 rounded-xl p-3 text-xs text-rose-300 text-center font-medium">
+            🔒 100% गोपनीय व सुरक्षित (100% Anonymous)। आपकी पहचान पूरी तरह गुप्त रखी जाएगी।
         </div>
 
-        <div class="grid-layout">
-            
-            <div class="card">
-                <div class="card-title">
-                    🔒 अपनी बुकिंग/बातचीत शुरू करें
-                </div>
-                
-                <form id="bookingForm" action="https://formspree.io/f/xeeypawb">
-                    
-                    <div class="form-group">
-                        <label>पुकारने का नाम / निकनेम <span class="label-hint">(जिससे आप बात करना चाहते हैं)</span></label>
-                        <input type="text" id="userNickname" name="Nickname" placeholder="जैसे: राहुल या प्रिया" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>मोबाइल नंबर <span class="label-hint">(केवल वेरीफिकेशन हेतु)</span></label>
-                        <input type="tel" name="Mobile" placeholder="10-अंकों का फ़ोन नंबर" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>बातचीत का पसंदीदा समय चुनें (Preferred Time Slot)</label>
-                        <select name="Time Slot" required>
-                            <option value="">-- टाइम स्लॉट चुनें --</option>
-                            <option value="तत्काल (Right Now)">तत्काल बात करें (Right Now)</option>
-                            <option value="सुबह 10:00 - 01:00">सुबह (10:00 AM - 01:00 PM)</option>
-                            <option value="दोपहर 02:00 - 05:00">दोपहर (02:00 PM - 05:00 PM)</option>
-                            <option value="शाम 06:00 - 09:00">शाम (06:00 PM - 09:00 PM)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>बातचीत का विषय चुनिए</label>
-                        <select name="Topic" required>
-                            <option value="">-- विषय सेलेक्ट करें --</option>
-                            <option value="लव लाइफ व रिलेशनशिप">लव लाइफ व रिलेशनशिप (Love Life & Relationship)</option>
-                            <option value="इंटीमेट झिझक व कम्फर्ट">इंटीमेट झिझक व कम्फर्ट (Intimate Hesitation & Comfort)</option>
-                            <option value="ब्रेकअप, इग्नोर व दिल टूटना">ब्रेकअप, इग्नोर व दिल टूटना (Breakup & Heartbreak)</option>
-                            <option value="अकेलापन व पर्सनल शेयरिंग">अकेलापन व पर्सनल शेयरिंग (Loneliness & Personal Share)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>अपनी बात या सवाल लिखें <span class="label-hint">(ऑप्शनल)</span></label>
-                        <textarea name="Message" rows="2" placeholder="आप किस बारे में बात करना चाहते हैं..."></textarea>
-                    </div>
-
-                    <button type="submit" id="submitBtn" class="btn-submit">सबमिट करें व सेशन अनलॉक करें</button>
-                </form>
-
-                <div id="accessSection">
-                    <h3 style="color:#16a34a; margin-bottom:8px;">✅ आपकी बुकिंग दर्ज हो गई है!</h3>
-                    <p style="font-size:0.9rem; color:#334155;">
-                        नीचे दिए गए बटन से आप <strong>डायरेक्ट इन-वेबसाइट वॉइस कॉल</strong> शुरू कर सकते हैं। दाहिने कोने में आपकी <strong>लाइव चैट</strong> भी अनलॉक हो गई है।
-                    </p>
-                    <button class="btn-call" onclick="startVoiceCall()">📞 Start Voice Call Now</button>
-                    <div id="callContainer"></div>
-                </div>
-
-                <div class="payment-box">
-                    <span class="upi-badge">UPI Payment Mode Ready</span>
-                    <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">
-                        UPI ID: <strong>Dilkholsafe@ybl</strong><br>
-                        (कॉल या चैट से पहले पेमेंट स्क्रीनशॉट शेयर करें)
-                    </p>
-                </div>
+        <!-- Booking Form -->
+        <form id="bookingForm" class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">पुकारने का नाम / निकनेम</label>
+                <input type="text" id="userName" required placeholder="जैसे: Duggu / Guest" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
             </div>
 
-            <div class="card">
-                <div class="card-title">
-                    💬 हम किन विषयों पर आपकी मदद करते हैं?
-                </div>
-                
-                <ul class="category-list">
-                    <li class="category-item">
-                        <div class="category-icon">❤️</div>
-                        <div class="category-desc">
-                            <h4>इंटीमेट झिझक व कम्फर्ट</h4>
-                            <p>पार्टनर के साथ झिझक, अनमैरिड कम्फर्ट, सेक्सुअल गाइडेंस और झिझक मिटाना।</p>
-                        </div>
-                    </li>
-
-                    <li class="category-item">
-                        <div class="category-icon">💔</div>
-                        <div class="category-desc">
-                            <h4>ब्रेकअप व लव-लाइफ की उलझन</h4>
-                            <p>3-4 साल पुराना रिश्ता टूटना, पार्टनर का धोखा या इग्नोर होने का दर्द।</p>
-                        </div>
-                    </li>
-
-                    <li class="category-item">
-                        <div class="category-icon">🤝</div>
-                        <div class="category-desc">
-                            <h4>वन-साइड लव व अटैचमेंट</h4>
-                            <p>एकतरफ़ा प्यार, पार्टनर की बाउंड्रीज़ समझना और फीलिंग्स संभालना।</p>
-                        </div>
-                    </li>
-
-                    <li class="category-item">
-                        <div class="category-icon">🌱</div>
-                        <div class="category-desc">
-                            <h4>अकेलापन व मन की बात शेयर करना</h4>
-                            <p>बिना किसी जजमेंट के अपने मन का भारीपन हल्का करें और सलाह लें।</p>
-                        </div>
-                    </li>
-                </ul>
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">मोबाइल नंबर (केवल वेरिफिकेशन हेतु)</label>
+                <input type="tel" id="userPhone" required placeholder="10 अंकों का नंबर" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
             </div>
 
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का पसंदीदा समय</label>
+                <select id="timeSlot" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
+                    <option value="Right Now">तत्काल बात करें (Right Now)</option>
+                    <option value="In 15 Mins">अगले 15 मिनट में</option>
+                    <option value="Evening">शाम के समय</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का विषय</label>
+                <select class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
+                    <option>लव लाइफ व रिलेशनशिप</option>
+                    <option>मानसिक तनाव व अकेलापन</option>
+                    <option>अन्य निजी बातें</option>
+                </select>
+            </div>
+
+            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition duration-200 shadow-lg shadow-emerald-900/40">
+                ✅ बुकिंग कन्फर्म करें & आगे बढ़ें
+            </button>
+        </form>
+
+        <!-- Status & Voice Call Area -->
+        <div id="actionArea" class="hidden space-y-4">
+            <div class="bg-emerald-900/30 border border-emerald-500/40 rounded-xl p-4 text-center space-y-2">
+                <p class="text-sm font-semibold text-emerald-400">✅ आपकी बुकिंग दर्ज कर ली गई है!</p>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    सुरक्षित बातचीत के लिए इसी पेज पर बने रहें। काउंसलर **10 से 15 मिनट** में आपसे यहीं लाइव जुड़ेंगे।
+                </p>
+            </div>
+
+            <div class="space-y-2">
+                <button id="callBtn" onclick="startVoiceCall()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-900/40">
+                    📞 Start Voice Call Now
+                </button>
+                <p class="text-[10px] text-slate-400 text-center">कॉल बटन दबाकर ब्राउज़र में माइक्रोन (Mic) अलाउ (Allow) करें।</p>
+            </div>
+
+            <!-- Audio Call Frame Container -->
+            <div id="zegoRoom" class="w-full h-80 rounded-xl overflow-hidden hidden border border-slate-700 bg-slate-900"></div>
         </div>
 
-        <div class="reviews-header">
-            <h2>⭐ लोगों के अनुभव व रिव्यूज (20 Verified Reviews)</h2>
-            <p>100% गोपनीय बातचीत के बाद यूज़र्स द्वारा शेयर किए गए फीडबैक</p>
-        </div>
+    </main>
 
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-user"><span class="user-name">अनन्या S.</span><span class="user-tag">इंटीमेट झिझक</span></div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"शुरुआत में बहुत हिचकिचाहट थी अपने पार्टनर के साथ खुलकर बात करने में। यहाँ बात करके मेरी सारी झिझक खत्म हो गई।"</div>
-            </div>
-            <div class="review-card">
-                <div class="review-user"><span class="user-name">प्रिया शर्मा</span><span class="user-tag">मैरिड लाइफ</span></div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"शादी के बाद पर्सनल लाइफ को लेकर काफी परेशानियाँ थीं, जिन्हें किसी से कह नहीं पा रही थी। यहाँ बहुत ही सही सलाह मिली।"</div>
-            </div>
-            <div class="review-card">
-                <div class="review-user"><span class="user-name">दिव्या K.</span><span class="user-tag">ब्रेकअप दर्द</span></div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"3 साल का रिश्ता टूटने के बाद मैं पूरी तरह टूट चुकी थी। यहाँ बात करके मुझे खुद को संभालने की हिम्मत मिली।"</div>
-            </div>
-            <div class="review-card">
-                <div class="review-user"><span class="user-name">कीर्ति L.</span><span class="user-tag">अकेलापन</span></div>
-                <div class="rating">★★★★★</div>
-                <div class="review-text">"कभी-कभी बस किसी ऐसे इंसान से बात करने की जरूरत होती है जो आपको जज न करे। DilKholSafe मेरे लिए वही जगह है।"</div>
-            </div>
-        </div>
-
-    </div>
-
-    <footer>
-        <p>© 2026 DilKholSafe | 100% गोपनीय व सुरक्षित प्लेटफॉर्म</p>
-    </footer>
-
+    <!-- Tawk.to Live Chat Script -->
     <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        Tawk_API.onLoad = function(){
-            Tawk_API.hideWidget(); // Hide Widget on initial page load
-        };
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){
             var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
             s1.async=true;
-            s1.src='https://embed.tawk.to/6a648e50bc55a11d4d70f681/1juccnt8f';
+            s1.src='https://embed.tawk.to/65b262a48d261e0b5f583f7b/default'; // आपका Tawk.to विजेट
             s1.charset='UTF-8';
             s1.setAttribute('crossorigin','*');
             s0.parentNode.insertBefore(s1,s0);
         })();
     </script>
 
+    <!-- Logic Script -->
     <script>
-        var form = document.getElementById("bookingForm");
-        
-        form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Stop redirection to Formspree page
-            
-            var btn = document.getElementById("submitBtn");
-            btn.innerText = "कृपया प्रतीक्षा करें...";
-            btn.disabled = true;
-
-            var data = new FormData(form);
-
-            fetch(form.action, {
-                method: "POST",
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                // Instantly hide form and show call + chat options
-                form.style.display = "none";
-                document.getElementById("accessSection").style.display = "block";
-                
-                // Show Tawk.to Chat Widget
-                if(typeof Tawk_API !== 'undefined' && Tawk_API.showWidget){
-                    Tawk_API.showWidget();
-                    Tawk_API.maximize();
-                }
-            }).catch(error => {
-                // Show access section anyway
-                form.style.display = "none";
-                document.getElementById("accessSection").style.display = "block";
-                if(typeof Tawk_API !== 'undefined' && Tawk_API.showWidget){
-                    Tawk_API.showWidget();
-                    Tawk_API.maximize();
-                }
-            });
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('actionArea').classList.remove('hidden');
         });
 
         function startVoiceCall() {
-            var nickname = document.getElementById("userNickname").value || "User_" + Math.floor(Math.random() * 1000);
-            var roomID = "DilKholRoom_1"; // Room for Counselor & User
-            var appID = 1970088312;
-            var serverSecret = "294cf8c5055b245eeec82854c95c1b22";
-            var userID = "user_" + Date.now();
+            const nameInput = document.getElementById('userName').value || "User";
+            const roomID = "DilKholSafe_Live_Call_Room"; // दोनों का एक ही कॉमन रूम
+            
+            // आपकी Zego Credentials (स्क्रीनशॉट से ली गई)
+            const appID = 1970088312;
+            const serverSecret = "294cf8c5055b245eeec82854c95c1b22";
 
-            const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, nickname);
+            const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, Date.now().toString(), nameInput);
+
             const zp = ZegoUIKitPrebuilt.create(kitToken);
             
-            document.getElementById("callContainer").style.display = "block";
+            document.getElementById('callBtn').classList.add('hidden');
+            document.getElementById('zegoRoom').classList.remove('hidden');
 
             zp.joinRoom({
-                container: document.getElementById("callContainer"),
+                container: document.getElementById('zegoRoom'),
                 scenario: {
                     mode: ZegoUIKitPrebuilt.OneONoneCall,
                 },
-                turnOnCameraWhenJoining: false, 
+                turnOnCameraWhenJoining: false, // सिर्फ ऑडियो
                 showMyCameraToggleButton: false,
-                showAudioVideoSettingsButton: true,
+                showAudioVideoSettingsButton: false,
                 showScreenSharingButton: false,
-                turnOnMicrophoneWhenJoining: true
+                turnOnMicrophoneWhenJoining: true,
+                showTextChat: false, // फालतू चैट विजेट बंद
+                showUserList: false, // फालतू यूजर लिस्ट बंद
             });
         }
     </script>
-
 </body>
 </html>
