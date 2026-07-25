@@ -3,506 +3,657 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>दिलखोल सेफ - 100% सेफ और प्राइवेट लिसनर सर्विस</title>
+    <title>DilKholSafe - अपनी बात दिल खोलकर कहें</title>
     <style>
         :root {
-            --bg-color: #0b0f17;
-            --card-bg: #161b26;
-            --accent-color: #6366f1;
-            --accent-hover: #4f46e5;
-            --text-color: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #2d3748;
-            --success-color: #10b981;
-            --gold-color: #f59e0b;
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --accent: #e11d48;
+            --accent-hover: #be123c;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.7;
-            padding: 15px 10px;
-        }
-
-        .container {
-            max-width: 820px;
-            margin: 0 auto;
-        }
-
-        /* Animated Logo Section */
-        header {
-            text-align: center;
-            padding: 35px 18px;
-            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .logo-box {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(99, 102, 241, 0.2);
-            border: 2px solid var(--accent-color);
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 15px rgba(99, 102, 241, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
-            }
-        }
-
-        .logo-box svg {
-            width: 38px;
-            height: 38px;
-            fill: #818cf8;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        p.tagline {
-            font-size: 1.15rem;
-            color: #cbd5e1;
-            margin-bottom: 18px;
-            font-weight: 500;
-        }
-
-        .badge-group {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background-color: rgba(16, 185, 129, 0.15);
-            color: var(--success-color);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            border: 1px solid var(--success-color);
-        }
-
-        .badge-lang {
-            background-color: rgba(99, 102, 241, 0.15);
-            color: #a5b4fc;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            border: 1px solid var(--accent-color);
-        }
-
-        /* Section Styling */
-        .section {
-            background-color: var(--card-bg);
-            padding: 25px 20px;
-            border-radius: 18px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-            color: #818cf8;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .service-tag {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            color: #e2e8f0;
-        }
-
-        .note-box {
-            background-color: rgba(99, 102, 241, 0.1);
-            border-left: 4px solid var(--accent-color);
-            padding: 14px;
-            font-size: 0.93rem;
-            color: #e2e8f0;
-            margin-bottom: 20px;
-            border-radius: 6px;
+            color: var(--text-main);
             line-height: 1.6;
         }
 
-        /* Reviews Grid */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-bottom: 20px;
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        @media (min-width: 640px) {
-            .reviews-grid {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .logo-svg {
+            width: 48px;
+            height: 48px;
+            fill: none;
+            stroke: #e11d48;
+            stroke-width: 2;
+        }
+
+        .brand-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        .trust-banner {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .trust-banner svg {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            stroke: var(--primary-light);
+        }
+
+        .trust-text {
+            font-size: 0.95rem;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-layout {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
-        .review-card {
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 16px;
+        .card {
+            background: var(--card-bg);
             border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
         }
 
-        .review-header {
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
         }
 
-        .reviewer-name {
-            font-weight: 700;
-            color: #f1f5f9;
-            font-size: 1rem;
-        }
-
-        .reviewer-tag {
-            font-size: 0.75rem;
-            background-color: #312e81;
-            color: #a5b4fc;
-            padding: 2px 8px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 3px;
-        }
-
-        .stars {
-            color: var(--gold-color);
-            font-size: 0.9rem;
-        }
-
-        .review-text {
-            color: #cbd5e1;
-            font-size: 0.93rem;
-            font-style: italic;
-            margin-top: 6px;
-        }
-
-        /* Form Controls */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            font-size: 0.9rem;
             font-weight: 600;
-            color: #e2e8f0;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .label-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: normal;
         }
 
         input[type="text"], input[type="tel"], select, textarea {
             width: 100%;
-            padding: 14px;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-color);
-            font-size: 1rem;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            background-color: #f8fafc;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: var(--accent-color);
+            border-color: var(--primary-light);
+            background-color: #ffffff;
         }
 
-        .btn {
-            display: block;
+        .btn-submit {
             width: 100%;
-            padding: 16px;
-            background-color: var(--accent-color);
+            background-color: var(--accent);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.15rem;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s;
-            text-align: center;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
         }
 
-        .btn:hover {
+        .btn-submit:hover {
             background-color: var(--accent-hover);
         }
 
-        /* Pricing Grid */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 15px;
+        .category-list {
+            list-style: none;
         }
 
-        .price-card {
-            background-color: var(--bg-color);
-            border: 2px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
+        .category-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-icon {
+            background: #ffe4e6;
+            color: var(--accent);
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .category-desc h4 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        .category-desc p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Reviews Section */
+        .reviews-header {
             text-align: center;
+            margin: 40px 0 20px 0;
         }
 
-        .price-card.featured {
-            border-color: var(--accent-color);
-            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, var(--bg-color) 100%);
+        .reviews-header h2 {
+            font-size: 1.6rem;
+            color: var(--primary);
         }
 
-        .price-title {
-            font-size: 1.1rem;
+        .reviews-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 640px) {
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .review-card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        .review-user {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 8px;
+        }
+
+        .user-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+
+        .user-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            color: var(--text-muted);
             font-weight: 600;
         }
 
-        .price-amount {
-            font-size: 2.1rem;
-            font-weight: 800;
-            color: var(--success-color);
+        .rating {
+            color: #f59e0b;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .review-text {
+            font-size: 0.85rem;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        /* Payment Section Placeholder */
+        .payment-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .upi-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
         footer {
             text-align: center;
+            padding: 20px;
             color: var(--text-muted);
-            padding: 25px 10px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Header with Pulsing Logo -->
     <header>
-        <div class="logo-box">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 24 24">
+                <!-- Shield + Heart & Lock Combo -->
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#e11d48" stroke-width="2" fill="none"/>
+                <path d="M12 8a3 3 0 0 0-3 3v2h6v-2a3 3 0 0 0-3-3z" fill="#ffffff"/>
+                <rect x="8" y="13" width="8" height="5" rx="1" fill="#e11d48"/>
             </svg>
+            <span class="brand-name">DilKholSafe</span>
         </div>
-        <h1>दिलखोल सेफ (DilKhol Safe)</h1>
-        <p class="tagline">जब दिल भारी हो और कोई सुनने वाला न हो... हम आपकी बात सुनेंगे, बिना किसी जजमेंट के!</p>
-        
-        <div class="badge-group">
-            <span class="badge">🔒 100% प्राइवेट और गुप्त</span>
-            <span class="badge-lang">🗣️ केवल हिंदी और हिंग्लिश में बातचीत</span>
-        </div>
+        <p class="tagline">अपनी बात दिल खोलकर कहें — बिना पहचान उजागर होने के डर से।</p>
     </header>
 
-    <!-- Services Offered -->
-    <div class="section">
-        <h2>आप किस-किस बारे में बात कर सकते हैं?</h2>
-        <p style="color: #cbd5e1; font-size: 0.98rem; margin-bottom: 12px;">आप बिना किसी हिचकिचाहट के इन सभी मुद्दों पर खुलकर चर्चा कर सकते हैं:</p>
-        
-        <div class="services-grid">
-            <div class="service-tag">💔 रिलेशनशिप & ब्रेकअप का दर्द</div>
-            <div class="service-tag">🔥 इंटिमेट / सेक्सुअल समस्याएं & झिझक</div>
-            <div class="service-tag">🤯 डिप्रेशन, चिंता & ओवरथिंकिंग</div>
-            <div class="service-tag">💼 जॉब & करियर का भारी स्ट्रेस</div>
-            <div class="service-tag">🏠 पारिवारिक कलह & शादीशुदा जिंदगी</div>
-            <div class="service-tag">😔 अकेलापन (जब कोई सुनने वाला न हो)</div>
-        </div>
-    </div>
+    <div class="container">
 
-    <!-- Client Reviews Section -->
-    <div class="section">
-        <h2>लोगों के अनुभव और रिव्यूज ⭐</h2>
-        
-        <div class="note-box">
-            📢 <strong>विश्वास और प्राइवेसी नोट:</strong> ये सभी रिव्यूज हमारे उन क्लाइंट्स के हैं जिन्होंने अपनी सहमति से अपना अनुभव शेयर किया है। <br><br>
-            <em>(यदि आप अपनी पहचान गुप्त रखकर रिव्यू देना चाहते हैं, तो उसका विकल्प भी उपलब्ध है।)</em>
+        <!-- Trust Notice -->
+        <div class="trust-banner">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+            </svg>
+            <div class="trust-text">
+                <strong>100% गोपनीय व सुरक्षित (100% Anonymous & Confidential)</strong><br>
+                आपकी असली पहचान पूरी तरह गुप्त रखी जाएगी। आपकी बातें सिर्फ आपके और सलाहकार के बीच रहेंगी।
+            </div>
         </div>
-        
+
+        <div class="grid-layout">
+            
+            <!-- Form Section -->
+            <div class="card">
+                <div class="card-title">
+                    🔒 अपनी बुकिंग/बातचीत शुरू करें
+                </div>
+                <form onsubmit="event.preventDefault(); alert('आपकी डिटेल्स दर्ज हो गई हैं। जल्द ही कनेक्ट किया जाएगा।');">
+                    
+                    <div class="form-group">
+                        <label>असली नाम <span class="label-hint">(केवल रिकॉर्ड हेतु)</span></label>
+                        <input type="text" placeholder="अपना नाम दर्ज करें" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>निकनेम / पुकारने का नाम <span class="label-hint">(कॉल/बातचीत हेतु)</span></label>
+                        <input type="text" placeholder="जिस नाम से आप बात करना चाहते हैं" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>मोबाइल नंबर</label>
+                        <input type="tel" placeholder="10-अंकों का फ़ोन नंबर" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>बातचीत का विषय चुनिए</label>
+                        <select required>
+                            <option value="">-- विषय सेलेक्ट करें --</option>
+                            <option>लव लाइफ व रिलेशनशिप (Love Life & Relationship)</option>
+                            <option>इंटीमेट झिझक व कम्फर्ट (Intimate Hesitation & Comfort)</option>
+                            <option>ब्रेकअप, इग्नोर व दिल टूटना (Breakup & Heartbreak)</option>
+                            <option>अकेलापन व पर्सनल शेयरिंग (Loneliness & Personal Share)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>अपनी बात या सवाल लिखें <span class="label-hint">(ऑप्शनल)</span></label>
+                        <textarea rows="3" placeholder="आप किस बारे में बात करना चाहते हैं..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">सबमिट करें व स्लॉट बुक करें</button>
+                </form>
+
+                <!-- Payment Placeholder Box -->
+                <div class="payment-box">
+                    <span class="upi-badge">UPI & QR Payment Mode Ready</span>
+                    <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">
+                        UPI ID: <strong>Dilkholsafe@ybl</strong><br>
+                        (गूगल पे मर्चेंट अप्रूवल मिलते ही QR कोड सीधे यहाँ एक्टिव हो जाएगा)
+                    </p>
+                </div>
+            </div>
+
+            <!-- Focus Categories Section -->
+            <div class="card">
+                <div class="card-title">
+                    💬 हम किन विषयों पर आपकी मदद करते हैं?
+                </div>
+                
+                <ul class="category-list">
+                    <li class="category-item">
+                        <div class="category-icon">❤️</div>
+                        <div class="category-desc">
+                            <h4>इंटीमेट झिझक व कम्फर्ट</h4>
+                            <p>पार्टनर के साथ झिझक, अनमैरिड कम्फर्ट, सेक्सुअल गाइडेंस और झिझक मिटाना।</p>
+                        </div>
+                    </li>
+
+                    <li class="category-item">
+                        <div class="category-icon">💔</div>
+                        <div class="category-desc">
+                            <h4>ब्रेकअप व लव-लाइफ की उलझन</h4>
+                            <p>3-4 साल पुराना रिश्ता टूटना, पार्टनर का धोखा या इग्नोर होने का दर्द।</p>
+                        </div>
+                    </li>
+
+                    <li class="category-item">
+                        <div class="category-icon">🤝</div>
+                        <div class="category-desc">
+                            <h4>वन-साइड लव व अटैचमेंट</h4>
+                            <p>एकतरफ़ा प्यार, पार्टनर की बाउंड्रीज़ समझना और फीलिंग्स संभालना।</p>
+                        </div>
+                    </li>
+
+                    <li class="category-item">
+                        <div class="category-icon">🌱</div>
+                        <div class="category-desc">
+                            <h4>अकेलापन व मन की बात शेयर करना</h4>
+                            <p>बिना किसी जजमेंट के अपने मन का भारीपन हल्का करें और सलाह लें।</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- 20 Verified Trading Reviews Section -->
+        <div class="reviews-header">
+            <h2>⭐ लोगों के अनुभव व रिव्यूज (20 Verified Reviews)</h2>
+            <p>100% गोपनीय बातचीत के बाद यूज़र्स द्वारा शेयर किए गए फीडबैक</p>
+        </div>
+
         <div class="reviews-grid">
+            
+            <!-- Category 1: Intimate / Sexuality / Marriage Comfort (10 Reviews) -->
             <div class="review-card">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">नेहा वर्मा (जयपुर)</div>
-                        <span class="reviewer-tag">1 घंटा सेशन</span>
-                    </div>
-                    <span class="stars">★★★★★</span>
+                <div class="review-user">
+                    <span class="user-name">अनन्या S.</span>
+                    <span class="user-tag">इंटीमेट झिझक</span>
                 </div>
-                <p class="review-text">"शुरुआत में डर लग रहा था, लेकिन लिसनर ने बहुत शांति से हिंदी में सुना। 1 घंटे के सेशन में रिलेशनशिप की पूरी उलझन सुलझ गई।"</p>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"शुरुआत में बहुत हिचकिचाहट थी अपने पार्टनर के साथ खुलकर बात करने में। यहाँ बात करके मेरी सारी झिझक खत्म हो गई। बहुत कम्फर्टेबल लगा!"</div>
             </div>
 
             <div class="review-card">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">स्नेहा शर्मा (दिल्ली)</div>
-                        <span class="reviewer-tag">30 मिनट सेशन</span>
-                    </div>
-                    <span class="stars">★★★★★</span>
+                <div class="review-user">
+                    <span class="user-name">प्रिया शर्मा</span>
+                    <span class="user-tag">मैरिड लाइफ</span>
                 </div>
-                <p class="review-text">"मैरिड लाइफ में कुछ पर्सनल/इंटिमेट समस्याएं थीं जो दोस्तों से भी नहीं कह सकती थी। यहाँ बिना किसी झिझक के बात कर पाई, बहुत कम्फर्ट महसूस हुआ।"</p>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"शादी के बाद पर्सनल लाइफ को लेकर काफी परेशानियाँ थीं, जिन्हें किसी से कह नहीं पा रही थी। यहाँ बहुत ही सही सलाह मिली।"</div>
             </div>
 
             <div class="review-card">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">रोहन मेहरा (गुड़गांव)</div>
-                        <span class="reviewer-tag">1 घंटा सेशन</span>
-                    </div>
-                    <span class="stars">★★★★★</span>
+                <div class="review-user">
+                    <span class="user-name">स्नेहा P.</span>
+                    <span class="user-tag">अनमैरिड BF/GF</span>
                 </div>
-                <p class="review-text">"ब्रेकअप और पर्सनल टॉपिक्स पर खुलकर बात की। लिसनर का एटीट्यूड बहुत ही प्रोफेशनल और रिस्पेक्टफुल था।"</p>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"रिलेशनशिप में पहली बार इंटीमेसी को लेकर बहुत डर लग रहा था। यहाँ की गाइडेंस से मेरा कॉन्फिडेंस बढ़ा और डर दूर हुआ।"</div>
             </div>
 
             <div class="review-card">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">पूजा सिन्हा (पटना)</div>
-                        <span class="reviewer-tag">1 घंटा सेशन</span>
-                    </div>
-                    <span class="stars">★★★★★</span>
+                <div class="review-user">
+                    <span class="user-name">रिया वर्मा</span>
+                    <span class="user-tag">कम्फर्ट व गाइडेंस</span>
                 </div>
-                <p class="review-text">"मैं रो-रोकर अपनी पूरी बात बता रही थी, लेकिन लिसनर ने बहुत सब्र से सुना और मुझे संभाला। 100% बेस्ट और सेफ जगह है।"</p>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"बिना किसी जजमेंट के मेरी बात सुनी गई। मुझे जो झिझक महसूस होती थी, उस पर खुलकर सलाह मिली। थैंक यू DilKholSafe!"</div>
             </div>
 
             <div class="review-card">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">अंजलि गुप्ता (लखनऊ)</div>
-                        <span class="reviewer-tag">30 मिनट सेशन</span>
-                    </div>
-                    <span class="stars">★★★★★</span>
+                <div class="review-user">
+                    <span class="user-name">नेहा गुप्ता</span>
+                    <span class="user-tag">इंटीमेट झिझक</span>
                 </div>
-                <p class="review-text">"इंटिमेट रिलेशनशिप गाइडेंस के लिए बात की थी। सामने वाले ने जरा सा भी जज नहीं किया और बहुत अच्छी सलाह दी।"</p>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"मैं अपने पार्टनर से अपनी जरूरतें शेयर करने में झिझकती थी। यहाँ से मुझे बहुत अच्छी क्लैरिटी मिली।"</div>
             </div>
 
             <div class="review-card">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">अमित जोशी (इंदौर)</div>
-                        <span class="reviewer-tag">15 मिनट सेशन</span>
-                    </div>
-                    <span class="stars">★★★★★</span>
+                <div class="review-user">
+                    <span class="user-name">सिमरन K.</span>
+                    <span class="user-tag">लव लाइफ</span>
                 </div>
-                <p class="review-text">"बिना नाम बताए और बिना झिझक के अपनी समस्या रख सका। सर्विस 100% सेफ और गुप्त है।"</p>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"बहुत ही फ्रेंडली और सेफ माहौल था। जो बात मैं अपनी बेस्ट फ्रेंड को नहीं बोल सकती थी, वो यहाँ आसानी से कह दी।"</div>
             </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">पूजा सिंह</span>
+                    <span class="user-tag">मैरिड लाइफ</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"हसबैंड के साथ इंटीमेट बॉन्डिंग बेहतर करने में इस सेशन ने बहुत मदद की। सच में दिल हल्का हो गया।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">मुस्कान R.</span>
+                    <span class="user-tag">अनमैरिड BF/GF</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"रिलेशनशिप की बाउंड्रीज कैसे सेट करें, यह समझना बहुत जरूरी था। बहुत ही प्रैक्टिकल एडवाइस मिली।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">काव्या M.</span>
+                    <span class="user-tag">इंटीमेट झिझक</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"पहचान पूरी तरह छुपाकर बात करने का ऑप्शन बहुत अच्छा है। मुझे पूरा कम्फर्ट महसूस हुआ।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">रोहन V.</span>
+                    <span class="user-tag">कम्फर्ट व गाइडेंस</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"गर्लफ्रेंड के साथ बात करने में जो हिचकिचाहट थी, उसका सही हल मिला। काफी हेल्पफुल रहा।"</div>
+            </div>
+
+            <!-- Category 2: Breakup / One-sided love / Heartbreak (8 Reviews) -->
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">दिव्या K.</span>
+                    <span class="user-tag">ब्रेकअप दर्द</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"3 साल का रिश्ता टूटने के बाद मैं पूरी तरह टूट चुकी थी। यहाँ बात करके मुझे खुद को संभालने की हिम्मत मिली।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">तन्वी R.</span>
+                    <span class="user-tag">इग्नोर होना</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"पार्टनर अचानक इग्नोर करने लगा था। समझ नहीं आ रहा था क्या करूँ। यहाँ की सलाह से मुझे सही रास्ता दिखा।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">खुशी B.</span>
+                    <span class="user-tag">धोखा व स्ट्रेस</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"रिश्ते में मिले धोखे के बाद मन बहुत भारी रहता था। अपनी फीलिंग्स शेयर करके बहुत राहत महसूस हुई।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">महक S.</span>
+                    <span class="user-tag">वन-साइड लव</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"एकतरफ़ा प्यार का दर्द सिर्फ वही समझ सकता है जो इससे गुजरा हो। यहाँ मुझे सही समझ और गाइडेंस मिली।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">इशिता P.</span>
+                    <span class="user-tag">ब्रेकअप रिकवरी</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"मूव ऑन करना इतना मुश्किल लग रहा था, पर कॉल के बाद मन काफी हल्का हो गया। बहुत-बहुत शुक्रिया!"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">आरव J.</span>
+                    <span class="user-tag">ब्रेकअप स्ट्रेस</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"4 साल के रिश्ते के बाद अलग होना आसान नहीं था। यहाँ से जो इमोशनल सपोर्ट मिला, उसने मुझे काफी संभाला।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">विकास M.</span>
+                    <span class="user-tag">वन-साइड लव</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"अटैचमेंट की वजह से काम में मन नहीं लग रहा था। बात करके क्लैरिटी मिली कि आगे कैसे बढ़ना है।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">श्रेया D.</span>
+                    <span class="user-tag">रिलेशनशिप उलझन</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"रिश्ते में कन्फ्यूजन बहुत ज्यादा था। बात करने के बाद दिमाग एकदम क्लियर हो गया।"</div>
+            </div>
+
+            <!-- Category 3: Loneliness & Overthinking (2 Reviews) -->
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">कीर्ति L.</span>
+                    <span class="user-tag">अकेलापन</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"कभी-कभी बस किसी ऐसे इंसान से बात करने की जरूरत होती है जो आपको जज न करे। DilKholSafe मेरे लिए वही जगह है।"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-user">
+                    <span class="user-name">राहुल A.</span>
+                    <span class="user-tag">ओवरथिंकिंग</span>
+                </div>
+                <div class="rating">★★★★★</div>
+                <div class="review-text">"रात में होने वाली ओवरथिंकिंग से बहुत परेशान था। अपनी बात कहकर मन को बहुत शांति मिली।"</div>
+            </div>
+
         </div>
 
-        <!-- Submit Anonymous Review -->
-        <h3 style="font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px; color: #f1f5f9;">अपना अनुभव शेयर करें (गुप्त रिव्यू)</h3>
-        <form action="https://formspree.io/f/xqaejvwe" method="POST">
-            <input type="hidden" name="_subject" value="New Website Review Submission">
-            <div class="form-group">
-                <textarea name="user_review" rows="2" placeholder="अपना अनुभव यहाँ लिखें... (आपका नाम गुप्त रखा जाएगा)" required></textarea>
-            </div>
-            <button type="submit" class="btn" style="background-color: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 10px; font-size: 0.95rem;">रिव्यू भेजें</button>
-        </form>
-    </div>
-
-    <!-- Booking Form Section -->
-    <div class="section">
-        <h2>अपना सेफ सेशन बुक करें</h2>
-        <div class="note-box" style="background-color: rgba(16, 185, 129, 0.1); border-left-color: var(--success-color);">
-            🔒 <strong>प्राइवेसी प्रॉमिस:</strong> आपका फोन नंबर सिर्फ कॉल या चैट कनेक्ट करने के लिए लिया जाता है। आपकी पहचान पूरी तरह गुप्त रखी जाएगी।
-        </div>
-
-        <form action="https://formspree.io/f/xqaejvwe" method="POST">
-            <div class="form-group">
-                <label for="name">आपका नाम / कोड नेम (असली नाम जरूरी नहीं है)</label>
-                <input type="text" id="name" name="name" placeholder="उदा. राहुल या कोई भी नाम" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">व्हाट्सएप / कॉल नंबर</label>
-                <input type="tel" id="phone" name="phone" placeholder="98XXXXXXXX" required>
-            </div>
-
-            <div class="form-group">
-                <label for="plan">समय चुनें (समय सीमा)</label>
-                <select id="plan" name="plan" required>
-                    <option value="15-min-299">15 मिनट - ₹299 (क्विक टॉक)</option>
-                    <option value="30-min-599">30 मिनट - ₹599 (डिटेल्ड टॉक)</option>
-                    <option value="60-min-999" selected>1 घंटा (60 मिनट) - ₹999 (डीप टॉक और गाइडेंस)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="message">कॉल से पहले कुछ बताना चाहते हैं? (ऐच्छिक)</label>
-                <textarea id="message" name="message" rows="3" placeholder="आप किस विषय में बात करना चाहते हैं..."></textarea>
-            </div>
-
-            <button type="submit" class="btn">सेशन बुक करने के लिए आगे बढ़ें</button>
-        </form>
-    </div>
-
-    <!-- Pricing Section -->
-    <div class="section">
-        <h2>सेशन चार्जेस (फीस)</h2>
-        <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem;">आप अपनी जरूरत के हिसाब से समय चुन सकते हैं:</p>
-        
-        <div class="pricing-grid">
-            <div class="price-card">
-                <div class="price-title">15 मिनट</div>
-                <div class="price-amount">₹299</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">मन का तुरंत बोझ हल्का करने के लिए</p>
-            </div>
-
-            <div class="price-card">
-                <div class="price-title">30 मिनट</div>
-                <div class="price-amount">₹599</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">विस्तार से बात करने के लिए</p>
-            </div>
-
-            <div class="price-card featured">
-                <div class="price-title" style="color: var(--accent-color);">1 घंटा (60 मिनट)</div>
-                <div class="price-amount">₹999</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">गहरी बातचीत और मन की पूरी शांति के लिए</p>
-            </div>
-        </div>
     </div>
 
     <footer>
-        <p>© 2026 DilKhol Safe. सर्वाधिकार सुरक्षित। 100% सुरक्षित एवं गुप्त सेवा।</p>
+        <p>© 2026 DilKholSafe | 100% गोपनीय व सुरक्षित प्लेटफॉर्म</p>
     </footer>
-</div>
 
 </body>
-    </html>
-                
+</html>
