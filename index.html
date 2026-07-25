@@ -231,7 +231,7 @@
             border: 2px solid #22c55e;
             border-radius: 12px;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 10px;
             text-align: center;
         }
 
@@ -381,7 +381,7 @@
                 <form id="bookingForm" action="https://formspree.io/f/xeeypawb" method="POST">
                     
                     <div class="form-group">
-                        <label>अपुकारने का नाम / निकनेम <span class="label-hint">(जिससे आप बात करना चाहते हैं)</span></label>
+                        <label>पुकारने का नाम / निकनेम <span class="label-hint">(जिससे आप बात करना चाहते हैं)</span></label>
                         <input type="text" id="userNickname" name="Nickname" placeholder="जैसे: राहुल या प्रिया" required>
                     </div>
 
@@ -417,7 +417,7 @@
                         <textarea name="Message" rows="2" placeholder="आप किस बारे में बात करना चाहते हैं..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit">सबमिट करें व सेशन अनलॉक करें</button>
+                    <button type="submit" id="submitBtn" class="btn-submit">सबमिट करें व सेशन अनलॉक करें</button>
                 </form>
 
                 <!-- Unlocked Call & Chat Area (Hidden initially) -->
@@ -533,31 +533,34 @@
         })();
     </script>
 
-    <!-- Logic Script for Form, ZegoCall & Tawk Unlocking -->
+    <!-- AJAX Form Handler & ZegoCall Unlocking Logic -->
     <script>
         var form = document.getElementById("bookingForm");
         
-        form.addEventListener("submit", async function(event) {
-            event.preventDefault();
-            var data = new FormData(event.target);
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Stop page redirect to Formspree thank you page
             
-            fetch(event.target.action, {
-                method: form.method,
+            var btn = document.getElementById("submitBtn");
+            btn.innerText = "कृपया प्रतीक्षा करें...";
+            btn.disabled = true;
+
+            var data = new FormData(form);
+
+            fetch(form.action, {
+                method: "POST",
                 body: data,
-                headers: { 'Accept': 'application/json' }
+                headers: {
+                    'Accept': 'application/json'
+                }
             }).then(response => {
-                if (response.ok) {
-                    // Hide form and show unlocked Access Section
-                    form.style.display = "none";
-                    document.getElementById("accessSection").style.display = "block";
-                    
-                    // Unhide Tawk.to Live Chat
-                    if(typeof Tawk_API !== 'undefined' && Tawk_API.showWidget){
-                        Tawk_API.showWidget();
-                        Tawk_API.maximize();
-                    }
-                } else {
-                    alert("फॉर्म सबमिट करने में कोई समस्या आई, कृपया दोबारा प्रयास करें।");
+                // Hide form and show unlocked Access Section
+                form.style.display = "none";
+                document.getElementById("accessSection").style.display = "block";
+                
+                // Unhide Tawk.to Live Chat
+                if(typeof Tawk_API !== 'undefined' && Tawk_API.showWidget){
+                    Tawk_API.showWidget();
+                    Tawk_API.maximize();
                 }
             }).catch(error => {
-                alert("नेटवर्क त्रुटि, कृपया दोबारा 
+                // Force show access se
