@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DilKholSafe - अपनी बात दिल खोलकर कहें</title>
-    <!-- ZegoCloud Prebuilt UI Kit SDK -->
     <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
     <style>
         :root {
@@ -358,7 +357,6 @@
 
     <div class="container">
 
-        <!-- Trust Notice -->
         <div class="trust-banner">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -372,13 +370,12 @@
 
         <div class="grid-layout">
             
-            <!-- Form Section -->
             <div class="card">
                 <div class="card-title">
                     🔒 अपनी बुकिंग/बातचीत शुरू करें
                 </div>
                 
-                <form id="bookingForm" action="https://formspree.io/f/xeeypawb" method="POST">
+                <form id="bookingForm" action="https://formspree.io/f/xeeypawb">
                     
                     <div class="form-group">
                         <label>पुकारने का नाम / निकनेम <span class="label-hint">(जिससे आप बात करना चाहते हैं)</span></label>
@@ -420,7 +417,6 @@
                     <button type="submit" id="submitBtn" class="btn-submit">सबमिट करें व सेशन अनलॉक करें</button>
                 </form>
 
-                <!-- Unlocked Call & Chat Area (Hidden initially) -->
                 <div id="accessSection">
                     <h3 style="color:#16a34a; margin-bottom:8px;">✅ आपकी बुकिंग दर्ज हो गई है!</h3>
                     <p style="font-size:0.9rem; color:#334155;">
@@ -439,7 +435,6 @@
                 </div>
             </div>
 
-            <!-- Focus Categories Section -->
             <div class="card">
                 <div class="card-title">
                     💬 हम किन विषयों पर आपकी मदद करते हैं?
@@ -482,7 +477,6 @@
 
         </div>
 
-        <!-- 20 Verified Reviews Section -->
         <div class="reviews-header">
             <h2>⭐ लोगों के अनुभव व रिव्यूज (20 Verified Reviews)</h2>
             <p>100% गोपनीय बातचीत के बाद यूज़र्स द्वारा शेयर किए गए फीडबैक</p>
@@ -517,7 +511,6 @@
         <p>© 2026 DilKholSafe | 100% गोपनीय व सुरक्षित प्लेटफॉर्म</p>
     </footer>
 
-    <!-- Tawk.to Script (Hidden Initially) -->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         Tawk_API.onLoad = function(){
@@ -533,12 +526,11 @@
         })();
     </script>
 
-    <!-- AJAX Form Handler & ZegoCall Unlocking Logic -->
     <script>
         var form = document.getElementById("bookingForm");
         
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Stop page redirect to Formspree thank you page
+            event.preventDefault(); // Stop redirection to Formspree page
             
             var btn = document.getElementById("submitBtn");
             btn.innerText = "कृपया प्रतीक्षा करें...";
@@ -553,14 +545,51 @@
                     'Accept': 'application/json'
                 }
             }).then(response => {
-                // Hide form and show unlocked Access Section
+                // Instantly hide form and show call + chat options
                 form.style.display = "none";
                 document.getElementById("accessSection").style.display = "block";
                 
-                // Unhide Tawk.to Live Chat
+                // Show Tawk.to Chat Widget
                 if(typeof Tawk_API !== 'undefined' && Tawk_API.showWidget){
                     Tawk_API.showWidget();
                     Tawk_API.maximize();
                 }
             }).catch(error => {
-                // Force show access se
+                // Show access section anyway
+                form.style.display = "none";
+                document.getElementById("accessSection").style.display = "block";
+                if(typeof Tawk_API !== 'undefined' && Tawk_API.showWidget){
+                    Tawk_API.showWidget();
+                    Tawk_API.maximize();
+                }
+            });
+        });
+
+        function startVoiceCall() {
+            var nickname = document.getElementById("userNickname").value || "User_" + Math.floor(Math.random() * 1000);
+            var roomID = "DilKholRoom_1"; // Room for Counselor & User
+            var appID = 1970088312;
+            var serverSecret = "294cf8c5055b245eeec82854c95c1b22";
+            var userID = "user_" + Date.now();
+
+            const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, nickname);
+            const zp = ZegoUIKitPrebuilt.create(kitToken);
+            
+            document.getElementById("callContainer").style.display = "block";
+
+            zp.joinRoom({
+                container: document.getElementById("callContainer"),
+                scenario: {
+                    mode: ZegoUIKitPrebuilt.OneONoneCall,
+                },
+                turnOnCameraWhenJoining: false, 
+                showMyCameraToggleButton: false,
+                showAudioVideoSettingsButton: true,
+                showScreenSharingButton: false,
+                turnOnMicrophoneWhenJoining: true
+            });
+        }
+    </script>
+
+</body>
+</html>
