@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DilKholSafe - एडमिन डैशबोर्ड (गुप्त)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://meet.jit.si/external_api.js"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen p-4">
+
+    <!-- 1. लॉगिन स्क्रीन (Admin Login) -->
+    <div id="loginArea" class="max-w-md mx-auto my-20 bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-4 shadow-xl shadow-slate-950/50">
+        <h1 class="text-xl font-bold text-rose-500 text-center flex items-center justify-center gap-2">
+            🔑 <span>एडमिन पोर्टल लॉगिन</span>
+        </h1>
+        <!-- पासवर्ड फील्ड -->
+        <input type="password" id="adminPass" placeholder="सीक्रेट पासवर्ड दर्ज करें" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500 transition">
+        <button onclick="loginAdmin()" class="w-full bg-rose-600 hover:bg-rose-500 py-3 rounded-lg font-bold transition duration-200">লগইন करें</button>
+    </div>
+
+    <!-- 2. एडमिन डैशबोर्ड (लॉगिन के बाद दिखेगा) -->
+    <div id="dashboardArea" class="hidden max-w-5xl mx-auto space-y-6">
+
+        <header class="flex justify-between items-center bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-lg">
+            <div>
+                <h1 class="text-xl font-bold text-rose-500 tracking-tight">'हमराज़' डैशबोर्ड (DilKholSafe)</h1>
+                <p class="text-xs text-slate-400">कस्टमर रिकॉर्ड्स व कॉलिंग कंट्रोल पैनल</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="location.reload()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded font-medium transition">🔄 फ्रेश करें</button>
+                <button onclick="logoutAdmin()" class="bg-rose-600/10 hover:bg-rose-600/20 text-rose-300 text-xs px-3 py-2 rounded font-medium transition">🚪 लॉगआउट</button>
+            </div>
+        </header>
+
+        <!-- 3. लाइव कॉल कंट्रोल (Admin Call Join Area) -->
+        <div id="adminCallContainer" class="hidden bg-slate-800 p-4 rounded-xl border-2 border-emerald-500 shadow-xl shadow-emerald-950/30 space-y-3">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-700">
+                <h2 class="text-sm font-bold text-emerald-400 flex items-center gap-2">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-50"></span>
+                    </span>
+                    📞 लाइव कॉल सेशन चालू है
+                </h2>
+                <button onclick="endAdminCall()" class="bg-rose-600 hover:bg-rose-500 text-xs px-3 py-1 rounded font-bold transition">कॉल बंद करें</button>
+            </div>
+            <!-- Jitsi Call Room -->
+            <div id="adminCallRoom" class="w-full h-96 rounded-lg overflow-hidden bg-slate-900 border border-slate-700"></div>
+        </div>
+
+        <!-- 4. ग्राहक बुकिंग रिकॉर्ड्स (Latest Bookings) -->
+        <section class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3">
+            <h2 class="text-sm font-bold text-slate-200 border-b border-slate-700 pb-2">📥 नए ग्राहक बुकिंग्स (रिकॉर्ड)</h2>
+            <div class="overflow-x-auto pr-1">
+                <table class="w-full text-left text-xs border-collapse min-w-[750px]">
+                    <thead>
+                        <tr class="bg-slate-900 text-slate-400 border-b border-slate-700">
+                            <th class="p-3">समय</th>
+                            <th class="p-3">असली नाम (गुप्त)</th>
+                            <th class="p-3">निकनेम</th>
+                            <th class="p-3">मोबाइल नंबर</th>
+                            <th class="p-3">माध्यम</th>
+                            <th class="p-3">अवधि</th>
+                            <th class="p-3">विषय/मूड</th>
+                            <th class="p-3 w-24">एक्शन</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable" class="divide-y divide-slate-700">
+                        <!-- बुकिंग डेटा जावास्क्रिप्ट से यहाँ आएगा -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 5. रिव्यूज मैनेज करें (Delete Bad Reviews) -->
+        <section class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-3 mb-10">
+            <h2 class="text-sm font-bold text-slate-200 border-b border-slate-700 pb-2 flex justify-between items-center">
+                <span>⭐ वेबसाइट रिव्यूज (Moderation)</span>
+                <span class="text-[10px] text-slate-400 font-normal">यहाँ से आप गलत रिव्यू डिलीट कर सकते हैं</span>
+            </h2>
+            <div id="adminReviewsList" class="space-y-2 text-xs max-h-60 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-700">
+                <!-- रिव्यूज यहाँ लोड होंगे -->
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        let jitsiApi = null;
+
+        // ---LOGIN LOGIC WITH YOUR SECRET PASSWORD---
+        function loginAdmin() {
+            let pass = document.getElementById('adminPass').value;
+            // आपका सीक्रेट पासवर्ड यहाँ सेट है
+            if(pass === "100399") { 
+                localStorage.setItem('dks_admin_logged', 'true');
+                showDashboard();
+            } else {
+                alert("गलत पासवर्ड! कृपया सही पासवर्ड डालें।");
+                document.getElementById('adminPass').value = ""; // क्लियर इनपुट
+            }
+        }
+
+        // ---CHECK LOGIN STATUS---
+        if(localStorage.getItem('dks_admin_logged') === 'true') {
+            showDashboard();
+        }
+
+        function showDashboard() {
+            document.getElementById('loginArea').classList.add('hidden');
+            document.getElementById('dashboardArea').classList.remove('hidden');
+            loadDashboardData();
+        }
+
+        function logoutAdmin() {
+            if(!confirm("क्या आप लॉगआउट करना चाहते हैं?")) return;
+            localStorage.removeItem('dks_admin_logged');
+            location.reload();
+        }
+
+        // ---LOAD DATA (Bookings & Reviews)---
+        function loadDashboardData() {
+            // 1. लोड करें बुकिंग्स (index.html से आई हुई)
+            let bookings = JSON.parse(localStorage.getItem('dks_bookings')) || [];
+            let bTable = document.getElementById('bookingsTable');
+            
+            bTable.innerHTML = bookings.length ? bookings.map((b, index) => `
+                <tr class="hover:bg-slate-700/50 transition">
+                    <td class="p-3 text-slate-400 text-[11px]">${b.time}</td>
+                    <td class="p-3 font-bold text-rose-400 text-sm tracking-tight">${b.realName}</td>
+                    <td class="p-3 font-medium text-slate-200">${b.nickName}</td>
+                    <td class="p-3 text-slate-300 tabular-nums">${b.phone}</td>
+                    <td class="p-3">
+                        ${b.mode === 'Voice Call' ? '<span class="text-emerald-400 flex items-center gap-1">📞 कॉल</span>' : '<span class="text-sky-400 flex items-center gap-1">💬 चैट</span>'}
+                    </td>
+                    <td class="p-3 font-semibold text-emerald-400 tabular-nums">${b.selectedMinutes} मिनट</td>
+                    <td class="p-3 text-slate-300 leading-relaxed">${b.topic} <br> <span class="text-[10px] text-slate-500 font-normal">(${b.mood})</span></td>
+                    <td class="p-3">
+                        ${b.mode === 'Voice Call' ? `
+                            <button onclick="connectAdminCall('${b.nickName}')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded text-[11px] font-bold transition">📞 कनेक्ट</button>
+                        ` : `
+                            <span class="text-[11px] text-slate-500 font-medium">💬 चैट देखें</span>
+                        `}
+                    </td>
+                </tr>
+            `).join('') : `<tr><td colspan="8" class="p-6 text-center text-slate-500 text-xs">अभी कोई बुकिंग नहीं मिली है।</td></tr>`;
+
+            // 2. लोड करें रिव्यूज
+            // डिफ़ॉल्ट रिव्यूज (वही जो index.html में हैं, हिंदी में)
+            const defaultReviews = [
+                { name: "अनन्या एस.", msg: "गर्लफ्रेंड से शारीरिक विषय पर बात करने में बहुत झिझक थी, यहाँ 'हमराज़' से खुलकर बात हुई। मन हल्का हो गया।" },
+                { name: "स्नेहा (गेस्ट)", msg: "100% सुरक्षित प्लेटफॉर्म! पहचान पूरी तरह गुप्त रही और बहुत अच्छी सलाह मिली।" },
+                { name: "पूजा शर्मा", msg: "शादीशुदा जिंदगी के निजी डाउट्स दूर हुए। बिना डर के अपनी बात रख पाई।" },
+                { name: "राहुल एम.", msg: "ब्रेकअप के बाद बहुत अकेलापन था, यहाँ बात करके मन शांत हुआ।" },
+                { name: "प्रिया वी.", msg: "लड़कियों के लिए यह सबसे सुरक्षित जगह है अपनी सीक्रेट बातें करने के लिए।" },
+                { name: "महक के.", msg: " एंग्जाइटी और ओवरथिंकिंग कम हो गई। बहुत दोस्ताना अनुभव रहा।" }
+            ];
+
+            let reviews = JSON.parse(localStorage.getItem('dks_reviews')) || defaultReviews;
+            let rList = document.getElementById('adminReviewsList');
+            rList.innerHTML = reviews.map((r, index) => `
+                <div class="flex justify-between items-center bg-slate-900 p-3 rounded-lg border border-slate-700 hover:border-slate-600 transition">
+                    <div>
+                        <span class="font-bold text-rose-400 text-[11px] tracking-tight">${r.name}:</span>
+                        <span class="text-slate-300 ml-2 text-[10px] leading-relaxed">"${r.msg}"</span>
+                    </div>
+                    <button onclick="deleteReview(${index})" class="bg-rose-600/20 hover:bg-rose-600 text-rose-200 hover:text-white px-2.5 py-1.5 rounded text-[10px] ml-3 transition">❌ हटाएँ</button>
+                </div>
+            `).join('');
+        }
+
+        // ---MODERATE REVIEWS (Delete)---
+        function deleteReview(index) {
+            if(!confirm("क्या आप वाकई यह रिव्यू डिलीट करना चाहते हैं?")) return;
+            
+            // लोड करें, हटाएँ, और सेव करें
+            let reviews = JSON.parse(localStorage.getItem('dks_reviews')) || [];
+            reviews.splice(index, 1);
+            localStorage.setItem('dks_reviews', JSON.stringify(reviews));
+            
+            // डैशबोर्ड रीलोड करें
+            loadDashboardData();
+        }
+
+        // ---ADMIN CALL LOGIC---
+        function connectAdminCall(customerNick) {
+            // कॉल कंटेनर दिखाएं
+            document.getElementById('adminCallContainer').classList.remove('hidden');
+            
+            // यदि पहले से कोई कॉल चालू है, तो उसे बंद करें
+            if(jitsiApi) jitsiApi.dispose();
+
+            const domain = 'meet.jit.si';
+            // रूम का नाम वही जो index.html में है (गोपनीय)
+            const roomName = 'DilKholSafe_Private_Room_2026';
+            
+            const options = {
+                roomName: roomName,
+                width: '100%',
+                height: '100%',
+                parentNode: document.querySelector('#adminCallRoom'),
+                userInfo: { displayName: "हमराज़ (Host)" },
+                configOverwrite: {
+                    startWithAudioMuted: false,
+                    startWithVideoMuted: true, // वीडियो बंद रखें
+                    prejoinPageEnabled: false,
+                    startScreenSharing: false,
+                    enableWelcomePage: false,
+                    enableInsecureRoomNameWarning: false, // चेतावनी बंद
+                },
+                interfaceConfigOverwrite: {
+                    TOOLBAR_BUTTONS: ['microphone', 'hangup', 'chat', 'settings'], // सिर्फ ज़रूरी बटन
+                    TILE_VIEW_ENABLED: true,
+                    SHOW_JITSI_WATERMARK: false, // वॉटरमार्क हटाएँ (यदि संभव हो)
+                    JITSI_WATERMARK_LINK: '',
+                }
+            };
+
+            // Jitsi API लोड करें
+            jitsiApi = new JitsiMeetExternalAPI(domain, options);
+            
+            // कॉल कंटेनर तक स्मूथ स्क्रॉल करें
+            document.getElementById('adminCallContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function endAdminCall() {
+            if(!confirm("क्या आप वाकई यह कॉल बंद करना चाहते हैं?")) return;
+            if(jitsiApi) {
+                jitsiApi.dispose();
+                jitsiApi = null;
+            }
+            document.getElementById('adminCallContainer').classList.add('hidden');
+        }
+
+        // 'Enter' की प्रेस पर लॉगिन करने के लिए
+        document.getElementById('adminPass').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                loginAdmin();
+            }
+        });
+    </script>
+</body>
+</html>
