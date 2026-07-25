@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Firebase SDK Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -24,6 +25,7 @@
 
     <div class="max-w-3xl mx-auto space-y-6">
 
+        <!-- Header & Security Banner -->
         <header class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-3 neon-glow-rose relative overflow-hidden border-rose-500/30">
             <div class="absolute -top-10 -left-10 w-36 h-36 bg-rose-600/25 rounded-full blur-3xl"></div>
             <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-purple-600/25 rounded-full blur-3xl"></div>
@@ -54,6 +56,7 @@
             </div>
         </header>
 
+        <!-- 22 Verified Customer Reviews (Hardcoded for stability) -->
         <section class="space-y-3">
             <div class="flex justify-between items-center px-1">
                 <h2 class="text-xs font-black text-slate-200 tracking-wider uppercase flex items-center gap-1.5">
@@ -61,9 +64,34 @@
                 </h2>
                 <span class="text-[10px] bg-emerald-950/90 text-emerald-400 font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-500/40">100% सेफ़</span>
             </div>
-            <div id="reviewsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">अनन्या एस. (24 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। 'हमराज़' से 30 मिनट बात करके मेरे सारे अनकहे डाउट्स दूर हो गए।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">रिया जी. (22 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर बहुत घबराहट थी। यहाँ नाम भी निकनेम यूज़ होता है तो प्राइवेसी बनी रहती है।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">स्नेहा (25 वर्ष, गेस्ट)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"शादी से ठीक पहले मन में शारीरिक संबंधों को लेकर सवाल थे। 'हमराज़' ने बहुत ही दोस्ताना तरीके से हर बात समझाई।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">पूजा शर्मा (29 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"पति के साथ शादीशुदा जिंदगी की सीक्रेट बातें शेयर कीं। DilKholSafe पर बात करके मन का सारा भारीपन खत्म हो गया।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">नेहा जी. (26 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"यौन स्वास्थ्य पर पहली बार किसी से बेझिझक बात कर पाई। प्राइवेसी का पूरा सम्मान रखा जाता है।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">अंजलि गुप्ता (28 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"प्राइवेट सीक्रेट्स शेयर करने में डर लगता था। पर यहाँ की प्राइवेसी पॉलिसी कमाल की है।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">दिव्या के. (31 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"कॉल पर बात करके लगा ही नहीं कि किसी अनजान से बात हो रही है। बहुत कम्फर्टेबल माहौल रहा।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">रितु सिंह (27 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"शादी से पहले मन में बहुत सी शंकाएँ थीं। 15 मिनट का सेशन लिया और मेरी सारी झिझक दूर हो गई।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">साक्षी पटेल (23 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"पहली बार अपने मन का डर किसी से बोला। मन इतना हल्का हो गया जैसे कोई बड़ा बोझ उतर गया हो।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">पिंकी आर. (33 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"शादीशुदा जिंदगी में आ रही दूरियाँ दूर करने में 'हमराज़' की सलाह बहुत काम आई।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">स्वाति एम. (35 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"प्राइवेट सीक्रेट्स सुरक्षित रखते हुए इतनी बेहतरीन काउंसलिंग मिलना बहुत मुश्किल है।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">राहुल एम. (26 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"गर्लफ्रेंड से शारीरिक झिझक व परफ़ॉर्मेंस स्ट्रेस को लेकर बहुत तनाव में था। यहाँ डर खत्म हो गया।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">विकास यादव (28 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"अपनी पर्सनल प्रॉब्लम्स किसी दोस्त से नहीं कह पा रहा था। DilKholSafe पर व्यावहारिक समाधान मिला।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">अदिति रॉय (24 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"अपनी पहली रिलेशनशिप की उलझन यहाँ शेयर की। बहुत ही समझदारी भरी सलाह मिली।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">मुस्कान जे. (23 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"पार्टनर के साथ गलतफहमी की वजह से रिश्ता टूट रहा था। यहाँ गाइडेंस लेकर सब सही हो गया।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">अमित शर्मा (27 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"ब्रेकअप के बाद डिप्रेशन था। 'हमराज़' ने दोस्त बनकर संभाला।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">सचिन के. (29 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"कम्यूनिकेशन गैप की वजह से रोज़ झगड़े हो रहे थे। 30 मिनट बात करके तरीका समझ आया।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">करण सिंह (32 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"मानसिक उलझन सुलझाने के लिए यह बेस्ट प्लेटफ़ॉर्म है।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">दुग्गू (25 वर्ष, गेस्ट)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"रिलेशनशिप स्ट्रेस कम करने के लिए यह सबसे बेहतरीन जगह है।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">महक के. (24 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"ओवरथिंकिंग और एंग्जाइटी से रात को नींद नहीं आती थी। 'हमराज़' से बात करके बहुत सुकून मिला।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">रिद्धिमा वी. (28 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"अकेलेपन से डिप्रेशन सा लग रहा था। यहाँ बातें शेयर कीं और मुझे नया नज़रिया मिला।"</p></div>
+                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover"><div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">रोहन (30 वर्ष)</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div><p class="text-[11px] text-slate-300 leading-relaxed">"मानसिक तनाव से राहत पाने के लिए यह सबसे सुरक्षित और गोपनीय जगह है।"</p></div>
+            </div>
         </section>
 
+        <!-- Topics We Talk About (4 Neon Cards) -->
         <section class="space-y-3 pt-2">
             <h2 class="text-xs font-black text-rose-400 tracking-wider uppercase px-1">💬 हम किन-किन विषयों पर खुलकर बात करते हैं?</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -86,13 +114,14 @@
             </div>
         </section>
 
+        <!-- Booking Form -->
         <section class="glass-card p-5 sm:p-6 rounded-3xl space-y-4 neon-glow-rose border border-rose-500/40">
             <div class="text-center space-y-1">
                 <h2 class="text-base sm:text-lg font-black text-white">📅 अपना सीक्रेट स्लॉट बुक करें</h2>
                 <p class="text-xs text-slate-400 font-medium">अपनी असली पहचान बताए बिना सुरक्षित व गोपनीय बातचीत शुरू करें</p>
             </div>
 
-            <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-3.5">
+            <form id="bookingForm" onsubmit="return handleBooking(event)" class="space-y-3.5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[11px] font-bold text-slate-300 mb-1">असली नाम (गुप्त):</label>
@@ -131,145 +160,4 @@
                     <div>
                         <label class="block text-[11px] font-bold text-slate-300 mb-1">मुख्य विषय:</label>
                         <select id="topic" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                            <option value="शारीरिक व यौन झिझक">1. शारीरिक व यौन झिझक (Sexual Talk)</option>
-                            <option value="लव लाइफ व रिश्ते">2. लव लाइफ व रिश्ते (Relationship)</option>
-                            <option value="तनाव व डिप्रेशन">3. तनाव व डिप्रेशन (Stress)</option>
-                            <option value="पर्सनल राज़">4. पर्सनल सीक्रेट्स (Secrets)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-300 mb-1">वर्तमान मनोदशा (Mood):</label>
-                        <input type="text" id="mood" placeholder="जैसे: बहुत परेशान / उदास / झिझक" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 text-white font-black py-3.5 rounded-xl shadow-xl transition active:scale-95 text-xs uppercase mt-2">
-                    🔒 अभी गुप्त स्लॉट बुक करें
-                </button>
-            </form>
-
-            <div id="userSessionContainer" class="hidden space-y-3 pt-3 border-t border-slate-800">
-                <div class="flex justify-between items-center bg-slate-900/90 p-3 rounded-xl border border-rose-500/30">
-                    <span id="sessionStatusText" class="text-xs font-black text-amber-400 animate-pulse">
-                        ⏳ 'हमराज़' के जुड़ने का इंतज़ार है... (एडमिन के कनेक्ट करते ही समय शुरू होगा)
-                    </span>
-                    <div class="bg-rose-950/90 border border-rose-500/50 text-rose-300 font-mono font-bold text-xs px-3 py-1 rounded-lg">
-                        ⏱️ <span id="sessionTimer">15:00</span>
-                    </div>
-                    <button onclick="endUserSession()" class="bg-rose-600 text-white text-[10px] px-3 py-1.5 rounded-lg font-bold">समाप्त करें</button>
-                </div>
-
-                <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40">
-                    <iframe id="callFrame" class="w-full h-full border-0" allow="microphone; camera; autoplay"></iframe>
-                </div>
-
-                <div id="userChatRoom" class="hidden glass-card p-3 rounded-xl border border-sky-500/30 space-y-2">
-                    <div id="chatMessages" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950/80 rounded-lg text-xs border border-slate-800">
-                        <div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 यह चैट 100% गोपनीय है।</div>
-                    </div>
-                    <div class="flex gap-2">
-                        <input type="text" id="chatInput" placeholder="अपना संदेश यहाँ लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
-                        <button onclick="sendChatMessage()" class="bg-rose-600 text-white text-xs px-4 py-2.5 rounded-xl font-extrabold">भेजें</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAz7Cyg231fOc2jnV6k8yeSvkZpdHbD9yU",
-            authDomain: "dilkholsafe.firebaseapp.com",
-            databaseURL: "https://dilkholsafe-default-rtdb.firebaseio.com",
-            projectId: "dilkholsafe",
-            storageBucket: "dilkholsafe.firebasestorage.app",
-            messagingSenderId: "123300588054",
-            appId: "1:123300588054:web:052dd0b72f52b83e44a337"
-        };
-
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-
-        let selectedMins = 15;
-        let timerInterval = null;
-        let activeBookingId = null;
-
-        const fullDefaultReviews = [
-            { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। 'हमराज़' से 30 मिनट बात करके मेरे सारे अनकहे डाउट्स दूर हो गए।" },
-            { name: "रिया जी. (22 वर्ष)", msg: "अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर बहुत घबराहट थी। यहाँ नाम भी निकनेम यूज़ होता है तो प्राइवेसी बनी रहती है।" },
-            { name: "स्नेहा (25 वर्ष, गेस्ट)", msg: "शादी से ठीक पहले मन में शारीरिक संबंधों को लेकर सवाल थे। 'हमराज़' ने बहुत ही दोस्ताना तरीके से हर बात समझाई।" },
-            { name: "पूजा शर्मा (29 वर्ष)", msg: "पति के साथ शादीशुदा जिंदगी की सीक्रेट बातें शेयर कीं। DilKholSafe पर बात करके मन का सारा भारीपन खत्म हो गया।" },
-            { name: "नेहा जी. (26 वर्ष)", msg: "यौन स्वास्थ्य पर पहली बार किसी से बेझिझक बात कर पाई। प्राइवेसी का पूरा सम्मान रखा जाता है।" },
-            { name: "अंजलि गुप्ता (28 वर्ष)", msg: "प्राइवेट सीक्रेट्स शेयर करने में डर लगता था। पर यहाँ की प्राइवेसी पॉलिसी कमाल की है।" },
-            { name: "दिव्या के. (31 वर्ष)", msg: "कॉल पर बात करके लगा ही नहीं कि किसी अनजान से बात हो रही है। बहुत कम्फर्टेबल माहौल रहा।" },
-            { name: "रितु सिंह (27 वर्ष)", msg: "शादी से पहले मन में बहुत सी शंकाएँ थीं। 15 मिनट का सेशन लिया और मेरी सारी झिझक दूर हो गई।" },
-            { name: "साक्षी पटेल (23 वर्ष)", msg: "पहली बार अपने मन का डर किसी से बोला। मन इतना हल्का हो गया जैसे कोई बड़ा बोझ उतर गया हो।" },
-            { name: "पिंकी आर. (33 वर्ष)", msg: "शादीशुदा जिंदगी में आ रही दूरियाँ दूर करने में 'हमराज़' की सलाह बहुत काम आई।" },
-            { name: "स्वाति एम. (35 वर्ष)", msg: "प्राइवेट सीक्रेट्स सुरक्षित रखते हुए इतनी बेहतरीन काउंसलिंग मिलना बहुत मुश्किल है।" },
-            { name: "राहुल एम. (26 वर्ष)", msg: "गर्लफ्रेंड से शारीरिक झिझक व परफ़ॉर्मेंस स्ट्रेस को लेकर बहुत तनाव में था। यहाँ डर खत्म हो गया।" },
-            { name: "विकास यादव (28 वर्ष)", msg: "अपनी पर्सनल प्रॉब्लम्स किसी दोस्त से नहीं कह पा रहा था। DilKholSafe पर व्यावहारिक समाधान मिला।" },
-            { name: "अदिति रॉय (24 वर्ष)", msg: "अपनी पहली रिलेशनशिप की उलझन यहाँ शेयर की। बहुत ही समझदारी भरी सलाह मिली।" },
-            { name: "मुस्कान जे. (23 वर्ष)", msg: "पार्टनर के साथ गलतफहमी की वजह से रिश्ता टूट रहा था। यहाँ गाइडेंस लेकर सब सही हो गया।" },
-            { name: "अमित शर्मा (27 वर्ष)", msg: "ब्रेकअप के बाद डिप्रेशन था। 'हमराज़' ने दोस्त बनकर संभाला।" },
-            { name: "सचिन के. (29 वर्ष)", msg: "कम्यूनिकेशन गैप की वजह से रोज़ झगड़े हो रहे थे। 30 मिनट बात करके तरीका समझ आया।" },
-            { name: "करण सिंह (32 वर्ष)", msg: "मानसिक उलझन सुलझाने के लिए यह बेस्ट प्लेटफ़ॉर्म है।" },
-            { name: "दुग्गू (25 वर्ष, गेस्ट)", msg: "रिलेशनशिप स्ट्रेस कम करने के लिए यह सबसे बेहतरीन जगह है।" },
-            { name: "महक के. (24 वर्ष)", msg: "ओवरथिंकिंग और एंग्जाइटी से रात को नींद नहीं आती थी। 'हमराज़' से बात करके बहुत सुकून मिला।" },
-            { name: "रिद्धिमा वी. (28 वर्ष)", msg: "अकेलेपन से डिप्रेशन सा लग रहा था। यहाँ बातें शेयर कीं और मुझे नया नज़रिया मिला।" },
-            { name: "रोहन (30 वर्ष)", msg: "मानसिक तनाव से राहत पाने के लिए यह सबसे सुरक्षित और गोपनीय जगह है।" }
-        ];
-
-        function selectDuration(mins, btn) {
-            selectedMins = mins;
-            document.querySelectorAll('.dur-btn').forEach(b => {
-                b.classList.remove('bg-rose-600/30', 'border-2', 'border-rose-500', 'text-rose-300');
-                b.classList.add('bg-slate-900', 'border-slate-700', 'text-slate-300');
-            });
-            btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
-            btn.classList.add('bg-rose-600/30', 'border-2', 'border-rose-500', 'text-rose-300');
-        }
-
-        function renderReviews() {
-            let container = document.getElementById('reviewsGrid');
-            container.innerHTML = fullDefaultReviews.map(r => `
-                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover">
-                    <div class="flex justify-between items-center">
-                        <span class="font-extrabold text-rose-400 text-xs">${r.name}</span>
-                        <div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed font-normal">"${r.msg}"</p>
-                </div>
-            `).join('');
-        }
-
-        function handleBooking(e) {
-            e.preventDefault();
-
-            let bookingId = 'session_' + Date.now();
-            activeBookingId = bookingId;
-
-            let bookingData = {
-                id: bookingId,
-                realName: document.getElementById('realName').value,
-                nickName: document.getElementById('nickName').value,
-                phone: document.getElementById('phone').value,
-                mode: document.getElementById('mode').value,
-                selectedMinutes: selectedMins,
-                topic: document.getElementById('topic').value,
-                mood: document.getElementById('mood').value || 'सामान्य',
-                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                roomCode: "DKS_Room_" + Math.floor(1000 + Math.random() * 9000),
-                accepted: false,
-                messages: []
-            };
-
-            // Save live to Firebase
-            db.ref('active_session').set(bookingData).then(() => {
-                document.getElementById('userSessionContainer').classList.remove('hidden');
-                document.getElementById('sessionTimer').innerText = `${selectedMins}:00`;
-                document.getElementById('userSessionContainer').scrollIntoView({ behavior: 'smooth' });
-
-                // Listen for Admin Acceptance live from Firebase
-                db.ref('active_ses
+                            <option value="शारीरिक व यौन झिझक">1. शार
