@@ -3,114 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DilKholSafe - एडमिन कंट्रोल रूम</title>
+    <title>DilKholSafe - 'हमराज़' एडमिन पोर्टल</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #05070f; color: #f8fafc; }
         .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .neon-glow-rose { box-shadow: 0 0 35px -5px rgba(244, 63, 94, 0.4); }
+        .neon-glow-emerald { box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.45); }
     </style>
 </head>
-<body class="min-h-screen p-4 select-none">
-    <audio id="ringer" loop src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+<body class="min-h-screen p-3 sm:p-5 select-none">
 
-    <!-- Login -->
-    <div id="loginBox" class="max-w-sm mx-auto my-20 glass-panel p-6 rounded-3xl text-center space-y-4">
-        <h1 class="text-xl font-black text-white">Admin Login</h1>
-        <input type="password" id="pwd" placeholder="पासवर्ड (100399)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-center text-white">
-        <button onclick="login()" class="w-full bg-rose-600 text-white font-bold py-3 rounded-xl uppercase text-xs">लॉगिन</button>
+    <audio id="incomingRinger" loop src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+
+    <!-- Login Area -->
+    <div id="loginArea" class="max-w-sm mx-auto my-16 glass-panel p-6 rounded-3xl space-y-5 text-center neon-glow-rose border border-rose-500/30">
+        <div class="w-16 h-16 bg-gradient-to-tr from-rose-600 via-pink-500 to-rose-400 rounded-2xl flex items-center justify-center mx-auto shadow-xl shadow-rose-950/80">
+            <span class="text-3xl">🔒</span>
+        </div>
+        <div>
+            <h1 class="text-xl font-black text-white">DilKholSafe Admin</h1>
+            <p class="text-xs text-rose-400 font-semibold mt-1">सुरक्षित 'हमराज़' कंट्रोल एक्सेस</p>
+        </div>
+        <input type="password" id="adminPass" placeholder="पासवर्ड (100399)" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-center text-lg text-white focus:outline-none focus:border-rose-500">
+        <button onclick="loginAdmin()" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-extrabold py-3.5 rounded-xl shadow-lg active:scale-95 text-xs uppercase">
+            🚀 कंट्रोल रूम खोलें
+        </button>
     </div>
 
-    <!-- Panel -->
-    <div id="panelBox" class="hidden max-w-2xl mx-auto space-y-4">
-        <header class="glass-panel p-4 rounded-2xl flex justify-between items-center">
-            <h1 class="font-black text-white">👑 एडमिन लाइव कंट्रोल</h1>
-            <button onclick="location.reload()" class="bg-slate-800 text-xs px-3 py-1.5 rounded-lg">रीफ्रेश</button>
+    <!-- Dashboard Area -->
+    <div id="dashboardArea" class="hidden max-w-4xl mx-auto space-y-4">
+        
+        <header class="glass-panel p-4 sm:p-5 rounded-3xl flex justify-between items-center border border-rose-500/30 neon-glow-rose">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-tr from-rose-600 to-amber-400 rounded-2xl flex items-center justify-center shadow-lg"><span class="text-2xl">❤️</span></div>
+                <div>
+                    <h1 class="text-lg font-black text-white">'हमराज़' VIP कंट्रोल रूम</h1>
+                    <p class="text-[10px] text-emerald-400 font-bold flex items-center gap-1.5 mt-0.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> लाइव सिस्टम एक्टिव है</p>
+                </div>
+            </div>
+            <button onclick="logoutAdmin()" class="bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs px-3.5 py-2.5 rounded-xl font-bold">🚪 बाहर जाएँ</button>
         </header>
 
-        <!-- Alert -->
-        <div id="alertBox" class="hidden glass-panel p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-950/60 animate-pulse flex justify-between items-center">
-            <div>
-                <h3 class="font-black text-emerald-400 text-sm">🚨 नया कस्टमर आ गया है!</h3>
-                <p id="alertDetails" class="text-xs text-slate-200">नाम व विषय</p>
-            </div>
-            <button onclick="acceptCall()" class="bg-emerald-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs uppercase">📲 स्वीकार करें</button>
+        <!-- Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div class="glass-panel p-3.5 rounded-2xl border border-rose-500/20 text-center"><p class="text-[10px] text-slate-400 font-bold uppercase">कुल बुकिंग्स</p><h3 id="statTotal" class="text-2xl font-black text-rose-400">0</h3></div>
+            <div class="glass-panel p-3.5 rounded-2xl border border-emerald-500/20 text-center"><p class="text-[10px] text-slate-400 font-bold uppercase">वॉइस कॉल्स</p><h3 id="statCalls" class="text-2xl font-black text-emerald-400">0</h3></div>
+            <div class="glass-panel p-3.5 rounded-2xl border border-sky-500/20 text-center"><p class="text-[10px] text-slate-400 font-bold uppercase">लाइव चैट्स</p><h3 id="statChats" class="text-2xl font-black text-sky-400">0</h3></div>
+            <div class="glass-panel p-3.5 rounded-2xl border border-amber-500/20 text-center"><p class="text-[10px] text-slate-400 font-bold uppercase">एक्टिव रिव्यूज</p><h3 id="statReviews" class="text-2xl font-black text-amber-400">22</h3></div>
         </div>
 
-        <!-- Active Chat Control -->
-        <div id="adminChatBox" class="hidden glass-panel p-4 rounded-2xl space-y-3">
-            <h3 class="text-xs font-black text-sky-400 uppercase">💬 लाइव चैट विंडो</h3>
-            <div id="adminChatMsgs" class="h-48 overflow-y-auto space-y-1 p-2 bg-slate-950 rounded-lg text-xs"></div>
-            <div class="flex gap-2">
-                <input type="text" id="adminInput" placeholder="रिप्लाई लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white">
-                <button onclick="sendAdminMsg()" class="bg-emerald-600 text-white text-xs px-4 py-2 rounded-xl font-bold">भेजें</button>
+        <!-- Incoming Call/Chat Alert -->
+        <div id="incomingAlertBar" class="hidden glass-panel p-4 rounded-2xl border-2 border-emerald-500 neon-glow-emerald bg-emerald-950/50 animate-pulse flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3 text-center sm:text-left">
+                <span class="text-3xl animate-bounce">🚨</span>
+                <div>
+                    <h2 class="text-sm font-black text-emerald-400">नया कस्टमर कनेक्ट होने का इंतज़ार कर रहा है!</h2>
+                    <p id="callingCustInfo" class="text-xs text-slate-200 font-bold">विवरण...</p>
+                </div>
+            </div>
+            <button onclick="acceptLiveCall()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black px-6 py-3 rounded-xl shadow-xl active:scale-95 text-xs uppercase">📲 स्वीकार करें (Start Customer Timer)</button>
+        </div>
+
+        <!-- Voice Call Room -->
+        <div id="adminCallContainer" class="hidden glass-panel p-3 rounded-2xl border border-rose-500/50 space-y-2">
+            <div class="flex justify-between items-center px-2">
+                <span class="text-xs font-bold text-rose-400">🔴 लाइव ऑडियो काउंसलिंग चालू है...</span>
+                <button onclick="endAdminCall()" class="bg-rose-600 text-white text-[10px] px-3 py-1 rounded-lg font-extrabold">कॉल समाप्त करें</button>
+            </div>
+            <div class="w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+                <iframe id="adminCallFrame" class="w-full h-full border-0" allow="microphone; camera; autoplay"></iframe>
             </div>
         </div>
+
+        <!-- Secret Chat Control Room -->
+        <div id="adminChatContainer" class="hidden glass-panel p-4 rounded-2xl space-y-3 border border-sky-500/40">
+            <h3 class="text-xs font-black text-sky-400 uppercase">💬 लाइव सीक्रेट चैट विंडो</h3>
+            <div id="adminChatMsgs" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950 rounded-lg text-xs border border-slate-800"></div>
+            <div class="flex gap-2">
+                <input type="text" id="adminInput" placeholder="अपना रिप्लाई यहाँ लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                <button onclick="sendAdminMsg()" class="bg-gradient-to-r from-rose-600 to-pink-600 text-white text-xs px-4 py-2.5 rounded-xl font-extrabold">भेजें</button>
+            </div>
+        </div>
+
+        <!-- Recent Bookings List -->
+        <div class="glass-panel p-4 rounded-3xl space-y-3 border border-rose-500/20">
+            <h2 class="text-xs font-black text-slate-200 uppercase border-b border-slate-800 pb-2">📥 हाल की लाइव बुकिंग्स</h2>
+            <div id="bookingsList" class="space-y-2 max-h-96 overflow-y-auto"></div>
+        </div>
+
     </div>
 
     <script>
-        function login() {
-            if(document.getElementById('pwd').value === "100399") {
-                document.getElementById('loginBox').classList.add('hidden');
-                document.getElementById('panelBox').classList.remove('hidden');
-                checkData();
-                setInterval(checkData, 2000);
-            } else { alert("गलत पासवर्ड"); }
+        let ringer = document.getElementById('incomingRinger');
+
+        function loginAdmin() {
+            if(document.getElementById('adminPass').value === "100399") { 
+                localStorage.setItem('dks_admin_logged', 'true');
+                showDashboard();
+            } else { alert("गलत पासवर्ड!"); }
         }
 
-        function checkData() {
-            let data = JSON.parse(localStorage.getItem('dks_current_booking'));
-            let isNew = localStorage.getItem('dks_new_alert');
+        if(localStorage.getItem('dks_admin_logged') === 'true') showDashboard();
 
-            if(data && isNew === 'true') {
-                document.getElementById('alertBox').classList.remove('hidden');
-                document.getElementById('alertDetails').innerText = `${data.realName} (${data.nickName}) - ${data.topic} [${data.mode}]`;
-                try{ document.getElementById('ringer').play(); }catch(e){}
-            } else {
-                document.getElementById('alertBox').classList.add('hidden');
-                document.getElementById('ringer').pause();
-            }
-
-            if(data && data.accepted && data.mode === 'Chat') {
-                document.getElementById('adminChatBox').classList.remove('hidden');
-                let html = "";
-                if(data.messages) {
-                    data.messages.forEach(m => {
-                        html += `<div class="${m.sender === 'Admin' ? 'text-emerald-400 text-right' : 'text-sky-400 text-left'} font-medium">${m.sender}: ${m.text}</div>`;
-                    });
-                }
-                document.getElementById('adminChatMsgs').innerHTML = html;
-            }
+        function showDashboard() {
+            document.getElementById('loginArea').classList.add('hidden');
+            document.getElementById('dashboardArea').classList.remove('hidden');
+            loadDashboardData();
+            setInterval(loadDashboardData, 1500);
         }
 
-        function acceptCall() {
-            document.getElementById('ringer').pause();
-            document.getElementById('alertBox').classList.add('hidden');
-            localStorage.setItem('dks_new_alert', 'false');
+        function logoutAdmin() { localStorage.removeItem('dks_admin_logged'); location.reload(); }
 
-            let data = JSON.parse(localStorage.getItem('dks_current_booking'));
+        function loadDashboardData() {
+            let data = JSON.parse(localStorage.getItem('dks_active_session'));
+
             if(data) {
-                data.accepted = true;
-                localStorage.setItem('dks_current_booking', JSON.stringify(data));
-                if(data.mode === 'Chat') {
-                    document.getElementById('adminChatBox').classList.remove('hidden');
-                    alert("चैट कनेक्ट हो गई है! अब आप नीचे से मैसेज भेज सकते हैं।");
+                document.getElementById('statTotal').innerText = "1";
+                document.getElementById('statCalls').innerText = data.mode === 'Voice Call' ? "1" : "0";
+                document.getElementById('statChats').innerText = data.mode === 'Chat' ? "1" : "0";
+
+                if(!data.accepted) {
+                    document.getElementById('incomingAlertBar').classList.remove('hidden');
+                    document.getElementById('callingCustInfo').innerText = `नाम: ${data.realName} (${data.nickName}) | फोन: ${data.phone} | माध्यम: ${data.mode} | विषय: ${data.topic}`;
+                    try { ringer.play(); } catch(e){}
                 } else {
-                    alert("कॉल स्वीकार कर ली गई है!");
+                    document.getElementById('incomingAlertBar').classList.add('hidden');
+                    ringer.pause();
+                }
+
+                if(data.accepted && data.mode === 'Chat') {
+                    document.getElementById('adminChatContainer').classList.remove('hidden');
+                    syncAdminChat(data);
+                }
+
+                document.getElementById('bookingsList').innerHTML = `
+                    <div class="bg-slate-900/90 p-3.5 rounded-2xl border border-slate-800 space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-xs font-black text-rose-400">${data.realName} (${data.nickName})</span>
+                            <span class="text-[10px] text-emerald-400 bg-emerald-950 px-2.5 py-0.5 rounded-full border border-emerald-500/30">${data.selectedMinutes} मिनट</span>
+                        </div>
+                        <div class="text-[11px] text-slate-300 flex justify-between font-bold"><span>📞 ${data.phone}</span><span>${data.time}</span></div>
+                        <div class="text-[10px] text-slate-400 border-t border-slate-800 pt-2 flex justify-between items-center">
+                            <span>विषय: ${data.topic} (${data.mood})</span>
+                            ${!data.accepted ? `<button onclick="acceptLiveCall()" class="bg-emerald-500 text-slate-950 font-black px-3.5 py-1 rounded-lg text-[10px]">📲 स्वीकार करें</button>` : `<span class="text-emerald-400 font-bold">✅ कनेक्टेड</span>`}
+                        </div>
+                    </div>
+                `;
+            } else {
+                document.getElementById('statTotal').innerText = "0";
+                document.getElementById('statCalls').innerText = "0";
+                document.getElementById('statChats').innerText = "0";
+                document.getElementById('incomingAlertBar').classList.add('hidden');
+                document.getElementById('bookingsList').innerHTML = `<p class="text-center text-slate-500 text-xs py-6">अभी कोई लाइव बुकिंग नहीं है।</p>`;
+                ringer.pause();
+            }
+        }
+
+        function acceptLiveCall() {
+            ringer.pause();
+            document.getElementById('incomingAlertBar').classList.add('hidden');
+
+            let data = JSON.parse(localStorage.getItem('dks_active_session'));
+            if(data) {
+                data.accepted = true; // STARTS USER TIMER & CONNECTS
+                localStorage.setItem('dks_active_session', JSON.stringify(data));
+
+                if(data.mode === 'Voice Call') {
+                    document.getElementById('adminCallContainer').classList.remove('hidden');
+                    document.getElementById('adminCallFrame').src = "https://vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda.8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/" + data.roomCode + "#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false";
+                } else {
+                    document.getElementById('adminChatContainer').classList.remove('hidden');
                 }
             }
         }
 
         function sendAdminMsg() {
-            let text = document.getElementById('adminInput').value.trim();
+            let input = document.getElementById('adminInput');
+            let text = input.value.trim();
             if(!text) return;
-            let data = JSON.parse(localStorage.getItem('dks_current_booking'));
+
+            let data = JSON.parse(localStorage.getItem('dks_active_session'));
             if(data) {
                 if(!data.messages) data.messages = [];
-                data.messages.push({ sender: 'Admin', text: text });
-                localStorage.setItem('dks_current_booking', JSON.stringify(data));
-                document.getElementById('adminInput').value = "";
+                data.messages.push({ sender: 'हमराज़', text: text });
+                localStorage.setItem('dks_active_session', JSON.stringify(data));
+                input.value = "";
+                syncAdminChat(data);
             }
+        }
+
+        function syncAdminChat(data) {
+            if(!data || !data.messages) return;
+            let html = `<div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 लाइव सीक्रेट चैट कनेक्टेड है।</div>`;
+            data.messages.forEach(m => {
+                let isMe = m.sender === 'हमराज़';
+                html += `<div class="${isMe ? 'text-right text-emerald-400' : 'text-left text-sky-400'} font-medium my-1">
+                    <span class="block text-[9px] text-slate-500">${m.sender}</span>${m.text}
+                </div>`;
+            });
+            let box = document.getElementById('adminChatMsgs');
+            box.innerHTML = html;
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function endAdminCall() {
+            document.getElementById('adminCallContainer').classList.add('hidden');
+            localStorage.removeItem('dks_active_session');
+            location.reload();
         }
     </script>
 </body>
