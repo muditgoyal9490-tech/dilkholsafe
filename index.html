@@ -6,12 +6,12 @@
     <title>DilKholSafe - अपनी बात दिल खोलकर कहें</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- ZegoCloud Call SDK -->
-    <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+    <!-- Jitsi Audio Call SDK -->
+    <script src="https://meet.jit.si/external_api.js"></script>
 </head>
 <body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-start p-4">
 
-    <!-- Header -->
+    <!-- Header Section -->
     <header class="text-center my-6">
         <h1 class="text-4xl font-extrabold text-rose-500 tracking-wide">DilKholSafe</h1>
         <p class="text-slate-300 mt-2 text-sm sm:text-base">अपनी बात दिल खोलकर कहें — बिना पहचान उजागर होने के डर से।</p>
@@ -21,37 +21,45 @@
     <main class="w-full max-w-md bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-6 space-y-6">
 
         <!-- Privacy Badge -->
-        <div class="bg-rose-500/10 border border-rose-500/30 rounded-xl p-3 text-xs text-rose-300 text-center font-medium">
-            🔒 100% गोपनीय व सुरक्षित (100% Anonymous)। आपकी पहचान पूरी तरह गुप्त रखी जाएगी।
+        <div class="bg-rose-500/10 border border-rose-500/30 rounded-xl p-3 text-xs text-rose-300 text-center font-medium leading-relaxed">
+            🛡️ <strong>100% गोपनीय व सुरक्षित (100% Anonymous & Confidential)</strong><br>
+            आपकी असली पहचान पूरी तरह गुप्त रखी जाएगी। आपकी बातें सिर्फ आपके और सलाहकार के बीच रहेंगी।
         </div>
 
         <!-- Booking Form -->
         <form id="bookingForm" class="space-y-4">
+            <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2 border-b border-slate-700 pb-2">
+                🔒 अपनी बुकिंग/बातचीत शुरू करें
+            </h2>
+
             <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">पुकारने का नाम / निकनेम</label>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">पुकारने का नाम / निकनेम (जिससे आप बात करना चाहते हैं)</label>
                 <input type="text" id="userName" required placeholder="जैसे: Duggu / Guest" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
             </div>
 
             <div>
                 <label class="block text-xs font-semibold text-slate-300 mb-1">मोबाइल नंबर (केवल वेरिफिकेशन हेतु)</label>
-                <input type="tel" id="userPhone" required placeholder="10 अंकों का नंबर" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
+                <input type="tel" id="userPhone" required placeholder="10 अंकों का मोबाइल नंबर" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
             </div>
 
             <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का पसंदीदा समय</label>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का पसंदीदा समय (Preferred Time Slot)</label>
                 <select id="timeSlot" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
                     <option value="Right Now">तत्काल बात करें (Right Now)</option>
                     <option value="In 15 Mins">अगले 15 मिनट में</option>
                     <option value="Evening">शाम के समय</option>
+                    <option value="Night">रात के समय</option>
                 </select>
             </div>
 
             <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का विषय</label>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का विषय चुनिए</label>
                 <select class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
-                    <option>लव लाइफ व रिलेशनशिप</option>
-                    <option>मानसिक तनाव व अकेलापन</option>
-                    <option>अन्य निजी बातें</option>
+                    <option>लव लाइफ व रिलेशनशिप (Love & Relationships)</option>
+                    <option>सेक्सुअल हेल्थ, झिझक व निजी समस्याएं (Sexual Health & Personal Issues)</option>
+                    <option>मैरिड लाइफ व पार्टनर विवाद (Married Life & Disputes)</option>
+                    <option>मानसिक तनाव, डिप्रेशन व अकेलापन (Mental Peace & Depression)</option>
+                    <option>अन्य गुप्त व निजी बातें (Other Confidential Topics)</option>
                 </select>
             </div>
 
@@ -60,24 +68,24 @@
             </button>
         </form>
 
-        <!-- Status & Voice Call Area -->
+        <!-- Status & Voice Call Area (Hidden initially) -->
         <div id="actionArea" class="hidden space-y-4">
             <div class="bg-emerald-900/30 border border-emerald-500/40 rounded-xl p-4 text-center space-y-2">
                 <p class="text-sm font-semibold text-emerald-400">✅ आपकी बुकिंग दर्ज कर ली गई है!</p>
                 <p class="text-xs text-slate-300 leading-relaxed">
-                    सुरक्षित बातचीत के लिए इसी पेज पर बने रहें। काउंसलर **10 से 15 मिनट** में आपसे यहीं लाइव जुड़ेंगे।
+                    सुरक्षित बातचीत के लिए इसी पेज पर बने रहें। हमारे सलाहकार **10 से 15 मिनट** में आपसे यहीं लाइव जुड़ेंगे।
                 </p>
             </div>
 
             <div class="space-y-2">
-                <button id="callBtn" onclick="startVoiceCall()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-900/40">
+                <button id="callBtn" onclick="startVoiceCall()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-900/40 text-base">
                     📞 Start Voice Call Now
                 </button>
-                <p class="text-[10px] text-slate-400 text-center">कॉल बटन दबाकर ब्राउज़र में माइक्रोन (Mic) अलाउ (Allow) करें।</p>
+                <p class="text-[11px] text-slate-400 text-center">कॉल बटन दबाकर ब्राउज़र में माइक्रोन (Mic) अलाउ (Allow) करें।</p>
             </div>
 
-            <!-- Audio Call Frame Container -->
-            <div id="zegoRoom" class="w-full h-80 rounded-xl overflow-hidden hidden border border-slate-700 bg-slate-900"></div>
+            <!-- Call Container -->
+            <div id="callRoom" class="w-full h-96 rounded-xl overflow-hidden hidden border border-slate-700 bg-slate-900"></div>
         </div>
 
     </main>
@@ -88,7 +96,7 @@
         (function(){
             var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
             s1.async=true;
-            s1.src='https://embed.tawk.to/65b262a48d261e0b5f583f7b/default'; // आपका Tawk.to विजेट
+            s1.src='https://embed.tawk.to/65b262a48d261e0b5f583f7b/default';
             s1.charset='UTF-8';
             s1.setAttribute('crossorigin','*');
             s0.parentNode.insertBefore(s1,s0);
@@ -104,33 +112,36 @@
         });
 
         function startVoiceCall() {
-            const nameInput = document.getElementById('userName').value || "User";
-            const roomID = "DilKholSafe_Live_Call_Room"; // दोनों का एक ही कॉमन रूम
-            
-            // आपकी Zego Credentials (स्क्रीनशॉट से ली गई)
-            const appID = 1970088312;
-            const serverSecret = "294cf8c5055b245eeec82854c95c1b22";
-
-            const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, Date.now().toString(), nameInput);
-
-            const zp = ZegoUIKitPrebuilt.create(kitToken);
+            const nameInput = document.getElementById('userName').value || "Guest User";
+            const domain = 'meet.jit.si';
+            const roomName = 'DilKholSafe_Confidential_Call_Room_2026';
             
             document.getElementById('callBtn').classList.add('hidden');
-            document.getElementById('zegoRoom').classList.remove('hidden');
+            document.getElementById('callRoom').classList.remove('hidden');
 
-            zp.joinRoom({
-                container: document.getElementById('zegoRoom'),
-                scenario: {
-                    mode: ZegoUIKitPrebuilt.OneONoneCall,
+            const options = {
+                roomName: roomName,
+                width: '100%',
+                height: '100%',
+                parentNode: document.querySelector('#callRoom'),
+                userInfo: {
+                    displayName: nameInput
                 },
-                turnOnCameraWhenJoining: false, // सिर्फ ऑडियो
-                showMyCameraToggleButton: false,
-                showAudioVideoSettingsButton: false,
-                showScreenSharingButton: false,
-                turnOnMicrophoneWhenJoining: true,
-                showTextChat: false, // फालतू चैट विजेट बंद
-                showUserList: false, // फालतू यूजर लिस्ट बंद
-            });
+                configOverwrite: {
+                    startWithAudioMuted: false,
+                    startWithVideoMuted: true, // सिर्फ ऑडियो
+                    disableThirdPartyRequests: true,
+                    prejoinPageEnabled: false
+                },
+                interfaceConfigOverwrite: {
+                    TOOLBAR_BUTTONS: ['microphone', 'hangup'],
+                    SHOW_JITSI_WATERMARK: false,
+                    SHOW_WATERMARK_FOR_GUESTS: false,
+                    DEFAULT_BACKGROUND: '#0f172a'
+                }
+            };
+
+            const api = new JitsiMeetExternalAPI(domain, options);
         }
     </script>
 </body>
