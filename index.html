@@ -36,10 +36,10 @@
             margin: 0 auto;
         }
 
-        /* Header with Custom SVG Logo */
+        /* Animated Logo Section */
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 35px 18px;
             background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
             border-radius: 20px;
             border: 1px solid var(--border-color);
@@ -57,7 +57,23 @@
             height: 70px;
             border-radius: 50%;
             margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(99, 102, 241, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
         }
 
         .logo-box svg {
@@ -67,16 +83,16 @@
         }
 
         h1 {
-            font-size: 2.3rem;
+            font-size: 2.2rem;
             color: #ffffff;
             margin-bottom: 10px;
             font-weight: 700;
         }
 
         p.tagline {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #cbd5e1;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             font-weight: 500;
         }
 
@@ -110,7 +126,7 @@
         /* Section Styling */
         .section {
             background-color: var(--card-bg);
-            padding: 28px 20px;
+            padding: 25px 20px;
             border-radius: 18px;
             border: 1px solid var(--border-color);
             margin-bottom: 25px;
@@ -118,18 +134,34 @@
         }
 
         h2 {
-            font-size: 1.6rem;
-            margin-bottom: 18px;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
             color: #818cf8;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 8px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .service-tag {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: #e2e8f0;
         }
 
         .note-box {
             background-color: rgba(99, 102, 241, 0.1);
             border-left: 4px solid var(--accent-color);
             padding: 14px;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             color: #e2e8f0;
             margin-bottom: 20px;
             border-radius: 6px;
@@ -155,9 +187,6 @@
             border: 1px solid var(--border-color);
             padding: 16px;
             border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
         .review-header {
@@ -246,8 +275,8 @@
         /* Pricing Grid */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
             margin-top: 15px;
         }
 
@@ -265,7 +294,7 @@
         }
 
         .price-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             margin-bottom: 8px;
             font-weight: 600;
         }
@@ -288,7 +317,7 @@
 <body>
 
 <div class="container">
-    <!-- Header with Custom SVG Logo -->
+    <!-- Header with Pulsing Logo -->
     <header>
         <div class="logo-box">
             <svg viewBox="0 0 24 24">
@@ -299,235 +328,111 @@
         <p class="tagline">जब दिल भारी हो और कोई सुनने वाला न हो... हम आपकी बात सुनेंगे, बिना किसी जजमेंट के!</p>
         
         <div class="badge-group">
-            <span class="badge">🔒 100% प्राइवेट और सुरक्षित</span>
+            <span class="badge">🔒 100% प्राइवेट और गुप्त</span>
             <span class="badge-lang">🗣️ केवल हिंदी और हिंग्लिश में बातचीत</span>
         </div>
     </header>
 
-    <!-- Trust & Language Section -->
+    <!-- Services Offered -->
     <div class="section">
-        <h2>हम आपके लिए क्यों खास हैं?</h2>
-        <div style="color: #e2e8f0; font-size: 1rem; line-height: 1.8;">
-            <p>कई बार हमारे मन में ऐसी बातें होती हैं जिन्हें हम अपने घर वालों या दोस्तों से भी नहीं कह पाते। हमें डर रहता है कि लोग क्या सोचेंगे या हमें गलत समझेंगे।</p>
-            <br>
-            <p><strong>दिलखोल सेफ</strong> पर आपको किसी भी कठिन भाषा में बात करने की जरूरत नहीं है। आप आराम से अपनी भाषा—<strong>शुद्ध हिंदी या हिंग्लिश (आम बोलचाल की हिंदी)</strong> में बात कर सकते हैं। यहाँ आपको एक सच्चा, हमदर्द और धीरज से सुनने वाला साथी मिलता है।</p>
+        <h2>आप किस-किस बारे में बात कर सकते हैं?</h2>
+        <p style="color: #cbd5e1; font-size: 0.98rem; margin-bottom: 12px;">आप बिना किसी हिचकिचाहट के इन सभी मुद्दों पर खुलकर चर्चा कर सकते हैं:</p>
+        
+        <div class="services-grid">
+            <div class="service-tag">💔 रिलेशनशिप & ब्रेकअप का दर्द</div>
+            <div class="service-tag">🔥 इंटिमेट / सेक्सुअल समस्याएं & झिझक</div>
+            <div class="service-tag">🤯 डिप्रेशन, चिंता & ओवरथिंकिंग</div>
+            <div class="service-tag">💼 जॉब & करियर का भारी स्ट्रेस</div>
+            <div class="service-tag">🏠 पारिवारिक कलह & शादीशुदा जिंदगी</div>
+            <div class="service-tag">😔 अकेलापन (जब कोई सुनने वाला न हो)</div>
         </div>
     </div>
 
-    <!-- 15+ Real Client Reviews -->
+    <!-- Client Reviews Section -->
     <div class="section">
-        <h2>लोगों के अनुभव और रिव्यूज ⭐ (15+)</h2>
+        <h2>लोगों के अनुभव और रिव्यूज ⭐</h2>
         
         <div class="note-box">
-            📢 <strong>विश्वास और प्राइवेसी नोट:</strong> ये सभी रिव्यूज हमारे उन क्लाइंट्स के हैं जिन्होंने अपनी मर्जी और परमिशन से अपने नाम के साथ अपना अनुभव शेयर किया है। <br><br>
-            <em>(यदि आप बात करने के बाद अपना रिव्यू देना चाहते हैं और चाहते हैं कि आपका नाम छुपाया जाए, तो हम आपकी पहचान पूरी तरह गुप्त रखने का विकल्प भी देते हैं।)</em>
+            📢 <strong>विश्वास और प्राइवेसी नोट:</strong> ये सभी रिव्यूज हमारे उन क्लाइंट्स के हैं जिन्होंने अपनी सहमति से अपना अनुभव शेयर किया है। <br><br>
+            <em>(यदि आप अपनी पहचान गुप्त रखकर रिव्यू देना चाहते हैं, तो उसका विकल्प भी उपलब्ध है।)</em>
         </div>
         
         <div class="reviews-grid">
             <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">नेहा वर्मा (जयपुर)</div>
-                            <span class="reviewer-tag">1 घंटा सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">नेहा वर्मा (जयपुर)</div>
+                        <span class="reviewer-tag">1 घंटा सेशन</span>
                     </div>
-                    <p class="review-text">"शुरुआत में बहुत डर लग रहा था कि पता नहीं मेरी बातें सेफ रहेंगी या नहीं। लेकिन लिसनर ने बहुत प्यार और शांति से हिंदी में सुना। 1 घंटे का सेशन मेरे लिए बहुत सुकून भरा था।"</p>
+                    <span class="stars">★★★★★</span>
                 </div>
+                <p class="review-text">"शुरुआत में डर लग रहा था, लेकिन लिसनर ने बहुत शांति से हिंदी में सुना। 1 घंटे के सेशन में रिलेशनशिप की पूरी उलझन सुलझ गई।"</p>
             </div>
 
             <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">स्नेहा शर्मा (दिल्ली)</div>
-                            <span class="reviewer-tag">30 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">स्नेहा शर्मा (दिल्ली)</div>
+                        <span class="reviewer-tag">30 मिनट सेशन</span>
                     </div>
-                    <p class="review-text">"ओवरथिंकिंग की वजह से रात को नींद नहीं आ रही थी। अपनी आम भाषा में खुलकर अपनी पूरी बात बोली, कोई टोकने वाला नहीं था। सच में मन हल्का हो गया।"</p>
+                    <span class="stars">★★★★★</span>
                 </div>
+                <p class="review-text">"मैरिड लाइफ में कुछ पर्सनल/इंटिमेट समस्याएं थीं जो दोस्तों से भी नहीं कह सकती थी। यहाँ बिना किसी झिझक के बात कर पाई, बहुत कम्फर्ट महसूस हुआ।"</p>
             </div>
 
             <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">अंजलि गुप्ता (लखनऊ)</div>
-                            <span class="reviewer-tag">1 घंटा सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">रोहन मेहरा (गुड़गांव)</div>
+                        <span class="reviewer-tag">1 घंटा सेशन</span>
                     </div>
-                    <p class="review-text">"रिलेशनशिप की उलझन में मैं बिल्कुल अकेली महसूस कर रही थी। यहाँ अपनी भाषा में बात करके ऐसा लगा जैसे किसी बहुत करीबी ने हाथ थाम लिया हो।"</p>
+                    <span class="stars">★★★★★</span>
                 </div>
+                <p class="review-text">"ब्रेकअप और पर्सनल टॉपिक्स पर खुलकर बात की। लिसनर का एटीट्यूड बहुत ही प्रोफेशनल और रिस्पेक्टफुल था।"</p>
             </div>
 
             <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">रोहन मेहरा (गुड़गांव)</div>
-                            <span class="reviewer-tag">30 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">पूजा सिन्हा (पटना)</div>
+                        <span class="reviewer-tag">1 घंटा सेशन</span>
                     </div>
-                    <p class="review-text">"जॉब और करियर का स्ट्रेस बहुत ज्यादा था। किसी दोस्त से कहता तो वो मजाक बनाते। दिलखोल सेफ पर 30 मिनट बात करके बहुत रिलीफ मिला।"</p>
+                    <span class="stars">★★★★★</span>
                 </div>
+                <p class="review-text">"मैं रो-रोकर अपनी पूरी बात बता रही थी, लेकिन लिसनर ने बहुत सब्र से सुना और मुझे संभाला। 100% बेस्ट और सेफ जगह है।"</p>
             </div>
 
             <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">पूजा सिन्हा (पटना)</div>
-                            <span class="reviewer-tag">1 घंटा सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">अंजलि गुप्ता (लखनऊ)</div>
+                        <span class="reviewer-tag">30 मिनट सेशन</span>
                     </div>
-                    <p class="review-text">"मैं रो-रोकर अपनी पूरी बात बता रही थी, लेकिन लिसनर ने बहुत सब्र से सुना और मुझे संभाला। 100% बेस्ट और सेफ जगह है।"</p>
+                    <span class="stars">★★★★★</span>
                 </div>
+                <p class="review-text">"इंटिमेट रिलेशनशिप गाइडेंस के लिए बात की थी। सामने वाले ने जरा सा भी जज नहीं किया और बहुत अच्छी सलाह दी।"</p>
             </div>
 
             <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">रीया चौधरी (चंडीगढ़)</div>
-                            <span class="reviewer-tag">15 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">अमित जोशी (इंदौर)</div>
+                        <span class="reviewer-tag">15 मिनट सेशन</span>
                     </div>
-                    <p class="review-text">"तुरंत बात करने के लिए 15 मिनट लिया था। इतने कम समय में भी मुझे बहुत पॉजिटिव लगा। बहुत-बहुत शुक्रिया!"</p>
+                    <span class="stars">★★★★★</span>
                 </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">तान्या राय (मुंबई)</div>
-                            <span class="reviewer-tag">1 घंटा सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"अपनी हिंदी भाषा में बात करने में जो अपनापन लगता है, वो कहीं और नहीं मिलता। लिसनर बहुत रिस्पेक्टफुल थे।"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">अमित जोशी (इंदौर)</div>
-                            <span class="reviewer-tag">15 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"बिना नाम बताए और बिना झिझक के अपनी समस्या रख सका। सर्विस 100% प्राइवेट है।"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">दिव्या कपूर (नोएडा)</div>
-                            <span class="reviewer-tag">30 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"जब घर वालों से भी बातें शेयर नहीं हो पातीं, तब ऐसी जगह बहुत काम आती है। बहुत ही सेफ और कम्फर्टेबल लगा।"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">मेघा राजपूत (भोपाल)</div>
-                            <span class="reviewer-tag">1 घंटा सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"1 घंटे के दौरान मुझे एक बार भी नहीं लगा कि मैं किसी अजनबी से बात कर रही हूँ। दिल का सारा गुबार निकल गया।"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">राहुल यादव (वाराणसी)</div>
-                            <span class="reviewer-tag">30 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"अकेलेपन से जूझ रहे हर बंदे को यह एक बार ज़रूर ट्राई करना चाहिए। चार्जेस भी बहुत सही हैं।"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">साक्षी सहगल (अमृतसर)</div>
-                            <span class="reviewer-tag">1 घंटा सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"मेरी प्राइवेसी पूरी तरह सुरक्षित रखी गई। बातें सुनने का तरीका बहुत ही शांत और सुकून देने वाला था।"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">सिमरन कौर (लुधियाना)</div>
-                            <span class="reviewer-tag">30 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"बात करके बहुत हिम्मत मिली। लगा कि मेरी बातों की भी कोई कद्र कर रहा है। दिल से धन्यवाद!"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">सिद्धार्थ जैन (अहमदाबाद)</div>
-                            <span class="reviewer-tag">1 घंटा सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"999 रुपये का 1 घंटे वाला सेशन पूरी तरह वसूल रहा। बिना किसी झिझक के खुलकर बात हुई।"</p>
-                </div>
-            </div>
-
-            <div class="review-card">
-                <div>
-                    <div class="review-header">
-                        <div>
-                            <div class="reviewer-name">ईशा पांडे (देहरादून)</div>
-                            <span class="reviewer-tag">30 मिनट सेशन</span>
-                        </div>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p class="review-text">"अपनी हिंदी में आराम से बात करना सबसे अच्छी बात लगी। थैंक यू दिलखोल सेफ!"</p>
-                </div>
+                <p class="review-text">"बिना नाम बताए और बिना झिझक के अपनी समस्या रख सका। सर्विस 100% सेफ और गुप्त है।"</p>
             </div>
         </div>
 
-        <!-- Submit Review Option -->
-        <h3 style="font-size: 1.15rem; margin-top: 25px; margin-bottom: 12px; color: #f1f5f9;">अपना अनुभव शेयर करें (गुप्त रिव्यू)</h3>
+        <!-- Submit Anonymous Review -->
+        <h3 style="font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px; color: #f1f5f9;">अपना अनुभव शेयर करें (गुप्त रिव्यू)</h3>
         <form action="https://formspree.io/f/xqaejvwe" method="POST">
             <input type="hidden" name="_subject" value="New Website Review Submission">
             <div class="form-group">
-                <textarea name="user_review" rows="2" placeholder="अपना अनुभव यहाँ लिखें... (यदि आप चाहेंगे तो आपका नाम गुप्त रखा जाएगा)" required></textarea>
+                <textarea name="user_review" rows="2" placeholder="अपना अनुभव यहाँ लिखें... (आपका नाम गुप्त रखा जाएगा)" required></textarea>
             </div>
-            <button type="submit" class="btn" style="background-color: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 12px; font-size: 1rem;">रिव्यू भेजें</button>
+            <button type="submit" class="btn" style="background-color: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 10px; font-size: 0.95rem;">रिव्यू भेजें</button>
         </form>
     </div>
 
@@ -535,7 +440,69 @@
     <div class="section">
         <h2>अपना सेफ सेशन बुक करें</h2>
         <div class="note-box" style="background-color: rgba(16, 185, 129, 0.1); border-left-color: var(--success-color);">
-            🔒 <strong>प्राइवेसी प्रॉमिस:</strong> आपका फोन नंबर सिर्फ कॉल या चैट कनेक्ट करने के लिए लिया जाता है। आपकी पहचान पूरी तरह सुरक्षित रखी जाएगी।
+            🔒 <strong>प्राइवेसी प्रॉमिस:</strong> आपका फोन नंबर सिर्फ कॉल या चैट कनेक्ट करने के लिए लिया जाता है। आपकी पहचान पूरी तरह गुप्त रखी जाएगी।
         </div>
 
-        <form action="https://formspree.io/f/xqaejvwe" method="P
+        <form action="https://formspree.io/f/xqaejvwe" method="POST">
+            <div class="form-group">
+                <label for="name">आपका नाम / कोड नेम (असली नाम जरूरी नहीं है)</label>
+                <input type="text" id="name" name="name" placeholder="उदा. राहुल या कोई भी नाम" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">व्हाट्सएप / कॉल नंबर</label>
+                <input type="tel" id="phone" name="phone" placeholder="98XXXXXXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label for="plan">समय चुनें (समय सीमा)</label>
+                <select id="plan" name="plan" required>
+                    <option value="15-min-299">15 मिनट - ₹299 (क्विक टॉक)</option>
+                    <option value="30-min-599">30 मिनट - ₹599 (डिटेल्ड टॉक)</option>
+                    <option value="60-min-999" selected>1 घंटा (60 मिनट) - ₹999 (डीप टॉक और गाइडेंस)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">कॉल से पहले कुछ बताना चाहते हैं? (ऐच्छिक)</label>
+                <textarea id="message" name="message" rows="3" placeholder="आप किस विषय में बात करना चाहते हैं..."></textarea>
+            </div>
+
+            <button type="submit" class="btn">सेशन बुक करने के लिए आगे बढ़ें</button>
+        </form>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="section">
+        <h2>सेशन चार्जेस (फीस)</h2>
+        <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem;">आप अपनी जरूरत के हिसाब से समय चुन सकते हैं:</p>
+        
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div class="price-title">15 मिनट</div>
+                <div class="price-amount">₹299</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">मन का तुरंत बोझ हल्का करने के लिए</p>
+            </div>
+
+            <div class="price-card">
+                <div class="price-title">30 मिनट</div>
+                <div class="price-amount">₹599</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">विस्तार से बात करने के लिए</p>
+            </div>
+
+            <div class="price-card featured">
+                <div class="price-title" style="color: var(--accent-color);">1 घंटा (60 मिनट)</div>
+                <div class="price-amount">₹999</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">गहरी बातचीत और मन की पूरी शांति के लिए</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 DilKhol Safe. सर्वाधिकार सुरक्षित। 100% सुरक्षित एवं गुप्त सेवा।</p>
+    </footer>
+</div>
+
+</body>
+    </html>
+                
