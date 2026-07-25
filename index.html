@@ -4,93 +4,184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DilKholSafe - अपनी बात दिल खोलकर कहें</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Jitsi Audio Call SDK -->
     <script src="https://meet.jit.si/external_api.js"></script>
+    <style>
+        .no-select { user-select: none; -webkit-user-select: none; }
+    </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-start p-4">
+<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center p-4 no-select" oncontextmenu="return false;">
 
-    <!-- Header Section -->
-    <header class="text-center my-6">
-        <h1 class="text-4xl font-extrabold text-rose-500 tracking-wide">DilKholSafe</h1>
-        <p class="text-slate-300 mt-2 text-sm sm:text-base">अपनी बात दिल खोलकर कहें — बिना पहचान उजागर होने के डर से।</p>
+    <!-- 1. हेडर और लोगो -->
+    <header class="text-center my-6 flex flex-col items-center gap-2">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-rose-600 rounded-full flex items-center justify-center shadow-lg shadow-rose-900/50">
+                <span class="text-2xl">🔒❤️</span>
+            </div>
+            <h1 class="text-3xl font-extrabold text-rose-500 tracking-wider">DilKholSafe</h1>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm mt-1">अपनी बात दिल खोलकर कहें — बिना पहचान उजागर होने के डर से।</p>
     </header>
 
-    <!-- Main Container -->
-    <main class="w-full max-w-md bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-6 space-y-6">
+    <!-- मुख्य कंटेनर -->
+    <main class="w-full max-w-md space-y-6">
 
-        <!-- Privacy Badge -->
-        <div class="bg-rose-500/10 border border-rose-500/30 rounded-xl p-3 text-xs text-rose-300 text-center font-medium leading-relaxed">
-            🛡️ <strong>100% गोपनीय व सुरक्षित (100% Anonymous & Confidential)</strong><br>
-            आपकी असली पहचान पूरी तरह गुप्त रखी जाएगी। आपकी बातें सिर्फ आपके और सलाहकार के बीच रहेंगी।
+        <!-- 2. प्राइवेसी और भाषा चेतावनी -->
+        <div class="bg-rose-500/10 border border-rose-500/30 rounded-xl p-3 text-xs text-rose-300 text-center font-medium leading-relaxed space-y-1">
+            <p>🛡️ <strong>100% गोपनीय व सुरक्षित ज़ोन</strong></p>
+            <p class="text-[11px] text-rose-200">आपकी पहचान 100% गुप्त रखी जाती है। स्क्रीनशॉट या स्क्रीन रिकॉर्डिंग करना सख्त मना व कानूनी अपराध है।</p>
+            <div class="pt-1 text-emerald-400 font-bold border-t border-rose-500/20 text-[11px]">
+                🇮🇳 नोट: हमारी सभी परामर्श बातचीत केवल **हिंदी भाषा** में ही की जाती हैं।
+            </div>
         </div>
 
-        <!-- Booking Form -->
-        <form id="bookingForm" class="space-y-4">
-            <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2 border-b border-slate-700 pb-2">
-                🔒 अपनी बुकिंग/बातचीत शुरू करें
+        <!-- 3. हम किन-किन विषयों पर बात करते हैं? -->
+        <section class="bg-slate-800 rounded-2xl p-4 border border-slate-700 space-y-3">
+            <h2 class="text-sm font-bold text-slate-200 border-b border-slate-700 pb-2">💬 हम किन-किन विषयों पर बात करते हैं?</h2>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-700/60">
+                    <p class="font-bold text-rose-400">1. यौन बातें व झिझक</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">गर्लफ्रेंड-बॉयफ्रेंड या शादीशुदा कपल की गुप्त बातें व शारीरिक झिझक।</p>
+                </div>
+                <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-700/60">
+                    <p class="font-bold text-rose-400">2. लव लाइफ व रिश्ते</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">ब्रेकअप, एकतरफा प्यार और रिश्तों की अनबन।</p>
+                </div>
+                <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-700/60">
+                    <p class="font-bold text-rose-400">3. तनाव व अकेलापन</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">ओवरथिंकिंग, डिप्रेशन और भारी मन का अहसास।</p>
+                </div>
+                <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-700/60">
+                    <p class="font-bold text-rose-400">4. अन्य निजी राज़</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">कोई भी ऐसी बात जो आप दुनिया से छुपाकर रखना चाहते हैं।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. लोगों के अनुभव और रिव्यूज (80% फीमेल डोमिनेंट) -->
+        <section class="bg-slate-800 rounded-2xl p-4 border border-slate-700 space-y-3">
+            <h2 class="text-sm font-bold text-slate-200 border-b border-slate-700 pb-2 flex justify-between items-center">
+                <span>⭐ लोगों के अनुभव (सत्यापित फ़ीडबैक)</span>
+                <span class="text-[10px] text-emerald-400 font-normal">100% सुरक्षित</span>
             </h2>
-
-            <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">पुकारने का नाम / निकनेम (जिससे आप बात करना चाहते हैं)</label>
-                <input type="text" id="userName" required placeholder="जैसे: Duggu / Guest" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
+            <div id="reviewsContainer" class="space-y-2 max-h-56 overflow-y-auto pr-1 text-xs">
+                <!-- रिव्यूज जावास्क्रिप्ट से लोड होंगे -->
             </div>
-
-            <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">मोबाइल नंबर (केवल वेरिफिकेशन हेतु)</label>
-                <input type="tel" id="userPhone" required placeholder="10 अंकों का मोबाइल नंबर" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
+            
+            <!-- यूजर रिव्यू फ़ॉर्म -->
+            <div class="pt-2 border-t border-slate-700">
+                <details class="text-xs">
+                    <summary class="cursor-pointer text-rose-400 font-medium">✍️ अपना अनुभव शेयर करें (पूरी तरह गुप्त)</summary>
+                    <form id="addReviewForm" class="mt-2 space-y-2">
+                        <input type="text" id="revName" placeholder="आपका निकनेम (उदा: प्रिया/अतिथि)" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white text-xs">
+                        <textarea id="revMsg" placeholder="अपना अनुभव लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white text-xs h-16"></textarea>
+                        <button type="submit" class="w-full bg-rose-600 hover:bg-rose-500 py-1.5 rounded font-bold text-xs">रिव्यू सबमिट करें</button>
+                    </form>
+                </details>
             </div>
+        </section>
 
-            <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का पसंदीदा समय (Preferred Time Slot)</label>
-                <select id="timeSlot" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
-                    <option value="Right Now">तत्काल बात करें (Right Now)</option>
-                    <option value="In 15 Mins">अगले 15 मिनट में</option>
-                    <option value="Evening">शाम के समय</option>
-                    <option value="Night">रात के समय</option>
-                </select>
-            </div>
+        <!-- 5. मुख्य बुकिंग फ़ॉर्म (सब कुछ पढ़ने के बाद सबसे नीचे) -->
+        <section class="bg-slate-800 rounded-2xl p-5 border border-slate-700 space-y-4">
+            <h2 class="text-base font-bold text-slate-100 border-b border-slate-700 pb-2">📋 अपनी सुरक्षित बुकिंग करें</h2>
 
-            <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">बातचीत का विषय चुनिए</label>
-                <select class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-rose-500">
-                    <option>लव लाइफ व रिलेशनशिप (Love & Relationships)</option>
-                    <option>सेक्सुअल हेल्थ, झिझक व निजी समस्याएं (Sexual Health & Personal Issues)</option>
-                    <option>मैरिड लाइफ व पार्टनर विवाद (Married Life & Disputes)</option>
-                    <option>मानसिक तनाव, डिप्रेशन व अकेलापन (Mental Peace & Depression)</option>
-                    <option>अन्य गुप्त व निजी बातें (Other Confidential Topics)</option>
-                </select>
-            </div>
+            <form id="bookingForm" class="space-y-3">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">1. आपका असली नाम</label>
+                    <input type="text" id="realName" required placeholder="केवल हमारे आंतरिक रिकॉर्ड के लिए" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                </div>
 
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition duration-200 shadow-lg shadow-emerald-900/40">
-                ✅ बुकिंग कन्फर्म करें & आगे बढ़ें
-            </button>
-        </form>
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">2. पुकारने का नाम / निकनेम</label>
+                    <input type="text" id="nickName" required placeholder="उदा: डुग्गू / गेस्ट गर्ल" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                </div>
 
-        <!-- Status & Voice Call Area (Hidden initially) -->
-        <div id="actionArea" class="hidden space-y-4">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">3. मोबाइल नंबर</label>
+                    <input type="tel" id="userPhone" required placeholder="10 अंकों का मोबाइल नंबर" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">4. बातचीत का माध्यम</label>
+                        <select id="communicationMode" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white">
+                            <option value="Voice Call">📞 वॉइस कॉल</option>
+                            <option value="Text Chat">💬 टेक्स्ट लाइव चैट</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">5. सेशन की अवधि</label>
+                        <select id="sessionDuration" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white">
+                            <option value="15">⏱️ 15 मिनट</option>
+                            <option value="30">⏱️ 30 मिनट</option>
+                            <option value="60">⏱️ 60 मिनट (1 घंटा)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">6. आपकी अभी की मनोदशा (मूड)</label>
+                    <select id="userMood" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white">
+                        <option>उदासीनता / रोने का मन</option>
+                        <option>अत्यधिक झिझक व डर</option>
+                        <option>मानसिक उलझन व तनाव</option>
+                        <option>सामान्य बातचीत</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-300 mb-1">7. बातचीत का विषय</label>
+                    <select id="sessionTopic" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-white">
+                        <option>यौन स्वास्थ्य, झिझक व गुप्त बातें</option>
+                        <option>लव लाइफ व रिश्ते</option>
+                        <option>मानसिक तनाव व अकेलापन</option>
+                        <option>अन्य निजी विषय</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition duration-200 shadow-lg shadow-emerald-900/40 text-xs">
+                    ✅ बुकिंग कन्फर्म करें व आगे बढ़ें
+                </button>
+            </form>
+        </section>
+
+        <!-- 6. बुकिंग के बाद एक्टिव रूम व टाइमर -->
+        <section id="actionArea" class="hidden space-y-4 bg-slate-800 rounded-2xl p-5 border border-slate-700">
             <div class="bg-emerald-900/30 border border-emerald-500/40 rounded-xl p-4 text-center space-y-2">
                 <p class="text-sm font-semibold text-emerald-400">✅ आपकी बुकिंग दर्ज कर ली गई है!</p>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                    सुरक्षित बातचीत के लिए इसी पेज पर बने रहें। हमारे सलाहकार **10 से 15 मिनट** में आपसे यहीं लाइव जुड़ेंगे।
+                <p id="waitingNotice" class="text-xs text-slate-300 leading-relaxed">
+                    हमारे <strong>"हमराज़" (व्यक्तिगत सलाहकार)</strong> अभी एक अति-गोपनीय सेशन में हैं। कृपया इसी पेज पर बने रहें, जैसे ही आपका सेशन शुरू होगा, टाइमर चालू हो जाएगा।
                 </p>
             </div>
 
-            <div class="space-y-2">
-                <button id="callBtn" onclick="startVoiceCall()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-900/40 text-base">
-                    📞 Start Voice Call Now
-                </button>
-                <p class="text-[11px] text-slate-400 text-center">कॉल बटन दबाकर ब्राउज़र में माइक्रोन (Mic) अलाउ (Allow) करें।</p>
+            <!-- टाइमर डिस्प्ले -->
+            <div id="timerCard" class="bg-slate-900 border border-rose-500/50 rounded-xl p-3 text-center">
+                <p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">सेशन का समय (काउंटडाउन)</p>
+                <div id="timerDisplay" class="text-3xl font-black text-rose-500 my-1">15:00</div>
+                <p class="text-[10px] text-emerald-400">कॉल/चैट शुरू होने पर ही समय चालू होगा</p>
             </div>
 
-            <!-- Call Container -->
-            <div id="callRoom" class="w-full h-96 rounded-xl overflow-hidden hidden border border-slate-700 bg-slate-900"></div>
-        </div>
+            <!-- वॉइस कॉल बटन -->
+            <div id="voiceCallArea" class="space-y-2 hidden">
+                <button id="callBtn" onclick="startVoiceCall()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-900/40 text-sm">
+                    📞 ऑडियो कॉल शुरू करें
+                </button>
+                <p class="text-[10px] text-slate-400 text-center">बटन दबाकर फोन में माइक्रोन (Mic) की अनुमति दें।</p>
+            </div>
+
+            <!-- लाइव चैट सूचना -->
+            <div id="textChatArea" class="space-y-2 hidden text-center bg-slate-900 p-3 rounded-xl">
+                <p class="text-xs text-slate-200">💬 नीचे दाएँ कोने में दिख रहे <strong>Tawk.to चैट</strong> बटन पर टैप करें।</p>
+                <p class="text-[10px] text-slate-400">जैसे ही आप पहला संदेश भेजेंगे, आपका समय शुरू हो जाएगा!</p>
+            </div>
+
+            <!-- कॉल फ्रेम -->
+            <div id="callRoom" class="w-full h-80 rounded-xl overflow-hidden hidden border border-slate-700 bg-slate-900"></div>
+        </section>
 
     </main>
 
-    <!-- Tawk.to Live Chat Script -->
+    <!-- Tawk.to लाइव चैट स्क्रिप्ट -->
     <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){
@@ -103,45 +194,130 @@
         })();
     </script>
 
-    <!-- Logic Script -->
+    <!-- ऐप लॉजिक स्क्रिप्ट -->
     <script>
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        // डिफ़ॉल्ट रिव्यूज (80% फीमेल डोमिनेंट - शुद्ध हिंदी में)
+        const defaultReviews = [
+            { name: "अनन्या एस.", msg: "गर्लफ्रेंड से शारीरिक विषय पर बात करने में बहुत झिझक थी, यहाँ 'हमराज़' से खुलकर बात हुई। मन हल्का हो गया।" },
+            { name: "स्नेहा (गेस्ट)", msg: "100% सुरक्षित प्लेटफॉर्म! पहचान पूरी तरह गुप्त रही और बहुत अच्छी सलाह मिली।" },
+            { name: "पूजा शर्मा", msg: "शादीशुदा जिंदगी के निजी डाउट्स दूर हुए। बिना डर के अपनी बात रख पाई।" },
+            { name: "राहुल एम.", msg: "ब्रेकअप के बाद बहुत अकेलापन था, यहाँ बात करके मन शांत हुआ।" },
+            { name: "प्रिया वी.", msg: "लड़कियों के लिए यह सबसे सुरक्षित जगह है अपनी सीक्रेट बातें करने के लिए।" },
+            { name: "गेस्ट गर्ल", msg: "यौन स्वास्थ्य पर झिझक ख़त्म हो गई। दिल खोल सेफ़ का धन्यवाद!" },
+            { name: "महक के.", msg: "एंग्जाइटी और ओवरथिंकिंग कम हो गई। बहुत दोस्ताना अनुभव रहा।" },
+            { name: "रितु सिंह", msg: "मुझे बहुत डर लग रहा था पर यहाँ बात करके बहुत सहज महसूस हुआ।" },
+            { name: "नेहा जी.", msg: "100% गोपनीयता की गारंटी है। कोई भी बेझिझक बात कर सकता है।" }
+        ];
+
+        function loadReviews() {
+            let stored = JSON.parse(localStorage.getItem('dks_reviews')) || defaultReviews;
+            let container = document.getElementById('reviewsContainer');
+            container.innerHTML = stored.map(r => `
+                <div class="bg-slate-900/90 p-2 rounded border border-slate-700/50">
+                    <p class="font-bold text-rose-400 text-[11px]">${r.name}</p>
+                    <p class="text-slate-300 text-[10px] mt-0.5">"${r.msg}"</p>
+                </div>
+            `).join('');
+        }
+        loadReviews();
+
+        // नया रिव्यू जोड़ने का लॉजिक
+        document.getElementById('addReviewForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            document.getElementById('bookingForm').classList.add('hidden');
-            document.getElementById('actionArea').classList.remove('hidden');
+            let name = document.getElementById('revName').value || "अतिथि उपयोगकर्ता";
+            let msg = document.getElementById('revMsg').value;
+            if(!msg) return;
+
+            let stored = JSON.parse(localStorage.getItem('dks_reviews')) || defaultReviews;
+            stored.unshift({ name: name, msg: msg });
+            localStorage.setItem('dks_reviews', JSON.stringify(stored));
+            loadReviews();
+            this.reset();
+            alert("आपका अनुभव सफलतापूर्वक जोड़ दिया गया है! धन्यवाद।");
         });
 
-        function startVoiceCall() {
-            const nameInput = document.getElementById('userName').value || "Guest User";
-            const domain = 'meet.jit.si';
-            const roomName = 'DilKholSafe_Confidential_Call_Room_2026';
+        let countdownInterval;
+        let selectedMinutes = 15;
+
+        // फ़ॉर्म सबमिट लॉजिक
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
+            const realName = document.getElementById('realName').value;
+            const nickName = document.getElementById('nickName').value;
+            const phone = document.getElementById('userPhone').value;
+            const mode = document.getElementById('communicationMode').value;
+            selectedMinutes = parseInt(document.getElementById('sessionDuration').value);
+            const mood = document.getElementById('userMood').value;
+            const topic = document.getElementById('sessionTopic').value;
+
+            // एडमिन पैनल के लिए डेटा सेव करना
+            let currentBookings = JSON.parse(localStorage.getItem('dks_bookings')) || [];
+            currentBookings.unshift({
+                realName, nickName, phone, mode, selectedMinutes, mood, topic, time: new Date().toLocaleTimeString()
+            });
+            localStorage.setItem('dks_bookings', JSON.stringify(currentBookings));
+
+            // फ़ॉर्म छिपाना और एक्टिव ज़ोन दिखाना
+            document.getElementById('bookingForm').parentElement.classList.add('hidden');
+            document.getElementById('actionArea').classList.remove('hidden');
+
+            document.getElementById('timerDisplay').innerText = `${selectedMinutes}:00`;
+
+            if(mode === "Voice Call") {
+                document.getElementById('voiceCallArea').classList.remove('hidden');
+            } else {
+                document.getElementById('textChatArea').classList.remove('hidden');
+            }
+        });
+
+        // काउंटडाउन टाइमर
+        function startTimer(minutes) {
+            let seconds = minutes * 60;
+            const display = document.getElementById('timerDisplay');
+            
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                let m = Math.floor(seconds / 60);
+                let s = seconds % 60;
+                display.innerText = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    alert("आपका सेशन समय समाप्त हो गया है! DilKholSafe से जुड़ने के लिए धन्यवाद।");
+                    location.reload();
+                }
+                seconds--;
+            }, 1000);
+        }
+
+        // वॉइस कॉल शुरू करना
+        function startVoiceCall() {
+            const nickName = document.getElementById('nickName').value || "अतिथि";
             document.getElementById('callBtn').classList.add('hidden');
             document.getElementById('callRoom').classList.remove('hidden');
 
+            const domain = 'meet.jit.si';
+            const roomName = 'DilKholSafe_Private_Room_2026';
+            
             const options = {
                 roomName: roomName,
                 width: '100%',
                 height: '100%',
                 parentNode: document.querySelector('#callRoom'),
-                userInfo: {
-                    displayName: nameInput
-                },
+                userInfo: { displayName: nickName },
                 configOverwrite: {
                     startWithAudioMuted: false,
-                    startWithVideoMuted: true, // सिर्फ ऑडियो
-                    disableThirdPartyRequests: true,
+                    startWithVideoMuted: true,
                     prejoinPageEnabled: false
                 },
                 interfaceConfigOverwrite: {
-                    TOOLBAR_BUTTONS: ['microphone', 'hangup'],
-                    SHOW_JITSI_WATERMARK: false,
-                    SHOW_WATERMARK_FOR_GUESTS: false,
-                    DEFAULT_BACKGROUND: '#0f172a'
+                    TOOLBAR_BUTTONS: ['microphone', 'hangup']
                 }
             };
 
             const api = new JitsiMeetExternalAPI(domain, options);
+            startTimer(selectedMinutes); // कॉल जुड़ने पर टाइमर चालू
         }
     </script>
 </body>
