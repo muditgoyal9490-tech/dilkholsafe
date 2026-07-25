@@ -25,7 +25,7 @@
 
     <div class="max-w-3xl mx-auto space-y-6">
 
-        <!-- 1. Header & Security Banner -->
+        <!-- Header & Security Banner -->
         <header class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-3 neon-glow-rose relative overflow-hidden border-rose-500/30">
             <div class="absolute -top-10 -left-10 w-36 h-36 bg-rose-600/25 rounded-full blur-3xl"></div>
             <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-purple-600/25 rounded-full blur-3xl"></div>
@@ -56,7 +56,7 @@
             </div>
         </header>
 
-        <!-- 2. 22 Verified Customer Reviews (Exact Categories) -->
+        <!-- 22 Customer Reviews -->
         <section class="space-y-3">
             <div class="flex justify-between items-center px-1">
                 <h2 class="text-xs font-black text-slate-200 tracking-wider uppercase flex items-center gap-1.5">
@@ -68,7 +68,7 @@
             <div id="reviewsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
         </section>
 
-        <!-- 3. Topics We Talk About (4 Neon Cards) -->
+        <!-- Topics We Talk About (4 Neon Cards) -->
         <section class="space-y-3 pt-2">
             <h2 class="text-xs font-black text-rose-400 tracking-wider uppercase px-1">💬 हम किन-किन विषयों पर खुलकर बात करते हैं?</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -91,7 +91,7 @@
             </div>
         </section>
 
-        <!-- 4. Booking Form (Clean Heading & Non-Refreshing) -->
+        <!-- Booking Form -->
         <section class="glass-card p-5 sm:p-6 rounded-3xl space-y-4 neon-glow-rose border border-rose-500/40">
             <div class="text-center space-y-1">
                 <h2 class="text-base sm:text-lg font-black text-white">अपना सीक्रेट स्लॉट बुक करें</h2>
@@ -167,7 +167,7 @@
                 </div>
 
                 <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40">
-                    <iframe id="callFrame" class="w-full h-full border-0" allow="microphone; camera; autoplay"></iframe>
+                    <iframe id="callFrame" class="w-full h-full border-0" allow="microphone; camera; autoplay; display-capture; microphone *; camera *"></iframe>
                 </div>
 
                 <div id="userChatRoom" class="hidden glass-card p-3 rounded-xl border border-sky-500/30 space-y-2">
@@ -185,7 +185,6 @@
     </div>
 
     <script>
-        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAz7Cyg231fOc2jnV6k8yeSvkZpdHbD9yU",
             authDomain: "dilkholsafe.firebaseapp.com",
@@ -202,9 +201,7 @@
         let selectedMins = 15;
         let timerInterval = null;
 
-        // 22 Exact Reviews (13 Sexual Talk, 6 Relationship, 3 Stress/Secrets)
         const exactReviewsData = [
-            // --- 13 SEXUAL TALK REVIEWS ---
             { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। समझ नहीं आता था कि अपनी झिझक कैसे दूर करूँ। 'हमराज़' से 30 मिनट बात करके मेरे सारे अनकहे डाउट्स दूर हो गए और मन का डर पूरी तरह खत्म हो गया।" },
             { name: "रिया जी. (22 वर्ष)", msg: "अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर बहुत घबराहट थी। समझ नहीं आता था कि किससे सलाह लूँ। यहाँ नाम भी निकनेम यूज़ होता है तो प्राइवेसी बनी रहती है और खुलकर बात हो पाई।" },
             { name: "स्नेहा (25 वर्ष, गेस्ट)", msg: "शादी से ठीक पहले मन में शारीरिक संबंधों को लेकर कई सवाल थे जो किसी घरवाले से नहीं पूछे जा सकते थे। 'हमराज़' ने बहुत ही दोस्ताना और पेशेवर तरीके से हर बात समझाई।" },
@@ -218,16 +215,12 @@
             { name: "कृतिका (26 वर्ष, गेस्ट)", msg: "गर्लफ्रेंड-बॉयफ्रेंड के बीच के सीक्रेट शारीरिक सवालों पर सही मार्गदर्शन मिला। अब मन में कोई डर नहीं है।" },
             { name: "राहुल एम. (26 वर्ष)", msg: "गर्लफ्रेंड से शारीरिक झिझक व परफ़ॉर्मेंस स्ट्रेस को लेकर बहुत तनाव में था। समझ नहीं आता था क्या करूँ। यहाँ बात करके सारा डर और स्ट्रेस खत्म हो गया।" },
             { name: "विकास यादव (28 वर्ष)", msg: "अपनी यौन झिझक और पर्सनल प्रॉब्लम्स किसी दोस्त से नहीं कह पा रहा था। DilKholSafe पर बिना पहचान बताए बहुत ही व्यावहारिक समाधान मिला।" },
-
-            // --- 6 RELATIONSHIP & LOVE LIFE REVIEWS ---
             { name: "पूजा शर्मा (29 वर्ष)", msg: "पति के साथ शादीशुदा जिंदगी की सीक्रेट बातें शेयर कीं। कई गलतफहमियाँ चल रही थीं। DilKholSafe पर बात करके मन का सारा भारीपन खत्म हो गया।" },
             { name: "पिंकी आर. (33 वर्ष)", msg: "शादीशुदा जिंदगी में आ रही दूरियाँ दूर करने में 'हमराज़' की सलाह बहुत काम आई। सही गाइडेंस मिलने से रिश्ता फिर से बेहतर हो गया।" },
             { name: "मुस्कान जे. (23 वर्ष)", msg: "पार्टनर के साथ गलतफहमी की वजह से रिश्ता टूटने की कगार पर था। यहाँ गाइडेंस लेकर चीज़ें समझ आईं और अब सब सही हो गया है।" },
             { name: "अंजलि गुप्ता (28 वर्ष)", msg: "रिलेशनशिप के सीक्रेट्स शेयर करने में बहुत डर लगता था कि कहीं बातें लीक न हो जाएँ। पर यहाँ की प्राइवेसी पॉलिसी कमाल की है, कोई डेटा सेव नहीं होता।" },
             { name: "सचिन के. (29 वर्ष)", msg: "कम्यूनिकेशन गैप की वजह से पार्टनर से रोज़ झगड़े हो रहे थे। 30 मिनट बात करके बात करने का सही तरीका समझ आया।" },
             { name: "अमित शर्मा (27 वर्ष)", msg: "ब्रेकअप के बाद बहुत गहरे दर्द से जूझ रहा था। 'हमराज़' ने एक सच्चे दोस्त की तरह संभाला और रिश्ते की उलझन से बाहर निकाला।" },
-
-            // --- 3 STRESS & SECRETS REVIEWS ---
             { name: "महक के. (24 वर्ष)", msg: "ओवरथिंकिंग और एंग्जाइटी से रात को नींद नहीं आती थी। 'हमराज़' से बात करके दिमाग शांत हुआ और बहुत सुकून मिला।" },
             { name: "रिद्धिमा वी. (28 वर्ष)", msg: "अकेलेपन से डिप्रेशन सा लग रहा था, कोई मन की बात सुनने वाला नहीं था। यहाँ बातें शेयर कीं और मुझे जीवन का नया नज़रिया मिला।" },
             { name: "रोहन (30 वर्ष)", msg: "मानसिक तनाव से राहत पाने के लिए यह सबसे सुरक्षित, गोपनीय और भरोसेमंद जगह है। हर किसी को एक बार ज़रूर आज़माना चाहिए।" }
@@ -257,14 +250,15 @@
         }
 
         function handleBooking(e) {
-            if (e && e.preventDefault) e.preventDefault(); // FULLY STOPS REFRESH
+            if (e && e.preventDefault) e.preventDefault();
 
             let bookingId = 'session_' + Date.now();
+            let nick = document.getElementById('nickName').value || 'Guest';
 
             let bookingData = {
                 id: bookingId,
                 realName: document.getElementById('realName').value,
-                nickName: document.getElementById('nickName').value,
+                nickName: nick,
                 phone: document.getElementById('phone').value,
                 mode: document.getElementById('mode').value,
                 selectedMinutes: selectedMins,
@@ -272,17 +266,18 @@
                 mood: document.getElementById('mood').value || 'सामान्य',
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 roomCode: "DKS_Room_" + Math.floor(1000 + Math.random() * 9000),
-                accepted: false,
-                messages: []
+                accepted: false
             };
 
-            // Push Live to Firebase Realtime Database
+            // 1. SAVE TO PERMANENT HISTORY (all_bookings)
+            db.ref('all_bookings/' + bookingId).set(bookingData);
+
+            // 2. SET ACTIVE SESSION
             db.ref('active_session').set(bookingData).then(() => {
                 document.getElementById('userSessionContainer').classList.remove('hidden');
                 document.getElementById('sessionTimer').innerText = `${selectedMins}:00`;
                 document.getElementById('userSessionContainer').scrollIntoView({ behavior: 'smooth' });
 
-                // Live Listener for Admin Acceptance
                 db.ref('active_session').on('value', (snapshot) => {
                     let data = snapshot.val();
                     if(data && data.accepted) {
@@ -293,7 +288,7 @@
                 alert("कनेक्शन एरर: " + err.message);
             });
 
-            return false; // SECONDARY REFRESH PREVENTER
+            return false;
         }
 
         function startSessionForUser(data) {
@@ -304,7 +299,8 @@
 
             if(data.mode === 'Voice Call') {
                 document.getElementById('userCallRoom').classList.remove('hidden');
-                document.getElementById('callFrame').src = "https://vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda.8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/" + data.roomCode + "#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false";
+                let encodedNick = encodeURIComponent(data.nickName || 'Guest');
+                document.getElementById('callFrame').src = "https://vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda.8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/" + data.roomCode + "#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false&userInfo.displayName=" + encodedNick;
             } else {
                 document.getElementById('userChatRoom').classList.remove('hidden');
                 listenLiveChat();
