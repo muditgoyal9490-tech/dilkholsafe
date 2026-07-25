@@ -9,35 +9,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #070a12;
-            color: #f8fafc;
-        }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6);
-        }
-        .neon-glow-rose {
-            box-shadow: 0 0 30px -5px rgba(244, 63, 94, 0.4);
-        }
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(244, 63, 94, 0.5);
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #070a12; color: #f8fafc; }
+        .glass-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6); }
+        .neon-glow-rose { box-shadow: 0 0 30px -5px rgba(244, 63, 94, 0.4); }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-4px); border-color: rgba(244, 63, 94, 0.5); }
     </style>
 </head>
 <body class="min-h-screen p-3 sm:p-6 select-none">
 
     <div class="max-w-3xl mx-auto space-y-6">
 
-        <!-- 1. Header & Security Banner -->
         <header class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-3 neon-glow-rose relative overflow-hidden border-rose-500/30">
             <div class="absolute -top-10 -left-10 w-36 h-36 bg-rose-600/25 rounded-full blur-3xl"></div>
             <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-purple-600/25 rounded-full blur-3xl"></div>
@@ -68,7 +54,6 @@
             </div>
         </header>
 
-        <!-- 2. 22 Verified Customer Reviews -->
         <section class="space-y-3">
             <div class="flex justify-between items-center px-1">
                 <h2 class="text-xs font-black text-slate-200 tracking-wider uppercase flex items-center gap-1.5">
@@ -76,14 +61,11 @@
                 </h2>
                 <span class="text-[10px] bg-emerald-950/90 text-emerald-400 font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-500/40">100% सेफ़</span>
             </div>
-
             <div id="reviewsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
         </section>
 
-        <!-- 3. Topics We Talk About (4 Neon Cards) -->
         <section class="space-y-3 pt-2">
             <h2 class="text-xs font-black text-rose-400 tracking-wider uppercase px-1">💬 हम किन-किन विषयों पर खुलकर बात करते हैं?</h2>
-            
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div class="glass-card p-4 rounded-2xl card-hover space-y-1.5 border-rose-500/30">
                     <div class="flex items-center gap-2"><span class="text-2xl">🔞</span><h3 class="text-sm font-bold text-rose-400">1. शारीरिक व यौन झिझक (Sexual Talk)</h3></div>
@@ -104,7 +86,6 @@
             </div>
         </section>
 
-        <!-- 4. Booking Form -->
         <section class="glass-card p-5 sm:p-6 rounded-3xl space-y-4 neon-glow-rose border border-rose-500/40">
             <div class="text-center space-y-1">
                 <h2 class="text-base sm:text-lg font-black text-white">📅 अपना सीक्रेट स्लॉट बुक करें</h2>
@@ -167,7 +148,6 @@
                 </button>
             </form>
 
-            <!-- Live Session Container -->
             <div id="userSessionContainer" class="hidden space-y-3 pt-3 border-t border-slate-800">
                 <div class="flex justify-between items-center bg-slate-900/90 p-3 rounded-xl border border-rose-500/30">
                     <span id="sessionStatusText" class="text-xs font-black text-amber-400 animate-pulse">
@@ -198,9 +178,23 @@
     </div>
 
     <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAz7Cyg231fOc2jnV6k8yeSvkZpdHbD9yU",
+            authDomain: "dilkholsafe.firebaseapp.com",
+            databaseURL: "https://dilkholsafe-default-rtdb.firebaseio.com",
+            projectId: "dilkholsafe",
+            storageBucket: "dilkholsafe.firebasestorage.app",
+            messagingSenderId: "123300588054",
+            appId: "1:123300588054:web:052dd0b72f52b83e44a337"
+        };
+
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
         let selectedMins = 15;
         let timerInterval = null;
-        let roomCode = "DKS_Room_" + Math.floor(1000 + Math.random() * 9000);
+        let activeBookingId = null;
 
         const fullDefaultReviews = [
             { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। 'हमराज़' से 30 मिनट बात करके मेरे सारे अनकहे डाउट्स दूर हो गए।" },
@@ -253,7 +247,11 @@
         function handleBooking(e) {
             e.preventDefault();
 
-            let booking = {
+            let bookingId = 'session_' + Date.now();
+            activeBookingId = bookingId;
+
+            let bookingData = {
+                id: bookingId,
                 realName: document.getElementById('realName').value,
                 nickName: document.getElementById('nickName').value,
                 phone: document.getElementById('phone').value,
@@ -262,99 +260,16 @@
                 topic: document.getElementById('topic').value,
                 mood: document.getElementById('mood').value || 'सामान्य',
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                roomCode: roomCode,
+                roomCode: "DKS_Room_" + Math.floor(1000 + Math.random() * 9000),
                 accepted: false,
                 messages: []
             };
 
-            localStorage.setItem('dks_active_session', JSON.stringify(booking));
+            // Save live to Firebase
+            db.ref('active_session').set(bookingData).then(() => {
+                document.getElementById('userSessionContainer').classList.remove('hidden');
+                document.getElementById('sessionTimer').innerText = `${selectedMins}:00`;
+                document.getElementById('userSessionContainer').scrollIntoView({ behavior: 'smooth' });
 
-            document.getElementById('userSessionContainer').classList.remove('hidden');
-            document.getElementById('sessionTimer').innerText = `${selectedMins}:00`;
-            document.getElementById('userSessionContainer').scrollIntoView({ behavior: 'smooth' });
-
-            // Check every 1s for Admin Acceptance
-            let checkAcc = setInterval(() => {
-                let data = JSON.parse(localStorage.getItem('dks_active_session'));
-                if(data && data.accepted) {
-                    clearInterval(checkAcc);
-                    startSessionForUser(data);
-                }
-            }, 1000);
-        }
-
-        function startSessionForUser(data) {
-            document.getElementById('sessionStatusText').innerText = "🟢 'हमराज़' से लाइव सत्र कनेक्टेड है!";
-            document.getElementById('sessionStatusText').className = "text-xs font-black text-emerald-400 animate-pulse";
-            
-            startCountdownTimer(data.selectedMinutes);
-
-            if(data.mode === 'Voice Call') {
-                document.getElementById('userCallRoom').classList.remove('hidden');
-                document.getElementById('callFrame').src = "https://vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda.8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/" + data.roomCode + "#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false";
-            } else {
-                document.getElementById('userChatRoom').classList.remove('hidden');
-                setInterval(syncChat, 1500);
-            }
-        }
-
-        function startCountdownTimer(durationMins) {
-            clearInterval(timerInterval);
-            let timeInSeconds = durationMins * 60;
-            const timerDisplay = document.getElementById('sessionTimer');
-
-            timerInterval = setInterval(() => {
-                let mins = Math.floor(timeInSeconds / 60);
-                let secs = timeInSeconds % 60;
-                mins = mins < 10 ? '0' + mins : mins;
-                secs = secs < 10 ? '0' + secs : secs;
-                timerDisplay.innerText = `${mins}:${secs}`;
-
-                if (--timeInSeconds < 0) {
-                    clearInterval(timerInterval);
-                    alert("आपका सेशन का समय समाप्त हो गया है। आगे बातचीत के लिए नया स्लॉट बुक करें।");
-                    endUserSession();
-                }
-            }, 1000);
-        }
-
-        function sendChatMessage() {
-            let input = document.getElementById('chatInput');
-            let text = input.value.trim();
-            if(!text) return;
-
-            let data = JSON.parse(localStorage.getItem('dks_active_session')) || {};
-            if(!data.messages) data.messages = [];
-            data.messages.push({ sender: data.nickName || "कस्टमर", text: text });
-            localStorage.setItem('dks_active_session', JSON.stringify(data));
-            input.value = "";
-            syncChat();
-        }
-
-        function syncChat() {
-            let data = JSON.parse(localStorage.getItem('dks_active_session'));
-            if(data && data.messages) {
-                let html = `<div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 यह चैट 100% गोपनीय है।</div>`;
-                data.messages.forEach(m => {
-                    let isMe = m.sender !== 'हमराज़';
-                    html += `<div class="${isMe ? 'text-right text-sky-400' : 'text-left text-rose-400'} font-medium my-1">
-                        <span class="block text-[9px] text-slate-500">${m.sender}</span>${m.text}
-                    </div>`;
-                });
-                let box = document.getElementById('chatMessages');
-                box.innerHTML = html;
-                box.scrollTop = box.scrollHeight;
-            }
-        }
-
-        function endUserSession() {
-            clearInterval(timerInterval);
-            localStorage.removeItem('dks_active_session');
-            document.getElementById('userSessionContainer').classList.add('hidden');
-            document.getElementById('bookingForm').reset();
-        }
-
-        renderReviews();
-    </script>
-</body>
-</html>
+                // Listen for Admin Acceptance live from Firebase
+                db.ref('active_ses
