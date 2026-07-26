@@ -12,8 +12,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-    <!-- 8x8 Jitsi Native External API -->
-    <script src="https://8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/external_api.js"></script>
+    <!-- Official Agora Web RTC Voice SDK -->
+    <script src="https://download.agora.io/sdk/web/AgoraRTC_N-4.20.0.js"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #05070f; color: #f8fafc; }
@@ -47,7 +47,7 @@
                 <div class="w-12 h-12 bg-gradient-to-tr from-rose-600 to-amber-400 rounded-2xl flex items-center justify-center shadow-lg"><span class="text-2xl">❤️</span></div>
                 <div>
                     <h1 class="text-lg font-black text-white">'हमराज़' VIP कंट्रोल रूम</h1>
-                    <p class="text-[10px] text-emerald-400 font-bold flex items-center gap-1.5 mt-0.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Firebase लाइव सिंक चालू है</p>
+                    <p class="text-[10px] text-emerald-400 font-bold flex items-center gap-1.5 mt-0.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Firebase + Agora सिंक चालू है</p>
                 </div>
             </div>
             <button onclick="logoutAdmin()" class="bg-rose-950 border border-rose-500/40 text-rose-300 text-xs px-3.5 py-2.5 rounded-xl font-bold">🚪 बाहर जाएँ</button>
@@ -73,16 +73,26 @@
             <button onclick="acceptLiveCall()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black px-6 py-3 rounded-xl shadow-xl text-xs uppercase">📲 स्वीकार करें (Start Session)</button>
         </div>
 
-        <!-- Voice Call Room -->
-        <div id="adminCallContainer" class="hidden glass-panel p-3 rounded-2xl border border-rose-500/50 space-y-2">
-            <div class="flex justify-between items-center px-2">
-                <span class="text-xs font-bold text-rose-400">🔴 लाइव ऑडियो काउंसलिंग चालू है...</span>
-                <button onclick="endAdminCall()" class="bg-rose-600 text-white text-[10px] px-3 py-1 rounded-lg font-extrabold">कॉल समाप्त करें</button>
+        <!-- Agora Clean Voice Call UI for Admin -->
+        <div id="adminCallContainer" class="hidden glass-panel p-6 rounded-2xl text-center space-y-4 border border-emerald-500/50 bg-slate-950/90">
+            <div class="w-20 h-20 bg-gradient-to-tr from-rose-600 to-pink-500 rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-rose-500/30 animate-pulse">
+                <span class="text-4xl">🎧</span>
             </div>
-            <div id="adminCallRoom" class="w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-slate-800"></div>
+            <div>
+                <h3 class="text-base font-black text-emerald-400" id="adminCallHeading">🔴 लाइव ऑडियो काउंसलिंग चालू है</h3>
+                <p class="text-xs text-slate-300 mt-1 font-medium">कस्टमर के साथ सीक्रेट ऑडियो चैनल एक्टिव है</p>
+            </div>
+            <div class="flex justify-center gap-4 pt-2">
+                <button id="adminMuteBtn" onclick="toggleAdminMute()" class="bg-slate-800 border border-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5">
+                    <span>🎙️</span> <span id="adminMuteTxt">माइक बंद करें</span>
+                </button>
+                <button onclick="endAdminCall()" class="bg-rose-600 text-white px-5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shadow-lg active:scale-95">
+                    <span>📞</span> <span>कॉल समाप्त करें</span>
+                </button>
+            </div>
         </div>
 
-        <!-- Secret Chat Control Room -->
+        <!-- Chat Room -->
         <div id="adminChatContainer" class="hidden glass-panel p-4 rounded-2xl space-y-3 border border-sky-500/40">
             <h3 class="text-xs font-black text-sky-400 uppercase">💬 लाइव सीक्रेट चैट विंडो</h3>
             <div id="adminChatMsgs" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950 rounded-lg text-xs border border-slate-800"></div>
@@ -101,6 +111,8 @@
     </div>
 
     <script>
+        const AGORA_APP_ID = "160d1980cc8549be8e965c1d1cf65bf4";
+
         const firebaseConfig = {
             apiKey: "AIzaSyAz7Cyg231fOc2jnV6k8yeSvkZpdHbD9yU",
             authDomain: "dilkholsafe.firebaseapp.com",
@@ -116,7 +128,11 @@
 
         let audioCtx = null;
         let alarmInterval = null;
-        let adminApiInstance = null;
+
+        // Agora RTC Variables
+        let adminAgoraClient = null;
+        let adminAudioTrack = null;
+        let isAdminMuted = false;
 
         function enableAudioEngine() {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -208,41 +224,61 @@
             });
         }
 
-        function acceptLiveCall() {
+        async function acceptLiveCall() {
             stopContinuousAlarm();
             document.getElementById('incomingAlertBar').classList.add('hidden');
 
             db.ref('active_session').update({ accepted: true }).then(() => {
-                db.ref('active_session').once('value', (snapshot) => {
+                db.ref('active_session').once('value', async (snapshot) => {
                     let data = snapshot.val();
                     if(data && data.mode === 'Voice Call') {
                         document.getElementById('adminCallContainer').classList.remove('hidden');
-                        document.getElementById('adminCallRoom').innerHTML = "";
-                        
-                        const domain = '8x8.vc';
-                        const options = {
-                            roomName: 'vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/' + data.roomCode,
-                            width: '100%',
-                            height: '100%',
-                            parentNode: document.querySelector('#adminCallRoom'),
-                            userInfo: { displayName: 'हमराज़ (Admin)' },
-                            configOverwrite: {
-                                startWithAudioMuted: false,
-                                startWithVideoMuted: true,
-                                prejoinPageEnabled: false,
-                                disableDeepLinking: true
-                            },
-                            interfaceConfigOverwrite: {
-                                MOBILE_APP_PROMO: false
-                            }
-                        };
-                        adminApiInstance = new JitsiMeetExternalAPI(domain, options);
+                        initAdminAgoraCall(data.roomCode);
                     } else {
                         document.getElementById('adminChatContainer').classList.remove('hidden');
                         listenAdminChat();
                     }
                 });
             });
+        }
+
+        async function initAdminAgoraCall(channelName) {
+            try {
+                adminAgoraClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+
+                adminAgoraClient.on("user-published", async (user, mediaType) => {
+                    await adminAgoraClient.subscribe(user, mediaType);
+                    if (mediaType === "audio") {
+                        user.audioTrack.play();
+                        document.getElementById('adminCallHeading').innerText = "🔴 कस्टमर कनेक्टेड है - बात चालू है";
+                    }
+                });
+
+                adminAgoraClient.on("user-unpublished", user => {
+                    document.getElementById('adminCallHeading').innerText = "⏳ कस्टमर डिस्कनेक्ट हो गया";
+                });
+
+                await adminAgoraClient.join(AGORA_APP_ID, channelName, null, null);
+                adminAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+                await adminAgoraClient.publish([adminAudioTrack]);
+
+            } catch (err) {
+                alert("माइक परमिशन एरर: एडमिन डिवाइस में माइक Allow करें।");
+            }
+        }
+
+        function toggleAdminMute() {
+            if (adminAudioTrack) {
+                if (isAdminMuted) {
+                    adminAudioTrack.setEnabled(true);
+                    document.getElementById('adminMuteTxt').innerText = "माइक बंद करें";
+                    isAdminMuted = false;
+                } else {
+                    adminAudioTrack.setEnabled(false);
+                    document.getElementById('adminMuteTxt').innerText = "माइक चालू करें";
+                    isAdminMuted = true;
+                }
+            }
         }
 
         function sendAdminMsg() {
@@ -274,8 +310,14 @@
             });
         }
 
-        function endAdminCall() {
-            if(adminApiInstance) adminApiInstance.dispose();
+        async function endAdminCall() {
+            if (adminAudioTrack) {
+                adminAudioTrack.stop();
+                adminAudioTrack.close();
+            }
+            if (adminAgoraClient) {
+                await adminAgoraClient.leave();
+            }
             stopContinuousAlarm();
             db.ref('active_session').remove();
             location.reload();
