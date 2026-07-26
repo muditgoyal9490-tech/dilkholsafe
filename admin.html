@@ -246,10 +246,15 @@
             try {
                 adminAgoraClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 
+                AgoraRTC.onAutoplayFailed = () => {
+                    AgoraRTC.play();
+                };
+
                 adminAgoraClient.on("user-published", async (user, mediaType) => {
                     await adminAgoraClient.subscribe(user, mediaType);
                     if (mediaType === "audio") {
-                        user.audioTrack.play();
+                        const remoteAudioTrack = user.audioTrack;
+                        remoteAudioTrack.play();
                         document.getElementById('adminCallHeading').innerText = "🔴 कस्टमर कनेक्टेड है - बात चालू है";
                     }
                 });
