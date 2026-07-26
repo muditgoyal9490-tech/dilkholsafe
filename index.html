@@ -13,8 +13,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-    <!-- 8x8 Jitsi Native External API -->
-    <script src="https://8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/external_api.js"></script>
+    <!-- Official Agora Web RTC Voice SDK -->
+    <script src="https://download.agora.io/sdk/web/AgoraRTC_N-4.20.0.js"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #070a12; color: #f8fafc; }
@@ -42,7 +42,7 @@
             </div>
             <div class="bg-slate-900 border border-emerald-500/40 p-3 rounded-2xl space-y-1 text-center">
                 <p class="text-xs text-emerald-400 font-extrabold">🛡️ 100% गोपनीय व सुरक्षित ज़ोन</p>
-                <p class="text-[11px] text-slate-300">आपकी पहचान पूरी तरह गुप्त रखी जाती है। इन-ऐप ऑडियो कॉलिंग 100% सुरक्षित है।</p>
+                <p class="text-[11px] text-slate-300">आपकी पहचान पूरी तरह गुप्त रखी जाती है। इन-ऐप ऑडियो कॉलिंग 100% एन्क्रिप्टेड है।</p>
             </div>
         </header>
 
@@ -104,7 +104,7 @@
                 </button>
             </form>
 
-            <!-- Active Call/Chat Room -->
+            <!-- Active Session Area -->
             <div id="userSessionContainer" class="hidden space-y-3 pt-3 border-t border-slate-800">
                 <div class="flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-rose-500/30">
                     <span id="sessionStatusText" class="text-xs font-black text-amber-400 animate-pulse">
@@ -116,8 +116,26 @@
                     <button onclick="endUserSession()" class="bg-rose-600 text-white text-[10px] px-3 py-1.5 rounded-lg font-bold">समाप्त करें</button>
                 </div>
 
-                <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40"></div>
+                <!-- Agora Clean Voice Call UI -->
+                <div id="userCallRoom" class="hidden glass-card p-6 rounded-2xl text-center space-y-4 border border-emerald-500/40 bg-slate-950/90">
+                    <div class="w-20 h-20 bg-gradient-to-tr from-emerald-600 to-teal-400 rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-emerald-500/30 animate-pulse">
+                        <span class="text-4xl">🎙️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-emerald-400" id="callStatusHeading">लाइव सीक्रेट वॉइस कॉल</h3>
+                        <p class="text-xs text-slate-300 mt-1 font-medium">आपकी आवाज़ 100% सुरक्षित और एन्क्रिप्टेड है</p>
+                    </div>
+                    <div class="flex justify-center gap-4 pt-2">
+                        <button id="userMuteBtn" onclick="toggleUserMute()" class="bg-slate-800 border border-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5">
+                            <span>🎙️</span> <span id="userMuteTxt">माइक बंद करें</span>
+                        </button>
+                        <button onclick="endUserSession()" class="bg-rose-600 text-white px-5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shadow-lg active:scale-95">
+                            <span>📞</span> <span>कॉल काटें</span>
+                        </button>
+                    </div>
+                </div>
 
+                <!-- Chat Room UI -->
                 <div id="userChatRoom" class="hidden glass-card p-3 rounded-xl border border-sky-500/30 space-y-2">
                     <div id="chatMessages" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950 rounded-lg text-xs border border-slate-800"></div>
                     <div class="flex gap-2">
@@ -131,6 +149,8 @@
     </div>
 
     <script>
+        const AGORA_APP_ID = "160d1980cc8549be8e965c1d1cf65bf4";
+
         const firebaseConfig = {
             apiKey: "AIzaSyAz7Cyg231fOc2jnV6k8yeSvkZpdHbD9yU",
             authDomain: "dilkholsafe.firebaseapp.com",
@@ -146,7 +166,11 @@
 
         let selectedMins = 15;
         let timerInterval = null;
-        let apiInstance = null;
+
+        // Agora RTC Variables
+        let agoraClient = null;
+        let localAudioTrack = null;
+        let isMuted = false;
 
         const exactReviewsData = [
             { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। 'हमराज़' से बात करके सारे अनकहे डाउट्स दूर हो गए।" },
@@ -230,7 +254,7 @@
             return false;
         }
 
-        function startSessionForUser(data) {
+        async function startSessionForUser(data) {
             document.getElementById('sessionStatusText').innerText = "🟢 'हमराज़' से लाइव सत्र कनेक्टेड है!";
             document.getElementById('sessionStatusText').className = "text-xs font-black text-emerald-400 animate-pulse";
             
@@ -238,29 +262,49 @@
 
             if(data.mode === 'Voice Call') {
                 document.getElementById('userCallRoom').classList.remove('hidden');
-                document.getElementById('userCallRoom').innerHTML = "";
-                
-                const domain = '8x8.vc';
-                const options = {
-                    roomName: 'vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/' + data.roomCode,
-                    width: '100%',
-                    height: '100%',
-                    parentNode: document.querySelector('#userCallRoom'),
-                    userInfo: { displayName: data.nickName },
-                    configOverwrite: {
-                        startWithAudioMuted: false,
-                        startWithVideoMuted: true,
-                        prejoinPageEnabled: false,
-                        disableDeepLinking: true
-                    },
-                    interfaceConfigOverwrite: {
-                        MOBILE_APP_PROMO: false
-                    }
-                };
-                apiInstance = new JitsiMeetExternalAPI(domain, options);
+                initAgoraVoiceCall(data.roomCode);
             } else {
                 document.getElementById('userChatRoom').classList.remove('hidden');
                 listenLiveChat();
+            }
+        }
+
+        async function initAgoraVoiceCall(channelName) {
+            try {
+                agoraClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+
+                agoraClient.on("user-published", async (user, mediaType) => {
+                    await agoraClient.subscribe(user, mediaType);
+                    if (mediaType === "audio") {
+                        user.audioTrack.play();
+                        document.getElementById('callStatusHeading').innerText = "🟢 'हमराज़' से बातचीत चालू है";
+                    }
+                });
+
+                agoraClient.on("user-unpublished", user => {
+                    document.getElementById('callStatusHeading').innerText = "⏳ 'हमराज़' डिस्कनेक्ट हो गए";
+                });
+
+                await agoraClient.join(AGORA_APP_ID, channelName, null, null);
+                localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+                await agoraClient.publish([localAudioTrack]);
+
+            } catch (err) {
+                alert("माइक एक्सेस एरर: कृपया ब्राउज़र में माइक की अनुमति (Allow) दें।");
+            }
+        }
+
+        function toggleUserMute() {
+            if (localAudioTrack) {
+                if (isMuted) {
+                    localAudioTrack.setEnabled(true);
+                    document.getElementById('userMuteTxt').innerText = "माइक बंद करें";
+                    isMuted = false;
+                } else {
+                    localAudioTrack.setEnabled(false);
+                    document.getElementById('userMuteTxt').innerText = "माइक चालू करें";
+                    isMuted = true;
+                }
             }
         }
 
@@ -308,8 +352,14 @@
             });
         }
 
-        function endUserSession() {
-            if(apiInstance) apiInstance.dispose();
+        async function endUserSession() {
+            if (localAudioTrack) {
+                localAudioTrack.stop();
+                localAudioTrack.close();
+            }
+            if (agoraClient) {
+                await agoraClient.leave();
+            }
             clearInterval(timerInterval);
             db.ref('active_session').remove();
             location.reload();
