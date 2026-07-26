@@ -8,9 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Firebase SDK Scripts -->
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- 8x8 Jitsi Native WebRTC External API -->
+    <script src="https://8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/external_api.js"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #05070f; color: #f8fafc; }
@@ -23,15 +26,15 @@
 
     <!-- Login Area -->
     <div id="loginArea" class="max-w-sm mx-auto my-16 glass-panel p-6 rounded-3xl space-y-5 text-center neon-glow-rose border border-rose-500/30">
-        <div class="w-16 h-16 bg-gradient-to-tr from-rose-600 via-pink-500 to-rose-400 rounded-2xl flex items-center justify-center mx-auto shadow-xl shadow-rose-950/80">
+        <div class="w-16 h-16 bg-gradient-to-tr from-rose-600 to-amber-400 rounded-2xl flex items-center justify-center mx-auto shadow-xl">
             <span class="text-3xl">🔒</span>
         </div>
         <div>
             <h1 class="text-xl font-black text-white">DilKholSafe Admin</h1>
             <p class="text-xs text-rose-400 font-semibold mt-1">सुरक्षित 'हमराज़' कंट्रोल एक्सेस</p>
         </div>
-        <input type="password" id="adminPass" placeholder="पासवर्ड (100399)" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-center text-lg text-white focus:outline-none focus:border-rose-500">
-        <button onclick="loginAdmin()" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-extrabold py-3.5 rounded-xl shadow-lg active:scale-95 text-xs uppercase">
+        <input type="password" id="adminPass" placeholder="पासवर्ड (100399)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-center text-lg text-white">
+        <button onclick="loginAdmin()" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-extrabold py-3.5 rounded-xl shadow-lg text-xs uppercase">
             🚀 कंट्रोल रूम खोलें
         </button>
     </div>
@@ -47,7 +50,7 @@
                     <p class="text-[10px] text-emerald-400 font-bold flex items-center gap-1.5 mt-0.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Firebase लाइव सिंक चालू है</p>
                 </div>
             </div>
-            <button onclick="logoutAdmin()" class="bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs px-3.5 py-2.5 rounded-xl font-bold">🚪 बाहर जाएँ</button>
+            <button onclick="logoutAdmin()" class="bg-rose-950 border border-rose-500/40 text-rose-300 text-xs px-3.5 py-2.5 rounded-xl font-bold">🚪 बाहर जाएँ</button>
         </header>
 
         <!-- Stats -->
@@ -58,7 +61,7 @@
             <div class="glass-panel p-3.5 rounded-2xl border border-amber-500/20 text-center"><p class="text-[10px] text-slate-400 font-bold uppercase">एक्टिव रिव्यूज</p><h3 id="statReviews" class="text-2xl font-black text-amber-400">22</h3></div>
         </div>
 
-        <!-- Incoming Alert Bar -->
+        <!-- Incoming Call Alert -->
         <div id="incomingAlertBar" class="hidden glass-panel p-4 rounded-2xl border-2 border-emerald-500 neon-glow-emerald bg-emerald-950/50 animate-pulse flex flex-col sm:flex-row justify-between items-center gap-3">
             <div class="flex items-center gap-3 text-center sm:text-left">
                 <span class="text-3xl animate-bounce">🚨</span>
@@ -67,7 +70,7 @@
                     <p id="callingCustInfo" class="text-xs text-slate-200 font-bold">विवरण...</p>
                 </div>
             </div>
-            <button onclick="acceptLiveCall()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black px-6 py-3 rounded-xl shadow-xl active:scale-95 text-xs uppercase">📲 स्वीकार करें (Start Customer Timer)</button>
+            <button onclick="acceptLiveCall()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black px-6 py-3 rounded-xl shadow-xl text-xs uppercase">📲 स्वीकार करें (Start Session)</button>
         </div>
 
         <!-- Voice Call Room -->
@@ -76,22 +79,20 @@
                 <span class="text-xs font-bold text-rose-400">🔴 लाइव ऑडियो काउंसलिंग चालू है...</span>
                 <button onclick="endAdminCall()" class="bg-rose-600 text-white text-[10px] px-3 py-1 rounded-lg font-extrabold">कॉल समाप्त करें</button>
             </div>
-            <div class="w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 relative">
-                <iframe id="adminCallFrame" class="w-full h-full border-0" allow="microphone; autoplay"></iframe>
-            </div>
+            <div id="adminCallRoom" class="w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-slate-800"></div>
         </div>
 
-        <!-- Secret Chat Control Room -->
+        <!-- Chat Room -->
         <div id="adminChatContainer" class="hidden glass-panel p-4 rounded-2xl space-y-3 border border-sky-500/40">
             <h3 class="text-xs font-black text-sky-400 uppercase">💬 लाइव सीक्रेट चैट विंडो</h3>
             <div id="adminChatMsgs" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950 rounded-lg text-xs border border-slate-800"></div>
             <div class="flex gap-2">
-                <input type="text" id="adminInput" placeholder="अपना रिप्लाई यहाँ लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                <input type="text" id="adminInput" placeholder="अपना रिप्लाई यहाँ लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white">
                 <button onclick="sendAdminMsg()" class="bg-gradient-to-r from-rose-600 to-pink-600 text-white text-xs px-4 py-2.5 rounded-xl font-extrabold">भेजें</button>
             </div>
         </div>
 
-        <!-- Recent Bookings History List -->
+        <!-- Saved History -->
         <div class="glass-panel p-4 rounded-3xl space-y-3 border border-rose-500/20">
             <h2 class="text-xs font-black text-slate-200 uppercase border-b border-slate-800 pb-2">📥 बुकिंग्स इतिहास (All Saved Bookings)</h2>
             <div id="bookingsList" class="space-y-2 max-h-96 overflow-y-auto"></div>
@@ -115,20 +116,16 @@
 
         let audioCtx = null;
         let alarmInterval = null;
+        let adminJitsiApi = null;
 
         function enableAudioEngine() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
         }
 
         function playLoudAlarmBeep() {
             enableAudioEngine();
             if (!audioCtx) return;
-
             try {
                 let osc = audioCtx.createOscillator();
                 let gain = audioCtx.createGain();
@@ -163,9 +160,7 @@
             } else { alert("गलत पासवर्ड!"); }
         }
 
-        if(localStorage.getItem('dks_admin_logged') === 'true') {
-            showDashboard();
-        }
+        if(localStorage.getItem('dks_admin_logged') === 'true') { showDashboard(); }
 
         function showDashboard() {
             document.getElementById('loginArea').classList.add('hidden');
@@ -179,45 +174,27 @@
             db.ref('all_bookings').on('value', (snapshot) => {
                 let allData = snapshot.val();
                 let listContainer = document.getElementById('bookingsList');
-                
                 if (allData) {
                     let items = Object.values(allData).reverse();
                     document.getElementById('statTotal').innerText = items.length;
-                    
-                    let callCount = items.filter(i => i.mode === 'Voice Call').length;
-                    let chatCount = items.filter(i => i.mode === 'Chat').length;
-                    document.getElementById('statCalls').innerText = callCount;
-                    document.getElementById('statChats').innerText = chatCount;
+                    document.getElementById('statCalls').innerText = items.filter(i => i.mode === 'Voice Call').length;
+                    document.getElementById('statChats').innerText = items.filter(i => i.mode === 'Chat').length;
 
                     listContainer.innerHTML = items.map(data => `
-                        <div class="bg-slate-900/90 p-3.5 rounded-2xl border border-slate-800 space-y-1.5">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs font-black text-rose-400">${data.realName} (${data.nickName})</span>
-                                <span class="text-[10px] text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/30">${data.selectedMinutes} मिनट</span>
-                            </div>
-                            <div class="text-[11px] text-slate-300 flex justify-between font-bold">
-                                <span>📞 ${data.phone}</span>
-                                <span>${data.mode} | ${data.time}</span>
-                            </div>
-                            <div class="text-[10px] text-slate-400 border-t border-slate-800/80 pt-1.5">
-                                <span>विषय: ${data.topic} (${data.mood})</span>
-                            </div>
+                        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 space-y-1">
+                            <div class="flex justify-between items-center"><span class="text-xs font-black text-rose-400">${data.realName} (${data.nickName})</span><span class="text-[10px] text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/30">${data.selectedMinutes} मिनट</span></div>
+                            <div class="text-[11px] text-slate-300 flex justify-between font-bold"><span>📞 ${data.phone}</span><span>${data.mode} | ${data.time}</span></div>
+                            <div class="text-[10px] text-slate-400 border-t border-slate-800 pt-1"><span>विषय: ${data.topic} (${data.mood})</span></div>
                         </div>
                     `).join('');
-                } else {
-                    document.getElementById('statTotal').innerText = "0";
-                    document.getElementById('statCalls').innerText = "0";
-                    document.getElementById('statChats').innerText = "0";
-                    listContainer.innerHTML = `<p class="text-center text-slate-500 text-xs py-6">अभी कोई सेव्ड बुकिंग नहीं है।</p>`;
                 }
             });
 
             db.ref('active_session').on('value', (snapshot) => {
                 let data = snapshot.val();
-
                 if(data && !data.accepted) {
                     document.getElementById('incomingAlertBar').classList.remove('hidden');
-                    document.getElementById('callingCustInfo').innerText = `नाम: ${data.realName} (${data.nickName}) | फोन: ${data.phone} | माध्यम: ${data.mode} | विषय: ${data.topic}`;
+                    document.getElementById('callingCustInfo').innerText = `नाम: ${data.realName} (${data.nickName}) | फोन: ${data.phone} | माध्यम: ${data.mode}`;
                     startContinuousAlarm();
                 } else {
                     document.getElementById('incomingAlertBar').classList.add('hidden');
@@ -240,11 +217,23 @@
                     let data = snapshot.val();
                     if(data && data.mode === 'Voice Call') {
                         document.getElementById('adminCallContainer').classList.remove('hidden');
-                        let room = data.roomCode;
-                        let adminName = encodeURIComponent("हमराज़ (Admin)");
-                        let jitsiUrl = `https://meet.jit.si/${room}#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false&config.requireDisplayName=false&userInfo.displayName=${adminName}`;
                         
-                        document.getElementById('adminCallFrame').src = jitsiUrl;
+                        // Native 8x8 API Integration
+                        const domain = '8x8.vc';
+                        const options = {
+                            roomName: 'vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/' + data.roomCode,
+                            width: '100%',
+                            height: '100%',
+                            parentNode: document.querySelector('#adminCallRoom'),
+                            userInfo: { displayName: 'हमराज़ (Admin)' },
+                            configOverwrite: {
+                                startWithAudioMuted: false,
+                                startWithVideoMuted: true,
+                                prejoinPageEnabled: false,
+                                disableDeepLinking: true
+                            }
+                        };
+                        adminJitsiApi = new JitsiMeetExternalAPI(domain, options);
                     } else {
                         document.getElementById('adminChatContainer').classList.remove('hidden');
                         listenAdminChat();
@@ -257,20 +246,17 @@
             let input = document.getElementById('adminInput');
             let text = input.value.trim();
             if(!text) return;
-
             db.ref('active_session/messages').push({
                 sender: 'हमराज़',
                 text: text,
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            }).then(() => {
-                input.value = "";
-            });
+            }).then(() => { input.value = ""; });
         }
 
         function listenAdminChat() {
             db.ref('active_session/messages').on('value', (snapshot) => {
                 let messages = snapshot.val();
-                let html = `<div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 लाइव सीक्रेट चैट कनेक्टेड है।</div>`;
+                let html = `<div class="text-slate-400 text-[10px] text-center my-1">🔒 सीक्रेट लाइव चैट चालू है।</div>`;
                 if(messages) {
                     Object.values(messages).forEach(m => {
                         let isMe = m.sender === 'हमराज़';
@@ -286,6 +272,7 @@
         }
 
         function endAdminCall() {
+            if(adminJitsiApi) adminJitsiApi.dispose();
             stopContinuousAlarm();
             db.ref('active_session').remove();
             location.reload();
