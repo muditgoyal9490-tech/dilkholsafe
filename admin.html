@@ -8,11 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDK Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-    
-    <!-- 8x8 Jitsi Native WebRTC External API -->
+
+    <!-- 8x8 Jitsi Native External API -->
     <script src="https://8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/external_api.js"></script>
 
     <style>
@@ -61,7 +61,7 @@
             <div class="glass-panel p-3.5 rounded-2xl border border-amber-500/20 text-center"><p class="text-[10px] text-slate-400 font-bold uppercase">एक्टिव रिव्यूज</p><h3 id="statReviews" class="text-2xl font-black text-amber-400">22</h3></div>
         </div>
 
-        <!-- Incoming Call Alert -->
+        <!-- Incoming Alert Bar -->
         <div id="incomingAlertBar" class="hidden glass-panel p-4 rounded-2xl border-2 border-emerald-500 neon-glow-emerald bg-emerald-950/50 animate-pulse flex flex-col sm:flex-row justify-between items-center gap-3">
             <div class="flex items-center gap-3 text-center sm:text-left">
                 <span class="text-3xl animate-bounce">🚨</span>
@@ -82,7 +82,7 @@
             <div id="adminCallRoom" class="w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-slate-800"></div>
         </div>
 
-        <!-- Chat Room -->
+        <!-- Secret Chat Control Room -->
         <div id="adminChatContainer" class="hidden glass-panel p-4 rounded-2xl space-y-3 border border-sky-500/40">
             <h3 class="text-xs font-black text-sky-400 uppercase">💬 लाइव सीक्रेट चैट विंडो</h3>
             <div id="adminChatMsgs" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950 rounded-lg text-xs border border-slate-800"></div>
@@ -116,7 +116,7 @@
 
         let audioCtx = null;
         let alarmInterval = null;
-        let adminJitsiApi = null;
+        let adminApiInstance = null;
 
         function enableAudioEngine() {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -131,7 +131,7 @@
                 let gain = audioCtx.createGain();
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(880, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start();
@@ -217,8 +217,8 @@
                     let data = snapshot.val();
                     if(data && data.mode === 'Voice Call') {
                         document.getElementById('adminCallContainer').classList.remove('hidden');
+                        document.getElementById('adminCallRoom').innerHTML = "";
                         
-                        // Native 8x8 API Integration
                         const domain = '8x8.vc';
                         const options = {
                             roomName: 'vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/' + data.roomCode,
@@ -231,9 +231,12 @@
                                 startWithVideoMuted: true,
                                 prejoinPageEnabled: false,
                                 disableDeepLinking: true
+                            },
+                            interfaceConfigOverwrite: {
+                                MOBILE_APP_PROMO: false
                             }
                         };
-                        adminJitsiApi = new JitsiMeetExternalAPI(domain, options);
+                        adminApiInstance = new JitsiMeetExternalAPI(domain, options);
                     } else {
                         document.getElementById('adminChatContainer').classList.remove('hidden');
                         listenAdminChat();
@@ -272,7 +275,7 @@
         }
 
         function endAdminCall() {
-            if(adminJitsiApi) adminJitsiApi.dispose();
+            if(adminApiInstance) adminApiInstance.dispose();
             stopContinuousAlarm();
             db.ref('active_session').remove();
             location.reload();
