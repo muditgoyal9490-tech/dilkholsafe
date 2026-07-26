@@ -232,7 +232,7 @@
                 topic: document.getElementById('topic').value,
                 mood: document.getElementById('mood').value || 'सामान्य',
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                roomCode: "Room_" + Math.floor(100000 + Math.random() * 900000),
+                roomCode: "Room" + Math.floor(100000 + Math.random() * 900000),
                 accepted: false
             };
 
@@ -273,10 +273,15 @@
             try {
                 agoraClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 
+                AgoraRTC.onAutoplayFailed = () => {
+                    AgoraRTC.play();
+                };
+
                 agoraClient.on("user-published", async (user, mediaType) => {
                     await agoraClient.subscribe(user, mediaType);
                     if (mediaType === "audio") {
-                        user.audioTrack.play();
+                        const remoteAudioTrack = user.audioTrack;
+                        remoteAudioTrack.play();
                         document.getElementById('callStatusHeading').innerText = "🟢 'हमराज़' से बातचीत चालू है";
                     }
                 });
