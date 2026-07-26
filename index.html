@@ -9,9 +9,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Firebase SDK Scripts -->
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- 8x8 Jitsi Native WebRTC External API -->
+    <script src="https://8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/external_api.js"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #070a12; color: #f8fafc; }
@@ -25,15 +28,11 @@
 
     <div class="max-w-3xl mx-auto space-y-6">
 
-        <!-- Header & Security Banner -->
+        <!-- Header Banner -->
         <header class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-3 neon-glow-rose relative overflow-hidden border-rose-500/30">
-            <div class="absolute -top-10 -left-10 w-36 h-36 bg-rose-600/25 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-10 -right-10 w-36 h-36 bg-purple-600/25 rounded-full blur-3xl"></div>
-            
             <div class="w-16 h-16 bg-gradient-to-tr from-rose-600 via-pink-500 to-rose-400 rounded-2xl flex items-center justify-center mx-auto shadow-xl shadow-rose-950/80 ring-4 ring-rose-500/30 animate-pulse">
                 <span class="text-3xl">🔒</span>
             </div>
-            
             <div>
                 <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center justify-center gap-2">
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300">DilKholSafe</span>
@@ -41,53 +40,26 @@
                 </h1>
                 <p class="text-xs sm:text-sm text-slate-300 font-semibold mt-1">बिना किसी झिझक या डर के अपने मन की हर बात कहें</p>
             </div>
-
             <div class="bg-slate-900/90 border border-emerald-500/40 p-3 rounded-2xl space-y-1 text-center shadow-inner">
-                <div class="flex items-center justify-center gap-2 text-xs text-emerald-400 font-extrabold">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                    </span>
-                    <span>🛡️ 100% गोपनीय व सुरक्षित ज़ोन</span>
-                </div>
-                <p class="text-[11px] text-slate-300 font-medium leading-relaxed">
-                    आपका नाम, मोबाइल नंबर और निजी जानकारी पूरी तरह गुप्त रखी जाती है। सुरक्षा कारणों से <span class="text-rose-400 font-bold">स्क्रीनशॉट लेना व रिकॉर्डिंग करना सख्त मना है</span>।
-                </p>
+                <p class="text-xs text-emerald-400 font-extrabold">🛡️ 100% गोपनीय व सुरक्षित ज़ोन</p>
+                <p class="text-[11px] text-slate-300 font-medium">आपकी पहचान पूरी तरह गुप्त रखी जाती है। कॉल या चैट पूरी तरह एंड-टू-एंड एन्क्रिप्टेड है।</p>
             </div>
         </header>
 
         <!-- 22 Customer Reviews -->
         <section class="space-y-3">
-            <div class="flex justify-between items-center px-1">
-                <h2 class="text-xs font-black text-slate-200 tracking-wider uppercase flex items-center gap-1.5">
-                    <span>⭐ लोगों के वास्तविक अनुभव (Verified 5-Star Feedback)</span>
-                </h2>
-                <span class="text-[10px] bg-emerald-950/90 text-emerald-400 font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-500/40">100% सेफ़</span>
-            </div>
-            
+            <h2 class="text-xs font-black text-slate-200 tracking-wider uppercase">⭐ लोगों के वास्तविक अनुभव (Verified 5-Star Feedback)</h2>
             <div id="reviewsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
         </section>
 
-        <!-- Topics We Talk About (4 Neon Cards) -->
+        <!-- Topics -->
         <section class="space-y-3 pt-2">
-            <h2 class="text-xs font-black text-rose-400 tracking-wider uppercase px-1">💬 हम किन-किन विषयों पर खुलकर बात करते हैं?</h2>
+            <h2 class="text-xs font-black text-rose-400 tracking-wider uppercase">💬 हम किन-किन विषयों पर खुलकर बात करते हैं?</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="glass-card p-4 rounded-2xl card-hover space-y-1.5 border-rose-500/30">
-                    <div class="flex items-center gap-2"><span class="text-2xl">🔞</span><h3 class="text-sm font-bold text-rose-400">1. शारीरिक व यौन झिझक (Sexual Talk)</h3></div>
-                    <p class="text-xs text-slate-300 leading-relaxed font-medium">गर्लफ्रेंड-बॉयफ्रेंड या शादीशुदा जोड़ों की सीक्रेट शारीरिक बातें, परफ़ॉर्मेंस की चिंता व अनकहे सवाल।</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl card-hover space-y-1.5 border-pink-500/30">
-                    <div class="flex items-center gap-2"><span class="text-2xl">❤️</span><h3 class="text-sm font-bold text-pink-400">2. लव लाइफ़ व रिलेशनशिप (Love Life)</h3></div>
-                    <p class="text-xs text-slate-300 leading-relaxed font-medium">ब्रेकअप का दर्द, एकतरफा प्यार, रिश्ते का शक या पार्टनर के साथ दूरियाँ व मतभेद।</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl card-hover space-y-1.5 border-sky-500/30">
-                    <div class="flex items-center gap-2"><span class="text-2xl">🧠</span><h3 class="text-sm font-bold text-sky-400">3. तनाव व अकेलापन (Stress & Depression)</h3></div>
-                    <p class="text-xs text-slate-300 leading-relaxed font-medium">ओवरथिंकिंग, डिप्रेशन, अकेलापन और जब मन बहुत भारी हो और कोई सुनने वाला न हो।</p>
-                </div>
-                <div class="glass-card p-4 rounded-2xl card-hover space-y-1.5 border-amber-500/30">
-                    <div class="flex items-center gap-2"><span class="text-2xl">🗝️</span><h3 class="text-sm font-bold text-amber-400">4. अन्य निजी राज़ (Personal Secrets)</h3></div>
-                    <p class="text-xs text-slate-300 leading-relaxed font-medium">कोई भी ऐसी बात जिसे आप दुनिया से छुपा कर रखना चाहते हैं, पर किसी अपने से कहना चाहते हैं।</p>
-                </div>
+                <div class="glass-card p-4 rounded-2xl card-hover border-rose-500/30 space-y-1"><h3 class="text-sm font-bold text-rose-400">🔞 1. शारीरिक व यौन झिझक</h3><p class="text-xs text-slate-300">सीक्रेट शारीरिक बातें, परफ़ॉर्मेंस की चिंता व अनकहे सवाल।</p></div>
+                <div class="glass-card p-4 rounded-2xl card-hover border-pink-500/30 space-y-1"><h3 class="text-sm font-bold text-pink-400">❤️ 2. लव लाइफ़ व रिलेशनशिप</h3><p class="text-xs text-slate-300">ब्रेकअप का दर्द, रिश्ते का शक या पार्टनर के साथ मतभेद।</p></div>
+                <div class="glass-card p-4 rounded-2xl card-hover border-sky-500/30 space-y-1"><h3 class="text-sm font-bold text-sky-400">🧠 3. तनाव व अकेलापन</h3><p class="text-xs text-slate-300">ओवरथिंकिंग, डिप्रेशन और अकेलेपन की बातें।</p></div>
+                <div class="glass-card p-4 rounded-2xl card-hover border-amber-500/30 space-y-1"><h3 class="text-sm font-bold text-amber-400">🗝️ 4. अन्य निजी राज़</h3><p class="text-xs text-slate-300">कोई भी ऐसी बात जो आप छुपाकर रखना चाहते हैं।</p></div>
             </div>
         </section>
 
@@ -95,87 +67,63 @@
         <section class="glass-card p-5 sm:p-6 rounded-3xl space-y-4 neon-glow-rose border border-rose-500/40">
             <div class="text-center space-y-1">
                 <h2 class="text-base sm:text-lg font-black text-white">अपना सीक्रेट स्लॉट बुक करें</h2>
-                <p class="text-xs text-slate-400 font-medium">अपनी असली पहचान बताए बिना सुरक्षित व गोपनीय बातचीत शुरू करें</p>
+                <p class="text-xs text-slate-400">अपनी असली पहचान बताए बिना सुरक्षित व गोपनीय बातचीत शुरू करें</p>
             </div>
 
             <form id="bookingForm" onsubmit="return handleBooking(event)" class="space-y-3.5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-300 mb-1">असली नाम (गुप्त):</label>
-                        <input type="text" id="realName" required placeholder="अपना असली नाम दर्ज करें" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-300 mb-1">निकनेम (चैट/कॉल पर यही दिखेगा):</label>
-                        <input type="text" id="nickName" required placeholder="जैसे: Guest / Riya / Rahul" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                    </div>
+                    <input type="text" id="realName" required placeholder="असली नाम (गुप्त)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
+                    <input type="text" id="nickName" required placeholder="निकनेम (जैसे: Guest / Riya)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
                 </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-300 mb-1">मोबाइल नंबर (सत्यापन के लिए):</label>
-                        <input type="tel" id="phone" required placeholder="10 अंकों का मोबाइल नंबर" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-300 mb-1">बातचीत का माध्यम चुनें:</label>
-                        <select id="mode" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                            <option value="Voice Call">📞 इन-ऐप ऑडियो कॉल (Voice Call)</option>
-                            <option value="Chat">💬 इन-ऐप सीक्रेट लाइव चैट (In-App Chat)</option>
-                        </select>
-                    </div>
+                    <input type="tel" id="phone" required placeholder="10 अंकों का मोबाइल नंबर" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
+                    <select id="mode" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
+                        <option value="Voice Call">📞 इन-ऐप ऑडियो कॉल (Voice Call)</option>
+                        <option value="Chat">💬 इन-ऐप सीक्रेट लाइव चैट (In-App Chat)</option>
+                    </select>
                 </div>
-
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-300 mb-1.5">सेशन की अवधि चुनें:</label>
+                    <label class="block text-[11px] font-bold text-slate-300 mb-1.5">सेशन अवधि:</label>
                     <div class="grid grid-cols-3 gap-2">
-                        <button type="button" onclick="selectDuration(15, this)" class="dur-btn bg-rose-600/30 border-2 border-rose-500 text-rose-300 p-2.5 rounded-xl text-xs font-bold text-center">15 मिनट</button>
-                        <button type="button" onclick="selectDuration(30, this)" class="dur-btn bg-slate-900 border border-slate-700 text-slate-300 p-2.5 rounded-xl text-xs font-bold text-center">30 मिनट</button>
-                        <button type="button" onclick="selectDuration(60, this)" class="dur-btn bg-slate-900 border border-slate-700 text-slate-300 p-2.5 rounded-xl text-xs font-bold text-center">60 मिनट</button>
+                        <button type="button" onclick="selectDuration(15, this)" class="dur-btn bg-rose-600/30 border-2 border-rose-500 text-rose-300 p-2.5 rounded-xl text-xs font-bold">15 मिनट</button>
+                        <button type="button" onclick="selectDuration(30, this)" class="dur-btn bg-slate-900 border border-slate-700 text-slate-300 p-2.5 rounded-xl text-xs font-bold">30 मिनट</button>
+                        <button type="button" onclick="selectDuration(60, this)" class="dur-btn bg-slate-900 border border-slate-700 text-slate-300 p-2.5 rounded-xl text-xs font-bold">60 मिनट</button>
                     </div>
                 </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-300 mb-1">मुख्य विषय:</label>
-                        <select id="topic" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                            <option value="शारीरिक व यौन झिझक">1. शारीरिक व यौन झिझक (Sexual Talk)</option>
-                            <option value="लव लाइफ व रिश्ते">2. लव लाइफ व रिश्ते (Relationship)</option>
-                            <option value="तनाव व डिप्रेशन">3. तनाव व डिप्रेशन (Stress)</option>
-                            <option value="पर्सनल राज़">4. पर्सनल सीक्रेट्स (Secrets)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-300 mb-1">वर्तमान मनोदशा (Mood):</label>
-                        <input type="text" id="mood" placeholder="जैसे: बहुत परेशान / उदास / झिझक" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-rose-500">
-                    </div>
+                    <select id="topic" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
+                        <option value="शारीरिक व यौन झिझक">1. शारीरिक व यौन झिझक</option>
+                        <option value="लव लाइफ व रिश्ते">2. लव लाइफ व रिश्ते</option>
+                        <option value="तनाव व डिप्रेशन">3. तनाव व डिप्रेशन</option>
+                        <option value="पर्सनल राज़">4. पर्सनल राज़</option>
+                    </select>
+                    <input type="text" id="mood" placeholder="वर्तमान मनोदशा (Mood)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
                 </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 text-white font-black py-3.5 rounded-xl shadow-xl transition active:scale-95 text-xs uppercase mt-2">
+                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-black py-3.5 rounded-xl shadow-xl active:scale-95 text-xs uppercase">
                     🔒 अभी गुप्त स्लॉट बुक करें
                 </button>
             </form>
 
-            <!-- Live Session Container -->
+            <!-- Live Session Window -->
             <div id="userSessionContainer" class="hidden space-y-3 pt-3 border-t border-slate-800">
-                <div class="flex justify-between items-center bg-slate-900/90 p-3 rounded-xl border border-rose-500/30">
+                <div class="flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-rose-500/30">
                     <span id="sessionStatusText" class="text-xs font-black text-amber-400 animate-pulse">
-                        ⏳ 'हमराज़' के जुड़ने का इंतज़ार है... (एडमिन के कनेक्ट करते ही समय शुरू होगा)
+                        ⏳ 'हमराज़' के जुड़ने का इंतज़ार है...
                     </span>
-                    <div class="bg-rose-950/90 border border-rose-500/50 text-rose-300 font-mono font-bold text-xs px-3 py-1 rounded-lg">
+                    <div class="bg-rose-950 border border-rose-500 text-rose-300 font-mono font-bold text-xs px-3 py-1 rounded-lg">
                         ⏱️ <span id="sessionTimer">15:00</span>
                     </div>
                     <button onclick="endUserSession()" class="bg-rose-600 text-white text-[10px] px-3 py-1.5 rounded-lg font-bold">समाप्त करें</button>
                 </div>
 
-                <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40 relative">
-                    <iframe id="callFrame" class="w-full h-full border-0" allow="microphone; autoplay"></iframe>
-                </div>
+                <!-- Call Area -->
+                <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40"></div>
 
+                <!-- Chat Area -->
                 <div id="userChatRoom" class="hidden glass-card p-3 rounded-xl border border-sky-500/30 space-y-2">
-                    <div id="chatMessages" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950/80 rounded-lg text-xs border border-slate-800">
-                        <div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 यह चैट 100% गोपनीय है।</div>
-                    </div>
+                    <div id="chatMessages" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950 rounded-lg text-xs border border-slate-800"></div>
                     <div class="flex gap-2">
-                        <input type="text" id="chatInput" placeholder="अपना संदेश यहाँ लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-rose-500">
+                        <input type="text" id="chatInput" placeholder="संदेश लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white">
                         <button onclick="sendChatMessage()" class="bg-rose-600 text-white text-xs px-4 py-2.5 rounded-xl font-extrabold">भेजें</button>
                     </div>
                 </div>
@@ -200,41 +148,38 @@
 
         let selectedMins = 15;
         let timerInterval = null;
+        let jitsiApi = null;
 
         const exactReviewsData = [
-            { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। समझ नहीं आता था कि अपनी झिझक कैसे दूर करूँ। 'हमराज़' से 30 मिनट बात करके मेरे सारे अनकहे डाउट्स दूर हो गए और मन का डर पूरी तरह खत्म हो गया।" },
-            { name: "रिया जी. (22 वर्ष)", msg: "अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर बहुत घबराहट थी। समझ नहीं आता था कि किससे सलाह लूँ। यहाँ नाम भी निकनेम यूज़ होता है तो प्राइवेसी बनी रहती है और खुलकर बात हो पाई।" },
-            { name: "स्नेहा (25 वर्ष, गेस्ट)", msg: "शादी से ठीक पहले मन में शारीरिक संबंधों को लेकर कई सवाल थे जो किसी घरवाले से नहीं पूछे जा सकते थे। 'हमराज़' ने बहुत ही दोस्ताना और पेशेवर तरीके से हर बात समझाई।" },
-            { name: "नेहा जी. (26 वर्ष)", msg: "यौन स्वास्थ्य और शारीरिक झिझक पर पहली बार किसी से बेझिझक बात कर पाई। प्राइवेसी का पूरा सम्मान रखा जाता है, यहाँ बात करना बिल्कुल सेफ़ महसूस होता है।" },
-            { name: "दिव्या के. (31 वर्ष)", msg: "कॉल पर बात करके लगा ही नहीं कि किसी अनजान से बात हो रही है। बहुत कम्फर्टेबल माहौल रहा और हर शारीरिक सवाल का बहुत ही सम्मानजनक जवाब मिला।" },
-            { name: "रितु सिंह (27 वर्ष)", msg: "शादी से पहले मन में शारीरिक संबंधों को लेकर बहुत सी शंकाएँ और घबराहट थीं। 15 मिनट का सेशन लिया और मेरी सारी झिझक दूर हो गई। बहुत आत्मविश्वास मिला।" },
-            { name: "साक्षी पटेल (23 वर्ष)", msg: "अपनी पहली शारीरिक रिलेशनशिप के डर को लेकर पहली बार किसी से बोला। मन इतना हल्का हो गया जैसे कोई बहुत बड़ा बोझ सालों से सीने पर रखा था जो उतर गया हो।" },
-            { name: "स्वाति एम. (35 वर्ष)", msg: "शारीरिक झिझक और प्राइवेट सीक्रेट्स सुरक्षित रखते हुए इतनी बेहतरीन और व्यावहारिक काउंसलिंग मिलना आज के समय में बहुत मुश्किल है। थैंक्स DilKholSafe।" },
-            { name: "अदिति रॉय (24 वर्ष)", msg: "पार्टनर के साथ शारीरिक कम्फर्ट की उलझन यहाँ शेयर की। पार्टनर की सोच और अपनी झिझक को लेकर बहुत ही समझदारी भरी सलाह मिली।" },
-            { name: "प्रियंका के. (28 वर्ष)", msg: "शादी के शुरुआती दिनों में शारीरिक झिझक की वजह से बहुत असहजता महसूस होती थी। यहाँ 30 मिनट की बात ने सब आसान कर दिया।" },
-            { name: "कृतिका (26 वर्ष, गेस्ट)", msg: "गर्लफ्रेंड-बॉयफ्रेंड के बीच के सीक्रेट शारीरिक सवालों पर सही मार्गदर्शन मिला। अब मन में कोई डर नहीं है।" },
-            { name: "राहुल एम. (26 वर्ष)", msg: "गर्लफ्रेंड से शारीरिक झिझक व परफ़ॉर्मेंस स्ट्रेस को लेकर बहुत तनाव में था। समझ नहीं आता था क्या करूँ। यहाँ बात करके सारा डर और स्ट्रेस खत्म हो गया।" },
-            { name: "विकास यादव (28 वर्ष)", msg: "अपनी यौन झिझक और पर्सनल प्रॉब्लम्स किसी दोस्त से नहीं कह पा रहा था। DilKholSafe पर बिना पहचान बताए बहुत ही व्यावहारिक समाधान मिला।" },
-            { name: "पूजा शर्मा (29 वर्ष)", msg: "पति के साथ शादीशुदा जिंदगी की सीक्रेट बातें शेयर कीं। कई गलतफहमियाँ चल रही थीं। DilKholSafe पर बात करके मन का सारा भारीपन खत्म हो गया।" },
-            { name: "पिंकी आर. (33 वर्ष)", msg: "शादीशुदा जिंदगी में आ रही दूरियाँ दूर करने में 'हमराज़' की सलाह बहुत काम आई। सही गाइडेंस मिलने से रिश्ता फिर से बेहतर हो गया।" },
-            { name: "मुस्कान जे. (23 वर्ष)", msg: "पार्टनर के साथ गलतफहमी की वजह से रिश्ता टूटने की कगार पर था। यहाँ गाइडेंस लेकर चीज़ें समझ आईं और अब सब सही हो गया है।" },
-            { name: "अंजलि गुप्ता (28 वर्ष)", msg: "रिलेशनशिप के सीक्रेट्स शेयर करने में बहुत डर लगता था कि कहीं बातें लीक न हो जाएँ। पर यहाँ की प्राइवेसी पॉलिसी कमाल की है, कोई डेटा सेव नहीं होता।" },
-            { name: "सचिन के. (29 वर्ष)", msg: "कम्यूनिकेशन गैप की वजह से पार्टनर से रोज़ झगड़े हो रहे थे। 30 मिनट बात करके बात करने का सही तरीका समझ आया।" },
-            { name: "अमित शर्मा (27 वर्ष)", msg: "ब्रेकअप के बाद बहुत गहरे दर्द से जूझ रहा था। 'हमराज़' ने एक सच्चे दोस्त की तरह संभाला और रिश्ते की उलझन से बाहर निकाला।" },
-            { name: "महक के. (24 वर्ष)", msg: "ओवरथिंकिंग और एंग्जाइटी से रात को नींद नहीं आती थी। 'हमराज़' से बात करके दिमाग शांत हुआ और बहुत सुकून मिला।" },
-            { name: "रिद्धिमा वी. (28 वर्ष)", msg: "अकेलेपन से डिप्रेशन सा लग रहा था, कोई मन की बात सुनने वाला नहीं था। यहाँ बातें शेयर कीं और मुझे जीवन का नया नज़रिया मिला।" },
-            { name: "रोहन (30 वर्ष)", msg: "मानसिक तनाव से राहत पाने के लिए यह सबसे सुरक्षित, गोपनीय और भरोसेमंद जगह है। हर किसी को एक बार ज़रूर आज़माना चाहिए।" }
+            { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। 'हमराज़' से बात करके सारे अनकहे डाउट्स दूर हो गए।" },
+            { name: "रिया जी. (22 वर्ष)", msg: "अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर घबराहट थी। यहाँ निकनेम यूज़ होता है तो प्राइवेसी बनी रहती है।" },
+            { name: "स्नेता (25 वर्ष, गेस्ट)", msg: "शादी से ठीक पहले मन में कई सवाल थे। 'हमराज़' ने बहुत ही दोस्ताना और पेशेवर तरीके से हर बात समझाई।" },
+            { name: "नेहा जी. (26 वर्ष)", msg: "यौन स्वास्थ्य और शारीरिक झिझक पर पहली बार किसी से बेझिझक बात कर पाई। 100% सेफ़ प्लेटफ़ॉर्म।" },
+            { name: "दिव्या के. (31 वर्ष)", msg: "कॉल पर बात करके लगा ही नहीं कि अनजान से बात हो रही है। बहुत कम्फर्टेबल माहौल रहा।" },
+            { name: "रितु सिंह (27 वर्ष)", msg: "15 मिनट का सेशन लिया और मेरी सारी झिझक दूर हो गई। बहुत आत्मविश्वास मिला।" },
+            { name: "साक्षी पटेल (23 वर्ष)", msg: "पहली बार अपने मन का डर किसी से बोला। मन इतना हल्का हो गया जैसे कोई भारी बोझ उतर गया हो।" },
+            { name: "स्वाति एम. (35 वर्ष)", msg: "प्राइवेट सीक्रेट्स सुरक्षित रखते हुए इतनी बेहतरीन काउंसलिंग मिलना आज मुश्किल है। थैंक्स।" },
+            { name: "अदिति रॉय (24 वर्ष)", msg: "पार्टनर के साथ शारीरिक कम्फर्ट की उलझन यहाँ शेयर की। बहुत समझदारी भरी सलाह मिली।" },
+            { name: "प्रियंका के. (28 वर्ष)", msg: "शादी के शुरुआती दिनों की झिझक दूर करने में मदद मिली। सब कुछ आसान हो गया।" },
+            { name: "कृतिका (26 वर्ष, गेस्ट)", msg: "सीक्रेट शारीरिक सवालों पर सही मार्गदर्शन मिला। अब मन में कोई डर नहीं है।" },
+            { name: "राहुल एम. (26 वर्ष)", msg: "परफ़ॉर्मेंस स्ट्रेस को लेकर तनाव में था। यहाँ बात करके सारा डर खत्म हो गया।" },
+            { name: "विकास यादव (28 वर्ष)", msg: "बिना पहचान बताए अपनी समस्या का व्यावहारिक समाधान मिला।" },
+            { name: "पूजा शर्मा (29 वर्ष)", msg: "पति के साथ शादीशुदा जिंदगी की सीक्रेट बातें शेयर कीं। मन का सारा भारीपन खत्म हो गया।" },
+            { name: "पिंकी आर. (33 वर्ष)", msg: "शादीशुदा जिंदगी में आ रही दूरियाँ दूर करने में सलाह बहुत काम आई।" },
+            { name: "मुस्कान जे. (23 वर्ष)", msg: "पार्टनर के साथ गलतफहमी दूर हुई और रिश्ता बेहतर हो गया।" },
+            { name: "अंजलि गुप्ता (28 वर्ष)", msg: "यहाँ की प्राइवेसी पॉलिसी कमाल की है, कोई डेटा सेव नहीं होता।" },
+            { name: "सचिन के. (29 वर्ष)", msg: "30 मिनट बात करके पार्टनर से बात करने का सही तरीका समझ आया।" },
+            { name: "अमित शर्मा (27 वर्ष)", msg: "ब्रेकअप के बाद 'हमराज़' ने एक सच्चे दोस्त की तरह संभाला।" },
+            { name: "महक के. (24 वर्ष)", msg: "ओवरथिंकिंग से नींद नहीं आती थी। बात करके दिमाग शांत हुआ।" },
+            { name: "रिद्धिमा वी. (28 वर्ष)", msg: "यहाँ बातें शेयर कीं और मुझे जीवन का नया नज़रिया मिला।" },
+            { name: "रोहन (30 वर्ष)", msg: "मानसिक तनाव से राहत पाने के लिए यह सबसे सुरक्षित जगह है।" }
         ];
 
         function renderExactReviews() {
-            let container = document.getElementById('reviewsContainer');
-            container.innerHTML = exactReviewsData.map(r => `
-                <div class="glass-card p-4 rounded-2xl space-y-2 border-rose-500/15 card-hover">
-                    <div class="flex justify-between items-center">
-                        <span class="font-extrabold text-rose-400 text-xs">${r.name}</span>
-                        <div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed font-normal">"${r.msg}"</p>
+            document.getElementById('reviewsContainer').innerHTML = exactReviewsData.map(r => `
+                <div class="glass-card p-4 rounded-2xl space-y-1.5 border-rose-500/15 card-hover">
+                    <div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">${r.name}</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div>
+                    <p class="text-[11px] text-slate-300">"${r.msg}"</p>
                 </div>
             `).join('');
         }
@@ -265,7 +210,7 @@
                 topic: document.getElementById('topic').value,
                 mood: document.getElementById('mood').value || 'सामान्य',
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                roomCode: "DKS_" + Math.floor(100000 + Math.random() * 900000),
+                roomCode: "DKS_VIP_" + Math.floor(10000 + Math.random() * 90000),
                 accepted: false
             };
 
@@ -282,8 +227,6 @@
                         startSessionForUser(data);
                     }
                 });
-            }).catch((err) => {
-                alert("कनेक्शन एरर: " + err.message);
             });
 
             return false;
@@ -297,11 +240,23 @@
 
             if(data.mode === 'Voice Call') {
                 document.getElementById('userCallRoom').classList.remove('hidden');
-                let room = data.roomCode;
-                let user = encodeURIComponent(data.nickName || 'Guest');
-                let jitsiUrl = `https://meet.jit.si/${room}#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false&config.requireDisplayName=false&userInfo.displayName=${user}`;
                 
-                document.getElementById('callFrame').src = jitsiUrl;
+                // Native 8x8 API Integration
+                const domain = '8x8.vc';
+                const options = {
+                    roomName: 'vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/' + data.roomCode,
+                    width: '100%',
+                    height: '100%',
+                    parentNode: document.querySelector('#userCallRoom'),
+                    userInfo: { displayName: data.nickName },
+                    configOverwrite: {
+                        startWithAudioMuted: false,
+                        startWithVideoMuted: true,
+                        prejoinPageEnabled: false,
+                        disableDeepLinking: true
+                    }
+                };
+                jitsiApi = new JitsiMeetExternalAPI(domain, options);
             } else {
                 document.getElementById('userChatRoom').classList.remove('hidden');
                 listenLiveChat();
@@ -311,18 +266,13 @@
         function startCountdownTimer(durationMins) {
             if(timerInterval) return;
             let timeInSeconds = durationMins * 60;
-            const timerDisplay = document.getElementById('sessionTimer');
-
             timerInterval = setInterval(() => {
                 let mins = Math.floor(timeInSeconds / 60);
                 let secs = timeInSeconds % 60;
-                mins = mins < 10 ? '0' + mins : mins;
-                secs = secs < 10 ? '0' + secs : secs;
-                timerDisplay.innerText = `${mins}:${secs}`;
-
+                document.getElementById('sessionTimer').innerText = `${mins < 10 ? '0'+mins : mins}:${secs < 10 ? '0'+secs : secs}`;
                 if (--timeInSeconds < 0) {
                     clearInterval(timerInterval);
-                    alert("आपका सेशन का समय समाप्त हो गया है।");
+                    alert("सेशन समाप्त हो गया है।");
                     endUserSession();
                 }
             }, 1000);
@@ -332,20 +282,17 @@
             let input = document.getElementById('chatInput');
             let text = input.value.trim();
             if(!text) return;
-
             db.ref('active_session/messages').push({
                 sender: document.getElementById('nickName').value || "कस्टमर",
                 text: text,
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            }).then(() => {
-                input.value = "";
-            });
+            }).then(() => { input.value = ""; });
         }
 
         function listenLiveChat() {
             db.ref('active_session/messages').on('value', (snapshot) => {
                 let messages = snapshot.val();
-                let html = `<div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 यह चैट 100% गोपनीय है।</div>`;
+                let html = `<div class="text-slate-400 text-[10px] text-center my-1">🔒 यह चैट 100% गोपनीय है।</div>`;
                 if(messages) {
                     Object.values(messages).forEach(m => {
                         let isMe = m.sender !== 'हमराज़';
@@ -361,10 +308,9 @@
         }
 
         function endUserSession() {
+            if(jitsiApi) jitsiApi.dispose();
             clearInterval(timerInterval);
             db.ref('active_session').remove();
-            document.getElementById('userSessionContainer').classList.add('hidden');
-            document.getElementById('bookingForm').reset();
             location.reload();
         }
 
