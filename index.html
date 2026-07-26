@@ -116,7 +116,7 @@
                     <button onclick="endUserSession()" class="bg-rose-600 text-white text-[10px] px-3 py-1.5 rounded-lg font-bold">समाप्त करें</button>
                 </div>
 
-                <!-- Agora Clean Voice Call UI -->
+                <!-- Agora Voice Call UI -->
                 <div id="userCallRoom" class="hidden glass-card p-6 rounded-2xl text-center space-y-4 border border-emerald-500/40 bg-slate-950/90">
                     <div class="w-20 h-20 bg-gradient-to-tr from-emerald-600 to-teal-400 rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-emerald-500/30 animate-pulse">
                         <span class="text-4xl">🎙️</span>
@@ -290,7 +290,7 @@
                 await agoraClient.publish([localAudioTrack]);
 
             } catch (err) {
-                alert("माइक एक्सेस एरर: कृपया ब्राउज़र में माइक की अनुमति (Allow) दें।");
+                alert("माइक परमिशन एरर: कृपया ब्राउज़र में माइक्रोफ़ोन अलाउ करें।");
             }
         }
 
@@ -317,7 +317,7 @@
                 document.getElementById('sessionTimer').innerText = `${mins < 10 ? '0'+mins : mins}:${secs < 10 ? '0'+secs : secs}`;
                 if (--timeInSeconds < 0) {
                     clearInterval(timerInterval);
-                    alert("सेशन का समय समाप्त हो गया है।");
+                    alert("सेशन समाप्त हो गया है।");
                     endUserSession();
                 }
             }, 1000);
