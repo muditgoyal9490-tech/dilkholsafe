@@ -166,8 +166,8 @@
                     <button onclick="endUserSession()" class="bg-rose-600 text-white text-[10px] px-3 py-1.5 rounded-lg font-bold">समाप्त करें</button>
                 </div>
 
-                <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40">
-                    <iframe id="callFrame" class="w-full h-full border-0" allow="microphone; camera; autoplay; display-capture; microphone *; camera *"></iframe>
+                <div id="userCallRoom" class="hidden w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-emerald-500/40 relative">
+                    <iframe id="callFrame" class="w-full h-full border-0" allow="microphone; autoplay"></iframe>
                 </div>
 
                 <div id="userChatRoom" class="hidden glass-card p-3 rounded-xl border border-sky-500/30 space-y-2">
@@ -265,14 +265,12 @@
                 topic: document.getElementById('topic').value,
                 mood: document.getElementById('mood').value || 'सामान्य',
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                roomCode: "DKS_Room_" + Math.floor(1000 + Math.random() * 9000),
+                roomCode: "DKS_" + Math.floor(100000 + Math.random() * 900000),
                 accepted: false
             };
 
-            // 1. SAVE TO PERMANENT HISTORY (all_bookings)
             db.ref('all_bookings/' + bookingId).set(bookingData);
 
-            // 2. SET ACTIVE SESSION
             db.ref('active_session').set(bookingData).then(() => {
                 document.getElementById('userSessionContainer').classList.remove('hidden');
                 document.getElementById('sessionTimer').innerText = `${selectedMins}:00`;
@@ -299,8 +297,11 @@
 
             if(data.mode === 'Voice Call') {
                 document.getElementById('userCallRoom').classList.remove('hidden');
-                let encodedNick = encodeURIComponent(data.nickName || 'Guest');
-                document.getElementById('callFrame').src = "https://vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda.8x8.vc/vpaas-magic-cookie-8874ec5b842646d5a1bc2dbb2c94dbda/" + data.roomCode + "#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false&userInfo.displayName=" + encodedNick;
+                let room = data.roomCode;
+                let user = encodeURIComponent(data.nickName || 'Guest');
+                let jitsiUrl = `https://meet.jit.si/${room}#config.startWithAudioMuted=false&config.startWithVideoMuted=true&config.prejoinPageEnabled=false&config.requireDisplayName=false&userInfo.displayName=${user}`;
+                
+                document.getElementById('callFrame').src = jitsiUrl;
             } else {
                 document.getElementById('userChatRoom').classList.remove('hidden');
                 listenLiveChat();
