@@ -310,7 +310,7 @@
             background: #ecfdf5;
             border: 1px solid #a7f3d0;
             color: #065f46;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border-radius: 10px;
             text-align: center;
             font-size: 12px;
@@ -320,6 +320,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            line-height: 1.5;
         }
 
         .busy-status-badge i {
@@ -465,13 +466,57 @@
             background: #1eb857;
         }
 
+        /* Partner Notice Box */
+        .partner-notice-box {
+            background: #fff5f5;
+            border: 1px solid #fecdd3;
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .partner-notice-box h3 {
+            color: #be123c;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .partner-notice-box p {
+            font-size: 12px;
+            color: #4c0519;
+            max-width: 750px;
+            margin: 0 auto 15px auto;
+            line-height: 1.6;
+        }
+
+        .partner-btn {
+            background: #be123c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .partner-btn:hover {
+            background: #9f1239;
+        }
+
         /* Footer */
         footer {
             background: var(--text-dark);
             color: #94a3b8;
             text-align: center;
             padding: 20px;
-            margin-top: 40px;
+            margin-top: 30px;
             font-size: 12px;
         }
 
@@ -792,7 +837,7 @@
 
         <!-- Busy Learner Status Badge -->
         <div class="busy-status-badge">
-            <i class="fa-solid fa-circle"></i> 🟢 <strong>लाइव स्टेटस:</strong> हमारे काउंसलर/गाइड अभी एक लाइव सेशन में हैं। स्लॉट बुक होते ही वे फ्री होकर तुरंत आपसे संपर्क करेंगे।
+            <i class="fa-solid fa-circle"></i> 🟢 <strong>लाइव स्टेटस:</strong> हमारे काउंसलर/गाइड अभी एक लाइव सेशन में हैं। स्लॉट बुक करने के बाद कृपया थोड़ा धीरज बनाए रखें, जैसे ही सेशन खत्म होगा आपसे तुरंत संपर्क किया जाएगा। बार-बार कॉल न करें।
         </div>
 
         <div class="booking-payment-wrapper">
@@ -848,17 +893,17 @@
                     </p>
 
                     <div class="qr-container">
-                        <img src="qr-code.jpg" alt="DilKholSafe PhonePe QR" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Ddilkholsafesupport%40ybl%26pn%3DDilKholSafe%26cu%3DINR';">
+                        <img src="qr-code.jpg" alt="DilKholSafe PhonePe QR" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Ddilkholsafe%40ybl%26pn%3DDilKholSafe%26cu%3DINR';">
                     </div>
 
                     <div class="upi-badge">
-                        UPI: dilkholsafesupport@ybl
+                        UPI: dilkholsafe@ybl
                     </div>
                 </div>
 
                 <div>
-                    <!-- Pay via Standard PhonePe / UPI App Link -->
-                    <a href="upi://pay?pa=dilkholsafesupport@ybl&pn=DilKholSafe&cu=INR" class="btn-action btn-upi">
+                    <!-- Pay via Active UPI ID Link -->
+                    <a href="upi://pay?pa=dilkholsafe@ybl&pn=DilKholSafe&cu=INR" class="btn-action btn-upi">
                         <i class="fa-solid fa-wallet"></i> Pay via PhonePe / Any UPI App
                     </a>
 
@@ -869,6 +914,16 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- 4. DilKholDesire Partner Notice Box -->
+        <div class="partner-notice-box">
+            <h3><i class="fa-solid fa-fire"></i> विशेष एडल्ट, इंटिमेट & फैंटेसी गाइडेंस (DilKholDesire)</h3>
+            <p>
+                क्या आप अपनी इंटिमेट लाइफ, गुप्त इच्छाओं, एडल्ट फैंटेसी या सीक्रेट विषयों पर बिना किसी झिझक के खुलकर बात करना चाहते हैं?<br>
+                DilKholSafe पर हम मुख्य रूप से इमोशनल और रिलेशनशिप हीलिंग गाइडेंस प्रदान करते हैं। यदि आप विशेष रूप से <strong>इंटिमेट रिलेशनशिप, एडल्ट टॉपिक्स या फैंटेसी</strong> पर सलाह चाहते हैं, तो हमारे अधिकृत पार्टनर प्लैटफ़ॉर्म <strong>"DilKholDesire" (दिल खोल डिजायर)</strong> पर कनेक्ट करें। वहाँ आपकी बातें 100% गोपनीय और सुरक्षित रहेंगी।
+            </p>
+            <a href="#" class="partner-btn">DilKholDesire प्लैटफ़ॉर्म पर जाएं <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
     </div>
@@ -927,7 +982,7 @@
                               "📅 *Date:* " + encodeURIComponent(date) + "%0A" +
                               "⏰ *Client Preferred Time:* " + (time !== "" ? encodeURIComponent(time) : "Not Specified") + "%0A" +
                               "💳 *UTR / Ref No:* " + (utr !== "" ? encodeURIComponent(utr) : "Attaching Screenshot") + "%0A%0A" +
-                              "📌 *Note:* मुझे पता है कि काउंसलर अभी लाइव सेशन में हैं, जैसे ही आप फ्री होंगे मुझे कनेक्ट कर लीजिएगा।%0A%0A" +
+                              "📌 *Note:* मुझे जानकारी है कि काउंसलर अभी लाइव सेशन में हैं। मैंने धीरज बनाकर स्लॉट बुक कर दिया है, कृपया फ्री होते ही मुझसे संपर्क करें।%0A%0A" +
                               "I am attaching the payment screenshot below:";
 
             var waNumber = "918865043022";
