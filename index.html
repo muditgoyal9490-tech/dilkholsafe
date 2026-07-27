@@ -1,376 +1,568 @@
 <!DOCTYPE html>
-<html lang="hi" translate="no" class="notranslate">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="google" content="notranslate">
-    <title>DilKholSafe - 'हमराज़' (100% गोपनीय व सुरक्षित प्लेटफॉर्म)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DilKholSafe - Official Booking & Services Portal</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Firebase SDK Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-    <!-- Official Agora Web RTC Voice SDK -->
-    <script src="https://download.agora.io/sdk/web/AgoraRTC_N-4.20.0.js"></script>
-
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #070a12; color: #f8fafc; }
-        .glass-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6); }
-        .neon-glow-rose { box-shadow: 0 0 30px -5px rgba(244, 63, 94, 0.4); }
-        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-4px); border-color: rgba(244, 63, 94, 0.5); }
+        :root {
+            --primary: #5f259f;
+            --primary-dark: #4a1c7d;
+            --secondary: #25D366;
+            --accent: #ffb703;
+            --bg-light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-left: 20px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #5f259f 0%, #3a1563 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+        }
+
+        .hero-btn {
+            background: var(--accent);
+            color: var(--text-dark);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255,183,3,0.4);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            background: #ffa200;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: -30px auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 50px 0 25px 0;
+            color: var(--text-dark);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #f3e8ff;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 15px auto;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .price-tag {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Form & Payment Combined Wrapper */
+        .booking-payment-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 30px;
+            border: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 850px) {
+            .booking-payment-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Registration & Slot Booking Form */
+        .booking-form h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(95,37,159,0.1);
+        }
+
+        /* Payment Section */
+        .payment-box {
+            background: #fafafa;
+            border: 2px dashed var(--primary);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .qr-container img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 12px;
+        }
+
+        .upi-badge {
+            background: #eef2ff;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 15px;
+            word-break: break-all;
+        }
+
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .btn-upi {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-upi:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-wa {
+            background: var(--secondary);
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .btn-wa:hover {
+            background: #1eb857;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        .review-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 60px;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: var(--white);
+        }
     </style>
 </head>
-<body class="min-h-screen p-3 sm:p-6 select-none">
+<body>
 
-    <div class="max-w-3xl mx-auto space-y-6">
+    <!-- Header / Nav -->
+    <header>
+        <a href="#" class="brand-logo">
+            <i class="fa-solid fa-shield-halved"></i> DilKholSafe
+        </a>
+        <nav>
+            <a href="#services">सर्विसेज</a>
+            <a href="#booking">रजिस्ट्रेशन/स्लॉट</a>
+            <a href="#reviews">रिव्यूज</a>
+        </nav>
+    </header>
 
-        <!-- Header Banner -->
-        <header class="glass-card p-5 sm:p-6 rounded-3xl text-center space-y-3 neon-glow-rose relative overflow-hidden border-rose-500/30">
-            <div class="w-16 h-16 bg-gradient-to-tr from-rose-600 via-pink-500 to-rose-400 rounded-2xl flex items-center justify-center mx-auto shadow-xl ring-4 ring-rose-500/30 animate-pulse">
-                <span class="text-3xl">🔒</span>
-            </div>
-            <div>
-                <h1 class="text-2xl sm:text-3xl font-black text-white flex items-center justify-center gap-2">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-pink-400 to-amber-300">DilKholSafe</span>
-                    <span class="text-[10px] bg-rose-950 text-rose-300 border border-rose-500/50 px-2.5 py-0.5 rounded-full font-extrabold uppercase">हमराज़ VIP</span>
-                </h1>
-                <p class="text-xs sm:text-sm text-slate-300 font-semibold mt-1">बिना किसी झिझक या डर के अपने मन की हर बात कहें</p>
-            </div>
-            <div class="bg-slate-900 border border-emerald-500/40 p-3 rounded-2xl space-y-1 text-center">
-                <p class="text-xs text-emerald-400 font-extrabold">🛡️ 100% गोपनीय व सुरक्षित ज़ोन</p>
-                <p class="text-[11px] text-slate-300">आपकी पहचान पूरी तरह गुप्त रखी जाती है। इन-ऐप ऑडियो कॉलिंग 100% एन्क्रिप्टेड है।</p>
-            </div>
-        </header>
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>DilKholSafe सपोर्ट & कंसल्टेशन</h1>
+        <p>अपनी समस्या का सुरक्षित, भरोसेमंद और त्वरित समाधान पाएँ। अभी अपना स्लॉट बुक करें!</p>
+        <a href="#booking" class="hero-btn">अभी बुक करें <i class="fa-solid fa-arrow-right"></i></a>
+    </section>
 
-        <!-- 22 Verified Reviews -->
-        <section class="space-y-3">
-            <h2 class="text-xs font-black text-slate-200 uppercase">⭐ लोगों के वास्तविक अनुभव (Verified 5-Star Feedback)</h2>
-            <div id="reviewsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-        </section>
+    <div class="container">
 
-        <!-- Topics -->
-        <section class="space-y-3 pt-2">
-            <h2 class="text-xs font-black text-rose-400 uppercase">💬 हम किन-किन विषयों पर खुलकर बात करते हैं?</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="glass-card p-4 rounded-2xl border-rose-500/30"><h3 class="text-sm font-bold text-rose-400">🔞 1. शारीरिक व यौन झिझक</h3><p class="text-xs text-slate-300 mt-1">सीक्रेट शारीरिक बातें, परफ़ॉर्मेंस की चिंता व अनकहे सवाल।</p></div>
-                <div class="glass-card p-4 rounded-2xl border-pink-500/30"><h3 class="text-sm font-bold text-pink-400">❤️ 2. लव लाइफ़ व रिलेशनशिप</h3><p class="text-xs text-slate-300 mt-1">ब्रेकअप का दर्द, रिश्ते का शक या पार्टनर के साथ मतभेद।</p></div>
-                <div class="glass-card p-4 rounded-2xl border-sky-500/30"><h3 class="text-sm font-bold text-sky-400">🧠 3. तनाव व अकेलापन</h3><p class="text-xs text-slate-300 mt-1">ओवरथिंकिंग, डिप्रेशन और अकेलेपन की बातें।</p></div>
-                <div class="glass-card p-4 rounded-2xl border-amber-500/30"><h3 class="text-sm font-bold text-amber-400">🗝️ 4. अन्य निजी राज़</h3><p class="text-xs text-slate-300 mt-1">कोई भी ऐसी बात जो आप दुनिया से छुपाकर रखना चाहते हैं।</p></div>
-            </div>
-        </section>
-
-        <!-- Booking Form -->
-        <section class="glass-card p-5 sm:p-6 rounded-3xl space-y-4 neon-glow-rose border border-rose-500/40">
-            <div class="text-center space-y-1">
-                <h2 class="text-base sm:text-lg font-black text-white">अपना सीक्रेट स्लॉट बुक करें</h2>
-                <p class="text-xs text-slate-400">अपनी असली पहचान बताए बिना सुरक्षित व गोपनीय बातचीत शुरू करें</p>
+        <!-- 1. Services Section -->
+        <h2 class="section-title" id="services">हमारी प्रमुख सेवाएं (Services)</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>1-on-1 पर्सनल कंसल्टेशन</h3>
+                <p>प्राइवेट और सेफ एनवायरनमेंट में अपनी समस्या पर सीधी बातचीत और गाइडेंस।</p>
+                <div class="price-tag">₹499 / Slot</div>
             </div>
 
-            <form id="bookingForm" onsubmit="return handleBooking(event)" class="space-y-3.5">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input type="text" id="realName" required placeholder="असली नाम (गुप्त)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
-                    <input type="text" id="nickName" required placeholder="निकनेम (जैसे: Guest / Riya)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input type="tel" id="phone" required placeholder="10 अंकों का मोबाइल नंबर" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
-                    <select id="mode" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
-                        <option value="Voice Call">📞 इन-ऐप ऑडियो कॉल (Voice Call)</option>
-                        <option value="Chat">💬 इन-ऐप सीक्रेट लाइव चैट (In-App Chat)</option>
-                    </select>
-                </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>अर्जेंट सपोर्ट (Fast Track)</h3>
+                <p>तत्काल समाधान और प्रायोरिटी सपोर्ट स्लॉट बुकिंग।</p>
+                <div class="price-tag">₹999 / Slot</div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-user-shield"></i></div>
+                <h3>फुल गाइडेंस पैकेज</h3>
+                <p>कम्प्लीट सपोर्ट और फॉलो-अप सेशन्स आपके कम्फर्ट के हिसाब से।</p>
+                <div class="price-tag">₹1,499 / Package</div>
+            </div>
+        </div>
+
+        <!-- 2. Registration + Slot Booking + Payment Section -->
+        <h2 class="section-title" id="booking">रजिस्ट्रेशन, स्लॉट बुकिंग एवं पेमेंट</h2>
+        <div class="booking-payment-wrapper">
+            
+            <!-- Booking Form -->
+            <div class="booking-form">
+                <h3><i class="fa-regular fa-calendar-check"></i> विवरण दर्ज करें</h3>
+                <form id="slotForm">
+                    <div class="form-group">
+                        <label>आपका पूरा नाम (Name)</label>
+                        <input type="text" id="custName" placeholder="अपना नाम दर्ज करें" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>मोबाइल नंबर (WhatsApp Number)</label>
+                        <input type="tel" id="custPhone" placeholder="10 अंकों का मोबाइल नंबर" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>सर्विस सेलेक्ट करें (Select Service)</label>
+                        <select id="custService" required>
+                            <option value="Personal Consultation (₹499)">1-on-1 पर्सनल कंसल्टेशन - ₹499</option>
+                            <option value="Urgent Support (₹999)">अर्जेंट सपोर्ट - ₹999</option>
+                            <option value="Full Guidance Package (₹1499)">फुल गाइडेंस पैकेज - ₹1499</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>स्लॉट की तारीख (Preferred Date)</label>
+                        <input type="date" id="custDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>समय स्लॉट (Preferred Time)</label>
+                        <select id="custTime" required>
+                            <option value="10:00 AM - 12:00 PM">सुबह 10:00 AM - 12:00 PM</option>
+                            <option value="02:00 PM - 04:00 PM">दोपहर 02:00 PM - 04:00 PM</option>
+                            <option value="06:00 PM - 08:00 PM">शाम 06:00 PM - 08:00 PM</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Payment Box -->
+            <div class="payment-box">
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-300 mb-1.5">सेशन की अवधि:</label>
-                    <div class="grid grid-cols-3 gap-2">
-                        <button type="button" onclick="selectDuration(15, this)" class="dur-btn bg-rose-600/30 border-2 border-rose-500 text-rose-300 p-2.5 rounded-xl text-xs font-bold">15 मिनट</button>
-                        <button type="button" onclick="selectDuration(30, this)" class="dur-btn bg-slate-900 border border-slate-700 text-slate-300 p-2.5 rounded-xl text-xs font-bold">30 मिनट</button>
-                        <button type="button" onclick="selectDuration(60, this)" class="dur-btn bg-slate-900 border border-slate-700 text-slate-300 p-2.5 rounded-xl text-xs font-bold">60 मिनट</button>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <select id="topic" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
-                        <option value="शारीरिक व यौन झिझक">1. शारीरिक व यौन झिझक</option>
-                        <option value="लव लाइफ व रिश्ते">2. लव लाइफ व रिश्ते</option>
-                        <option value="तनाव व डिप्रेशन">3. तनाव व डिप्रेशन</option>
-                        <option value="पर्सनल राज़">4. पर्सनल राज़</option>
-                    </select>
-                    <input type="text" id="mood" placeholder="वर्तमान मनोदशा (Mood)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white">
-                </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-black py-3.5 rounded-xl shadow-xl active:scale-95 text-xs uppercase">
-                    🔒 अभी गुप्त स्लॉट बुक करें
-                </button>
-            </form>
+                    <h3 style="font-size: 18px; margin-bottom: 10px; color: var(--primary);">
+                        <i class="fa-solid fa-qrcode"></i> क्यूआर कोड से पेमेंट करें
+                    </h3>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+                        नीचे दिए गए QR कोड को स्कैन करें या बटन दबाकर ऐप से पे करें:
+                    </p>
 
-            <!-- Active Session Area -->
-            <div id="userSessionContainer" class="hidden space-y-3 pt-3 border-t border-slate-800">
-                <div class="flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-rose-500/30">
-                    <span id="sessionStatusText" class="text-xs font-black text-amber-400 animate-pulse">
-                        ⏳ 'हमराज़' के जुड़ने का इंतज़ार है...
-                    </span>
-                    <div class="bg-rose-950 border border-rose-500 text-rose-300 font-mono font-bold text-xs px-3 py-1 rounded-lg">
-                        ⏱️ <span id="sessionTimer">15:00</span>
+                    <div class="qr-container">
+                        <img src="qr-code.jpg" alt="DilKholSafe PhonePe QR">
                     </div>
-                    <button onclick="endUserSession()" class="bg-rose-600 text-white text-[10px] px-3 py-1.5 rounded-lg font-bold">समाप्त करें</button>
-                </div>
 
-                <!-- Agora Voice Call UI -->
-                <div id="userCallRoom" class="hidden glass-card p-6 rounded-2xl text-center space-y-4 border border-emerald-500/40 bg-slate-950/90">
-                    <div class="w-20 h-20 bg-gradient-to-tr from-emerald-600 to-teal-400 rounded-full flex items-center justify-center mx-auto shadow-xl ring-4 ring-emerald-500/30 animate-pulse">
-                        <span class="text-4xl">🎙️</span>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-black text-emerald-400" id="callStatusHeading">लाइव सीक्रेट वॉइस कॉल</h3>
-                        <p class="text-xs text-slate-300 mt-1 font-medium">आपकी आवाज़ 100% सुरक्षित और एन्क्रिप्टेड है</p>
-                    </div>
-                    <div class="flex justify-center gap-4 pt-2">
-                        <button id="userMuteBtn" onclick="toggleUserMute()" class="bg-slate-800 border border-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5">
-                            <span>🎙️</span> <span id="userMuteTxt">माइक बंद करें</span>
-                        </button>
-                        <button onclick="endUserSession()" class="bg-rose-600 text-white px-5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 shadow-lg active:scale-95">
-                            <span>📞</span> <span>कॉल काटें</span>
-                        </button>
+                    <div class="upi-badge">
+                        UPI: 8646021000-4@ybl
                     </div>
                 </div>
 
-                <!-- Chat Room UI -->
-                <div id="userChatRoom" class="hidden glass-card p-3 rounded-xl border border-sky-500/30 space-y-2">
-                    <div id="chatMessages" class="h-64 overflow-y-auto space-y-2 p-2 bg-slate-950 rounded-lg text-xs border border-slate-800"></div>
-                    <div class="flex gap-2">
-                        <input type="text" id="chatInput" placeholder="संदेश लिखें..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-xs text-white">
-                        <button onclick="sendChatMessage()" class="bg-rose-600 text-white text-xs px-4 py-2.5 rounded-xl font-extrabold">भेजें</button>
-                    </div>
+                <div>
+                    <!-- Pay via UPI Button -->
+                    <a href="upi://pay?pa=8646021000-4@ybl&pn=DilKholSafe&cu=INR" class="btn-action btn-upi">
+                        <i class="fa-solid fa-wallet"></i> Pay via Any UPI App
+                    </a>
+
+                    <!-- WhatsApp Automation Button -->
+                    <button type="button" onclick="sendToWhatsApp()" class="btn-action btn-wa">
+                        <i class="fa-brands fa-whatsapp"></i> Confirm & Send Details on WhatsApp
+                    </button>
                 </div>
             </div>
-        </section>
+
+        </div>
+
+        <!-- 3. Customer Reviews Section -->
+        <h2 class="section-title" id="reviews">ग्राहकों के रिव्यूज (Customer Reviews)</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-avatar">RK</div>
+                    <div>
+                        <h4 style="font-size: 15px;">Rahul Kumar</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p>"DilKholSafe टीम ने बहुत ही सेफ और प्राइवसी के साथ मेरी प्रॉब्लम सॉल्व की। सर्विस और टाइमिंग दोनों परफेक्ट हैं!"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-avatar">AS</div>
+                    <div>
+                        <h4 style="font-size: 15px;">Amit Sharma</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p>"WhatsApp पर इंस्टेंट रिस्पॉन्स मिला। स्लॉट बुकिंग और पेमेंट प्रोसेस बहुत आसान और स्मूथ रहा।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-avatar">VP</div>
+                    <div>
+                        <h4 style="font-size: 15px;">Vikas Patel</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <p>"100% भरोसेमंद सर्विस। गाइडेंस बहुत अच्छी मिली और प्राइवेसी का पूरा ध्यान रखा गया।"</p>
+            </div>
+        </div>
 
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <strong>DilKholSafe</strong>. All Rights Reserved.</p>
+        <p style="margin-top: 5px; opacity: 0.7;">Official Support Handle: @dilkholsafesupport_humraaz</p>
+    </footer>
+
+    <!-- JavaScript Automation Script -->
     <script>
-        const AGORA_APP_ID = "160d1980cc8549be8e965c1d1cf65bf4";
+        function sendToWhatsApp() {
+            var name = document.getElementById('custName').value;
+            var phone = document.getElementById('custPhone').value;
+            var service = document.getElementById('custService').value;
+            var date = document.getElementById('custDate').value;
+            var time = document.getElementById('custTime').value;
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAz7Cyg231fOc2jnV6k8yeSvkZpdHbD9yU",
-            authDomain: "dilkholsafe.firebaseapp.com",
-            databaseURL: "https://dilkholsafe-default-rtdb.firebaseio.com",
-            projectId: "dilkholsafe",
-            storageBucket: "dilkholsafe.firebasestorage.app",
-            messagingSenderId: "123300588054",
-            appId: "1:123300588054:web:052dd0b72f52b83e44a337"
-        };
-
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-
-        let selectedMins = 15;
-        let timerInterval = null;
-
-        // Agora RTC Variables
-        let agoraClient = null;
-        let localAudioTrack = null;
-        let isMuted = false;
-
-        const exactReviewsData = [
-            { name: "अनन्या एस. (24 वर्ष)", msg: "बॉयफ्रेंड से शारीरिक विषय पर बात करने में बहुत डर महसूस होता था। 'हमराज़' से बात करके सारे अनकहे डाउट्स दूर हो गए।" },
-            { name: "रिया जी. (22 वर्ष)", msg: "अपनी पहली रिलेशनशिप और शारीरिक कम्फर्ट को लेकर घबराहट थी। यहाँ निकनेम यूज़ होता है तो प्राइवेसी बनी रहती है।" },
-            { name: "स्नेहा (25 वर्ष, गेस्ट)", msg: "शादी से ठीक पहले मन में कई सवाल थे। 'हमराज़' ने बहुत ही दोस्ताना और पेशेवर तरीके से हर बात समझाई।" },
-            { name: "नेहा जी. (26 वर्ष)", msg: "यौन स्वास्थ्य और शारीरिक झिझक पर पहली बार किसी से बेझिझक बात कर पाई। 100% सेफ़ प्लेटफ़ॉर्म।" },
-            { name: "दिव्या के. (31 वर्ष)", msg: "कॉल पर बात करके लगा ही नहीं कि अनजान से बात हो रही है। बहुत कम्फर्टेबल माहौल रहा।" },
-            { name: "रितु सिंह (27 वर्ष)", msg: "15 मिनट का सेशन लिया और मेरी सारी झिझक दूर हो गई। बहुत आत्मविश्वास मिला।" },
-            { name: "साक्षी पटेल (23 वर्ष)", msg: "पहली बार अपने मन का डर किसी से बोला। मन इतना हल्का हो गया जैसे कोई भारी बोझ उतर गया हो।" },
-            { name: "स्वाति एम. (35 वर्ष)", msg: "प्राइवेट सीक्रेट्स सुरक्षित रखते हुए इतनी बेहतरीन काउंसलिंग मिलना आज मुश्किल है। थैंक्स।" },
-            { name: "अदिति रॉय (24 वर्ष)", msg: "पार्टनर के साथ शारीरिक कम्फर्ट की उलझन यहाँ शेयर की। बहुत समझदारी भरी सलाह मिली।" },
-            { name: "प्रियंका के. (28 वर्ष)", msg: "शादी के शुरुआती दिनों की झिझक दूर करने में मदद मिली। सब कुछ आसान हो गया।" },
-            { name: "कृतिका (26 वर्ष, गेस्ट)", msg: "सीक्रेट शारीरिक सवालों पर सही मार्गदर्शन मिला। अब मन में कोई डर नहीं है।" },
-            { name: "राहुल एम. (26 वर्ष)", msg: "परफ़ॉर्मेंस स्ट्रेस को लेकर तनाव में था। यहाँ बात करके सारा डर खत्म हो गया।" },
-            { name: "विकास यादव (28 वर्ष)", msg: "बिना पहचान बताए अपनी समस्या का व्यावहारिक समाधान मिला।" },
-            { name: "पूजा शर्मा (29 वर्ष)", msg: "पति के साथ शादीशुदा जिंदगी की सीक्रेट बातें शेयर कीं। मन का सारा भारीपन खत्म हो गया।" },
-            { name: "पिंकी आर. (33 वर्ष)", msg: "शादीशुदा जिंदगी में आ रही दूरियाँ दूर करने में सलाह बहुत काम आई।" },
-            { name: "मुस्कान जे. (23 वर्ष)", msg: "पार्टनर के साथ गलतफहमी दूर हुई और रिश्ता बेहतर हो गया।" },
-            { name: "अंजलि गुप्ता (28 वर्ष)", msg: "यहाँ की प्राइवेसी पॉलिसी कमाल की है, कोई डेटा सेव नहीं होता।" },
-            { name: "सचिन के. (29 वर्ष)", msg: "30 मिनट बात करके पार्टनर से बात करने का सही तरीका समझ आया।" },
-            { name: "अमित शर्मा (27 वर्ष)", msg: "ब्रेकअप के बाद 'हमराज़' ने एक सच्चे दोस्त की तरह संभाला।" },
-            { name: "महक के. (24 वर्ष)", msg: "ओवरथिंकिंग से नींद नहीं आती थी। बात करके दिमाग शांत हुआ।" },
-            { name: "रिद्धिमा वी. (28 वर्ष)", msg: "यहाँ बातें शेयर कीं और मुझे जीवन का नया नज़रिया मिला।" },
-            { name: "रोहन (30 वर्ष)", msg: "मानसिक तनाव से राहत पाने के लिए यह सबसे सुरक्षित जगह है।" }
-        ];
-
-        function renderExactReviews() {
-            document.getElementById('reviewsContainer').innerHTML = exactReviewsData.map(r => `
-                <div class="glass-card p-4 rounded-2xl space-y-1 border-rose-500/15 card-hover">
-                    <div class="flex justify-between items-center"><span class="font-extrabold text-rose-400 text-xs">${r.name}</span><div class="text-amber-400 text-[10px]">⭐⭐⭐⭐⭐</div></div>
-                    <p class="text-[11px] text-slate-300">"${r.msg}"</p>
-                </div>
-            `).join('');
-        }
-
-        function selectDuration(mins, btn) {
-            selectedMins = mins;
-            document.querySelectorAll('.dur-btn').forEach(b => {
-                b.classList.remove('bg-rose-600/30', 'border-2', 'border-rose-500', 'text-rose-300');
-                b.classList.add('bg-slate-900', 'border-slate-700', 'text-slate-300');
-            });
-            btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-300');
-            btn.classList.add('bg-rose-600/30', 'border-2', 'border-rose-500', 'text-rose-300');
-        }
-
-        function handleBooking(e) {
-            if (e && e.preventDefault) e.preventDefault();
-
-            let bookingId = 'session_' + Date.now();
-            let nick = document.getElementById('nickName').value || 'Guest';
-
-            let bookingData = {
-                id: bookingId,
-                realName: document.getElementById('realName').value,
-                nickName: nick,
-                phone: document.getElementById('phone').value,
-                mode: document.getElementById('mode').value,
-                selectedMinutes: selectedMins,
-                topic: document.getElementById('topic').value,
-                mood: document.getElementById('mood').value || 'सामान्य',
-                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                roomCode: "Room" + Math.floor(100000 + Math.random() * 900000),
-                accepted: false
-            };
-
-            db.ref('all_bookings/' + bookingId).set(bookingData);
-
-            db.ref('active_session').set(bookingData).then(() => {
-                document.getElementById('userSessionContainer').classList.remove('hidden');
-                document.getElementById('sessionTimer').innerText = `${selectedMins}:00`;
-                document.getElementById('userSessionContainer').scrollIntoView({ behavior: 'smooth' });
-
-                db.ref('active_session').on('value', (snapshot) => {
-                    let data = snapshot.val();
-                    if(data && data.accepted) {
-                        startSessionForUser(data);
-                    }
-                });
-            });
-
-            return false;
-        }
-
-        async function startSessionForUser(data) {
-            document.getElementById('sessionStatusText').innerText = "🟢 'हमराज़' से लाइव सत्र कनेक्टेड है!";
-            document.getElementById('sessionStatusText').className = "text-xs font-black text-emerald-400 animate-pulse";
-            
-            startCountdownTimer(data.selectedMinutes);
-
-            if(data.mode === 'Voice Call') {
-                document.getElementById('userCallRoom').classList.remove('hidden');
-                initAgoraVoiceCall(data.roomCode);
-            } else {
-                document.getElementById('userChatRoom').classList.remove('hidden');
-                listenLiveChat();
+            if (name === "" || phone === "") {
+                alert("कृपया पहले अपना नाम और मोबाइल नंबर भरें!");
+                return;
             }
+
+            var textMessage = "Hello DilKholSafe Support! I want to book a slot.%0A%0A" +
+                              "*--- Booking Details ---*%0A" +
+                              "👤 *Name:* " + encodeURIComponent(name) + "%0A" +
+                              "📞 *Phone:* " + encodeURIComponent(phone) + "%0A" +
+                              "🛠️ *Service:* " + encodeURIComponent(service) + "%0A" +
+                              "📅 *Date:* " + encodeURIComponent(date) + "%0A" +
+                              "⏰ *Slot Time:* " + encodeURIComponent(time) + "%0A%0A" +
+                              "I have completed the payment / attaching screenshot below:";
+
+            var waNumber = "918865043022"; // Target WhatsApp Number
+            var waUrl = "https://wa.me/" + waNumber + "?text=" + textMessage;
+
+            window.open(waUrl, '_blank');
         }
-
-        async function initAgoraVoiceCall(channelName) {
-            try {
-                agoraClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
-
-                AgoraRTC.onAutoplayFailed = () => {
-                    AgoraRTC.play();
-                };
-
-                agoraClient.on("user-published", async (user, mediaType) => {
-                    await agoraClient.subscribe(user, mediaType);
-                    if (mediaType === "audio") {
-                        const remoteAudioTrack = user.audioTrack;
-                        remoteAudioTrack.play();
-                        document.getElementById('callStatusHeading').innerText = "🟢 'हमराज़' से बातचीत चालू है";
-                    }
-                });
-
-                agoraClient.on("user-unpublished", user => {
-                    document.getElementById('callStatusHeading').innerText = "⏳ 'हमराज़' डिस्कनेक्ट हो गए";
-                });
-
-                await agoraClient.join(AGORA_APP_ID, channelName, null, null);
-                localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-                await agoraClient.publish([localAudioTrack]);
-
-            } catch (err) {
-                alert("माइक परमिशन एरर: कृपया ब्राउज़र में माइक्रोफ़ोन अलाउ करें।");
-            }
-        }
-
-        function toggleUserMute() {
-            if (localAudioTrack) {
-                if (isMuted) {
-                    localAudioTrack.setEnabled(true);
-                    document.getElementById('userMuteTxt').innerText = "माइक बंद करें";
-                    isMuted = false;
-                } else {
-                    localAudioTrack.setEnabled(false);
-                    document.getElementById('userMuteTxt').innerText = "माइक चालू करें";
-                    isMuted = true;
-                }
-            }
-        }
-
-        function startCountdownTimer(durationMins) {
-            if(timerInterval) return;
-            let timeInSeconds = durationMins * 60;
-            timerInterval = setInterval(() => {
-                let mins = Math.floor(timeInSeconds / 60);
-                let secs = timeInSeconds % 60;
-                document.getElementById('sessionTimer').innerText = `${mins < 10 ? '0'+mins : mins}:${secs < 10 ? '0'+secs : secs}`;
-                if (--timeInSeconds < 0) {
-                    clearInterval(timerInterval);
-                    alert("सेशन समाप्त हो गया है।");
-                    endUserSession();
-                }
-            }, 1000);
-        }
-
-        function sendChatMessage() {
-            let input = document.getElementById('chatInput');
-            let text = input.value.trim();
-            if(!text) return;
-            db.ref('active_session/messages').push({
-                sender: document.getElementById('nickName').value || "कस्टमर",
-                text: text,
-                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            }).then(() => { input.value = ""; });
-        }
-
-        function listenLiveChat() {
-            db.ref('active_session/messages').on('value', (snapshot) => {
-                let messages = snapshot.val();
-                let html = `<div class="text-slate-400 text-[10px] text-center my-1 font-semibold">🔒 यह चैट 100% गोपनीय है।</div>`;
-                if(messages) {
-                    Object.values(messages).forEach(m => {
-                        let isMe = m.sender !== 'हमराज़';
-                        html += `<div class="${isMe ? 'text-right text-sky-400' : 'text-left text-rose-400'} font-medium my-1">
-                            <span class="block text-[9px] text-slate-500">${m.sender}</span>${m.text}
-                        </div>`;
-                    });
-                }
-                let box = document.getElementById('chatMessages');
-                box.innerHTML = html;
-                box.scrollTop = box.scrollHeight;
-            });
-        }
-
-        async function endUserSession() {
-            if (localAudioTrack) {
-                localAudioTrack.stop();
-                localAudioTrack.close();
-            }
-            if (agoraClient) {
-                await agoraClient.leave();
-            }
-            clearInterval(timerInterval);
-            db.ref('active_session').remove();
-            location.reload();
-        }
-
-        renderExactReviews();
     </script>
+
 </body>
 </html>
