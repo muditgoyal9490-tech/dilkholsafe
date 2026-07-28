@@ -138,26 +138,6 @@
             box-shadow: 0 6px 20px rgba(255,183,3,0.6);
         }
 
-        /* Smart Attention Banner below Hero */
-        .attention-bar {
-            background: #fef3c7;
-            border-bottom: 1px solid #fde68a;
-            color: #92400e;
-            padding: 10px 15px;
-            text-align: center;
-            font-size: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .attention-bar a {
-            color: #b45309;
-            text-decoration: underline;
-        }
-
         /* Container */
         .container {
             max-width: 1100px;
@@ -205,6 +185,12 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
+        }
+
+        @media (max-width: 700px) {
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .review-card {
@@ -496,50 +482,6 @@
             background: #1eb857;
         }
 
-        /* DilKholDesire Partner Notice Box */
-        .partner-notice-box {
-            background: #fff5f5;
-            border: 1px solid #fecdd3;
-            border-radius: 14px;
-            padding: 20px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .partner-notice-box h3 {
-            color: #be123c;
-            font-size: 16px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .partner-notice-box p {
-            font-size: 12px;
-            color: #4c0519;
-            max-width: 750px;
-            margin: 0 auto 15px auto;
-            line-height: 1.6;
-        }
-
-        .partner-btn {
-            background: #be123c;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .partner-btn:hover {
-            background: #9f1239;
-        }
-
         /* Footer */
         footer {
             background: var(--text-dark);
@@ -579,14 +521,9 @@
         <a href="#booking" class="hero-btn">अभी स्लॉट बुक करें <i class="fa-solid fa-arrow-right"></i></a>
     </section>
 
-    <!-- Smart Attention Bar -->
-    <div class="attention-bar">
-        <i class="fa-solid fa-bullhorn"></i> 📌 <span>विशेष सूचना: वैवाहिक जीवन, निजी ज़रूरतों एवं विशेष गाइडेंस हेतु साइट को <a href="#desire-section">नीचे (Bottom Section)</a> पूरा पढ़ें।</span>
-    </div>
-
     <div class="container">
 
-        <!-- 1. Customer Reviews Section (2x2 Column Grid with Compact Scroll) -->
+        <!-- 1. Customer Reviews Section -->
         <h2 class="section-title" id="reviews">ग्राहकों के अनुभव (Customer Reviews)</h2>
         
         <div class="reviews-container">
@@ -686,150 +623,6 @@
                     </div>
                     <div class="stars">★★★★★</div>
                     <p>"100% भरोसेमंद और गोपनीय। स्लॉट बुकिंग और व्हाट्सएप ऑटोमेशन बहुत स्मूथ काम करता है।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">SR</div>
-                        <div class="reviewer-info">
-                            <h4>शालिनी राय (29 वर्ष)</h4>
-                            <span>इंदौर</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"15 मिनट का अर्जेंट स्लॉट बहुत काम आया। पैनिक की सिचुएशन में मुझे तुरंत रिस्पॉन्स मिला और दिमाग शांत हो गया।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">RK</div>
-                        <div class="reviewer-info">
-                            <h4>रिया कपूर (23 वर्ष)</h4>
-                            <span>चंडीगढ़</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"शादी के फैसले को लेकर दिमाग में बहुत उथल-पुथल थी। 30 मिनट के डीप टॉक सेशन ने मेरी सारी कन्फ्यूजन दूर कर दी।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">DM</div>
-                        <div class="reviewer-info">
-                            <h4>दिव्या मेहरा (28 वर्ष)</h4>
-                            <span>पुणे</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"रिलेशनशिप की गलतफहमियों को सुलझाने में बहुत मदद मिली। बहुत ही सम्मानजनक और समझदारी भरा व्यवहार था।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">MJ</div>
-                        <div class="reviewer-info">
-                            <h4>मेघा जोशी (26 वर्ष)</h4>
-                            <span>देहरादून</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"पेमेंट के बाद तुरंत व्हाट्सएप पर स्लॉट कन्फर्म हो गया। प्रक्रिया बहुत ही आसान और फास्ट है।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">KY</div>
-                        <div class="reviewer-info">
-                            <h4>कविता यादव (31 वर्ष)</h4>
-                            <span>भोपाल</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"मेरी बातें किसी तीसरे इंसान को कभी पता नहीं चलेंगी, इस बात की पूरी गारंटी महसूस हुई। 100% ट्रस्टेड!"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">AC</div>
-                        <div class="reviewer-info">
-                            <h4>आकांक्षा चौधरी (24 वर्ष)</h4>
-                            <span>नोएडा</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"अपनी पर्सनल लाइफ की बातें अपनों से शेयर नहीं कर पा रही थी। यहाँ दिल खोलकर बात करके बहुत सुकून मिला।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">SS</div>
-                        <div class="reviewer-info">
-                            <h4>स्वाति श्रीवास्तव (27 वर्ष)</h4>
-                            <span>वाराणसी</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"अर्जेंट सपोर्ट सच में बहुत फास्ट है। 10-15 मिनट में ही कनेक्ट हो गए और बहुत सही सलाह दी।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">TB</div>
-                        <div class="reviewer-info">
-                            <h4>तान्या भटनागर (25 वर्ष)</h4>
-                            <span>गुरुग्राम</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"मैरिज और फैमिली प्रेशर के टाइम मुझे सही दिशा दिखाने के लिए शुक्रिया। अब काफी हल्का महसूस होता है।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">SR</div>
-                        <div class="reviewer-info">
-                            <h4>सोनम राजपूत (22 वर्ष)</h4>
-                            <span>आगरा</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"बहुत ही सभ्य और सुरक्षित माहौल। लड़कियों के लिए यह प्लेटफॉर्म किसी वरदान से कम नहीं है।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">RS</div>
-                        <div class="reviewer-info">
-                            <h4>ऋचा सक्सेना (30 वर्ष)</h4>
-                            <span>अहमदाबाद</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"30 मिनट का सेशन इतना फ्रूटफुल रहा कि अब मैं हर मुश्किल वक्त में यहीं गाइडेंस लेती हूँ।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">MT</div>
-                        <div class="reviewer-info">
-                            <h4>मोनिका तंवर (28 वर्ष)</h4>
-                            <span>पटना</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"ओवरथिंकिंग की वजह से रात में नींद नहीं आ रही थी। नाइट स्लॉट में बात करके काफी राहत मिली।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">KP</div>
-                        <div class="reviewer-info">
-                            <h4>कीर्ति पांडे (23 वर्ष)</h4>
-                            <span>रांची</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"यहाँ कोई आपको जज नहीं करता। आप जो भी महसूस कर रहे हैं, बेझिझक शेयर कर सकते हैं।"</p>
                 </div>
 
             </div>
@@ -954,16 +747,6 @@
 
         </div>
 
-        <!-- 4. DilKholDesire Partner Notice Box (Bottom Section) -->
-        <div class="partner-notice-box" id="desire-section">
-            <h3><i class="fa-solid fa-fire"></i> विशेष वैवाहिक, इंटिमेट & मैरिटल वेलनेस (DilKholDesire)</h3>
-            <p>
-                क्या आप अपने निजी वैवाहिक जीवन (Marital Life), पार्टनर के साथ इंटिमेट तालमेल, गुप्त इच्छाओं (Personal Desires) या मानसिक फैंटेसी को लेकर बिना किसी संकोच के बात करना चाहते हैं?<br>
-                DilKholSafe मुख्य रूप से इमोशनल हीलिंग और स्ट्रेस रिलीफ परामर्श देता है। यदि आप विशेष रूप से अपने <strong>इंटिमेट रिलेशनशिप, मैरिटल वेलनेस, या अपनी सीक्रेट फैंटेसी गाइडेंस</strong> के लिए प्राइवेट परामर्श चाहते हैं, तो हमारे विशेष अधिकृत प्लैटफ़ॉर्म <strong>"DilKholDesire" (दिल खोल डिजायर)</strong> पर कनेक्ट करें। यहाँ आपकी हर बात 100% गोपनीय और सम्मानित रहेगी।
-            </p>
-            <a href="#" class="partner-btn">DilKholDesire पर प्राइवेट परामर्श लें <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
     </div>
 
     <!-- Footer -->
@@ -998,7 +781,7 @@
             startTimer(tenMinutes, display);
         };
 
-        // WhatsApp Direct Trigger Function
+        // WhatsApp Direct Trigger Function + Save Booking for admin.html
         function sendToWhatsApp() {
             var name = document.getElementById('custName').value.trim();
             var phone = document.getElementById('custPhone').value.trim();
@@ -1012,6 +795,22 @@
                 return;
             }
 
+            // Save record in browser storage so your admin.html can also read it
+            var bookingObj = {
+                timestamp: new Date().toLocaleString(),
+                name: name,
+                phone: phone,
+                service: service,
+                date: date,
+                time: time !== "" ? time : "Not Specified",
+                utr: utr !== "" ? utr : "Not Entered"
+            };
+
+            var existingBookings = JSON.parse(localStorage.getItem('dk_bookings') || '[]');
+            existingBookings.unshift(bookingObj);
+            localStorage.setItem('dk_bookings', JSON.stringify(existingBookings));
+
+            // Redirect to WhatsApp with full details
             var textMessage = "Hello DilKholSafe Support! I want to confirm my booking.%0A%0A" +
                               "*--- Booking Details ---*%0A" +
                               "👤 *Name:* " + encodeURIComponent(name) + "%0A" +
