@@ -56,8 +56,15 @@
             color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             text-decoration: none;
+        }
+
+        .brand-logo-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .brand-badge {
@@ -449,10 +456,12 @@
         }
 
         .qr-container img {
-            width: 160px;
-            height: 160px;
+            width: 170px;
+            height: auto;
+            max-height: 230px;
             object-fit: contain;
             display: block;
+            margin: 0 auto;
         }
 
         .upi-badge {
@@ -461,7 +470,7 @@
             font-weight: 700;
             padding: 6px 10px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
             margin-bottom: 12px;
             word-break: break-all;
         }
@@ -654,7 +663,7 @@
     <!-- Header -->
     <header>
         <a href="#" class="brand-logo">
-            <i class="fa-solid fa-shield-halved"></i> DilKholSafe
+            <img src="logo.png" alt="DilKholSafe Logo" class="brand-logo-img"> DilKholSafe
         </a>
         <div class="brand-badge">
             <i class="fa-solid fa-lock"></i> 100% Confidential
@@ -787,17 +796,17 @@
                 <h3><i class="fa-regular fa-calendar-check"></i> विवरण दर्ज करें</h3>
                 <form id="slotForm">
                     <div class="form-group">
-                        <label>आपका पूरा नाम (Full Name)</label>
+                        <label>आपका पूरा नाम (Full Name)*</label>
                         <input type="text" id="custName" placeholder="अपना नाम दर्ज करें" required>
                     </div>
 
                     <div class="form-group">
-                        <label>मोबाइल नंबर (WhatsApp Number)</label>
+                        <label>मोबाइल नंबर (WhatsApp Number)*</label>
                         <input type="tel" id="custPhone" placeholder="10 अंकों का मोबाइल नंबर" required>
                     </div>
 
                     <div class="form-group">
-                        <label>सेकंड्स / स्लॉट समय चुनें (Select Service Session)</label>
+                        <label>सेकंड्स / स्लॉट समय चुनें (Select Service Session)*</label>
                         <select id="custService" required>
                             <option value="15 Min Normal Session (₹299)">15 मिनट - नॉर्मल स्लॉट (₹299)</option>
                             <option value="15 Min Urgent Fast-Track Session (₹499)">15 मिनट - अर्जेंट/तत्काल स्लॉट (₹499)</option>
@@ -806,18 +815,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label>स्लॉट की तारीख (Preferred Date)</label>
+                        <label>स्लॉट की तारीख (Preferred Date)*</label>
                         <input type="date" id="custDate" required>
                     </div>
 
                     <div class="form-group">
-                        <label>समय की इच्छा (Preferred Time - जैसे: रात 8:30 बजे)</label>
+                        <label>समय की इच्छा (Preferred Time - जैसे: रात 8:30 बजे)*</label>
                         <input type="text" id="custTime" placeholder="अपनी पसंद का समय लिखें (उदा. 08:30 PM)" required>
                     </div>
 
-                    <div class="form-group">
-                        <label>पेमेंट यूटीआर / ट्रांजेक्शन नंबर (12 Digit UTR / Ref No.)</label>
-                        <input type="text" id="custUtr" placeholder="पेमेंट के बाद 12 अंकों का UTR नंबर यहाँ लिखें">
+                    <div class="form-group" style="border: 1px dashed var(--primary); padding: 10px; border-radius: 8px; background: rgba(95,37,159,0.03);">
+                        <label style="color: var(--primary); font-weight: 700;">पेमेंट यूटीआर / ट्रांजेक्शन नंबर (12 Digit UTR / Ref No.)*</label>
+                        <input type="text" id="custUtr" placeholder="क्यूआर पर पेमेंट के बाद 12 अंकों का UTR भरें" required>
                     </div>
                 </form>
             </div>
@@ -829,21 +838,21 @@
                         <i class="fa-solid fa-qrcode"></i> क्यूआर कोड से पे करें
                     </h3>
                     <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">
-                        नीचे दिए गए QR कोड को स्कैन करें या बटन दबाकर ऐप से पे करें:
+                        नीचे दिए गए Canara Bank QR कोड को किसी भी UPI ऐप से स्कैन करके भुगतान करें:
                     </p>
 
                     <div class="qr-container">
-                        <img src="qr-code.jpg" alt="DilKholSafe PhonePe QR" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Ddilkholsafe%40ybl%26pn%3DDilKholSafe%26cu%3DINR';">
+                        <img src="qr.jpg" alt="Canara Bank Merchant QR Code">
                     </div>
 
                     <div class="upi-badge">
-                        UPI: dilkholsafe@ybl
+                        Merchant UPI: PPR.02206.11082023.00094631@CNRB
                     </div>
                 </div>
 
                 <div>
                     <!-- Pay via Active UPI ID Link -->
-                    <a href="upi://pay?pa=dilkholsafe@ybl&pn=DilKholSafe&cu=INR" class="btn-action btn-upi">
+                    <a href="upi://pay?pa=ppr.02206.11082023.00094631@cnrb&pn=DilKholSafe&cu=INR" class="btn-action btn-upi">
                         <i class="fa-solid fa-wallet"></i> Pay via PhonePe / Any UPI App
                     </a>
 
@@ -863,7 +872,7 @@
                 क्या आप अपने निजी वैवाहिक जीवन (Marital Life), पार्टनर के साथ इंटिमेट तालमेल, गुप्त इच्छाओं (Personal Desires) या मानसिक फैंटेसी को लेकर बिना किसी संकोच के बात करना चाहते हैं?<br>
                 DilKholSafe मुख्य रूप से इमोशनल हीलिंग और स्ट्रेस रिलीफ परामर्श देता है। यदि आप विशेष रूप से अपने <strong>इंटिमेट रिलेशनशिप, मैरिटल वेलनेस, या अपनी सीक्रेट फैंटेसी गाइडेंस</strong> के लिए प्राइवेट परामर्श चाहते हैं, तो हमारे विशेष अधिकृत प्लैटफ़ॉर्म <strong>"DilKholDesire" (दिल खोल डिजायर)</strong> पर कनेक्ट करें। यहाँ आपकी हर बात 100% गोपनीय और सम्मानित रहेगी।
             </p>
-            <a href="#" class="partner-btn">DilKholDesire पर प्राइवेट परामर्श लें <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://dilkholdesire.in" target="_blank" class="partner-btn">DilKholDesire पर प्राइवेट परामर्श लें <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
     </div>
@@ -964,7 +973,7 @@
             document.getElementById('adminModal').style.display = 'none';
         }
 
-        // WhatsApp Direct Trigger Function + Admin Record Saving
+        // WhatsApp Direct Trigger Function + Admin Record Saving (Strict UTR Check)
         function sendToWhatsApp() {
             var name = document.getElementById('custName').value.trim();
             var phone = document.getElementById('custPhone').value.trim();
@@ -974,7 +983,13 @@
             var utr = document.getElementById('custUtr').value.trim();
 
             if (name === "" || phone === "") {
-                alert("कृपया पहले अपना नाम और मोबाइल नंबर भरें!");
+                alert("⚠️ कृपया पहले अपना पूरा नाम और व्हाट्सएप मोबाइल नंबर दर्ज करें!");
+                return;
+            }
+
+            if (utr === "" || utr.length < 6) {
+                alert("🛑 भुगतान अनिवार्य है!\n\nकृपया पहले दिए गए QR Code या UPI ID पर भुगतान पूर्ण करें और फिर 12-अंकों का UTR / Transaction ID फ़ॉर्म में भरें। इसके बिना व्हाट्सएप कनेक्ट नहीं हो सकता।");
+                document.getElementById('custUtr').focus();
                 return;
             }
 
@@ -986,7 +1001,7 @@
                 service: service,
                 date: date,
                 time: time !== "" ? time : "Not Specified",
-                utr: utr !== "" ? utr : "Not Entered"
+                utr: utr
             };
 
             var existingBookings = JSON.parse(localStorage.getItem('dk_bookings') || '[]');
@@ -1001,7 +1016,7 @@
                               "🛠️ *Service Session:* " + encodeURIComponent(service) + "%0A" +
                               "📅 *Date:* " + encodeURIComponent(date) + "%0A" +
                               "⏰ *Client Preferred Time:* " + (time !== "" ? encodeURIComponent(time) : "Not Specified") + "%0A" +
-                              "💳 *UTR / Ref No:* " + (utr !== "" ? encodeURIComponent(utr) : "Attaching Screenshot") + "%0A%0A" +
+                              "💳 *UTR / Ref No:* " + encodeURIComponent(utr) + "%0A%0A" +
                               "📌 *Note:* मुझे जानकारी है कि काउंसलर अभी लाइव सेशन में हैं। मैंने धीरज बनाकर स्लॉट बुक कर दिया है, कृपया फ्री होते ही मुझसे संपर्क करें।%0A%0A" +
                               "I am attaching the payment screenshot below:";
 
