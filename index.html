@@ -138,6 +138,26 @@
             box-shadow: 0 6px 20px rgba(255,183,3,0.6);
         }
 
+        /* Smart Attention Bar */
+        .attention-bar {
+            background: #fef3c7;
+            border-bottom: 1px solid #fde68a;
+            color: #92400e;
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .attention-bar a {
+            color: #b45309;
+            text-decoration: underline;
+        }
+
         /* Container */
         .container {
             max-width: 1100px;
@@ -482,6 +502,50 @@
             background: #1eb857;
         }
 
+        /* DilKholDesire Partner Notice Box */
+        .partner-notice-box {
+            background: #fff5f5;
+            border: 1px solid #fecdd3;
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .partner-notice-box h3 {
+            color: #be123c;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .partner-notice-box p {
+            font-size: 12px;
+            color: #4c0519;
+            max-width: 750px;
+            margin: 0 auto 15px auto;
+            line-height: 1.6;
+        }
+
+        .partner-btn {
+            background: #be123c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .partner-btn:hover {
+            background: #9f1239;
+        }
+
         /* Footer */
         footer {
             background: var(--text-dark);
@@ -490,10 +554,98 @@
             padding: 20px;
             margin-top: 30px;
             font-size: 12px;
+            cursor: pointer;
         }
 
         footer strong {
             color: var(--white);
+        }
+
+        /* Admin Modal Styles */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .admin-content {
+            background: white;
+            max-width: 900px;
+            margin: 30px auto;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-admin {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        .admin-tab-btn {
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .admin-tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .admin-table th, .admin-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        .admin-table th {
+            background: #f8fafc;
+            color: var(--primary);
+        }
+
+        .btn-clear {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            float: right;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -521,13 +673,18 @@
         <a href="#booking" class="hero-btn">अभी स्लॉट बुक करें <i class="fa-solid fa-arrow-right"></i></a>
     </section>
 
+    <!-- Smart Attention Bar -->
+    <div class="attention-bar">
+        <i class="fa-solid fa-bullhorn"></i> 📌 <span>विशेष सूचना: वैवाहिक जीवन, निजी ज़रूरतों एवं विशेष गाइडेंस हेतु साइट को <a href="#desire-section">नीचे (Bottom Section)</a> पूरा पढ़ें।</span>
+    </div>
+
     <div class="container">
 
         <!-- 1. Customer Reviews Section -->
         <h2 class="section-title" id="reviews">ग्राहकों के अनुभव (Customer Reviews)</h2>
         
         <div class="reviews-container">
-            <div class="reviews-grid">
+            <div class="reviews-grid" id="reviewsGrid">
                 
                 <div class="review-card">
                     <div class="reviewer">
@@ -575,54 +732,6 @@
                     </div>
                     <div class="stars">★★★★★</div>
                     <p>"गर्ल्स के लिए प्राइवेसी सबसे ज्यादा ज़रूरी होती है। DilKholSafe पर मेरी प्राइवेसी 100% सेफ रही। अब मेरी बेस्ट फ्रेंड भी <strong>नियमित स्लॉट बुक</strong> करती है।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">AM</div>
-                        <div class="reviewer-info">
-                            <h4>अमित वर्मा (32 वर्ष)</h4>
-                            <span>दिल्ली</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"पर्सनल डिसीजन में फँसा हुआ था। 30 मिनट के सेशन में एकदम सटीक और स्पष्ट सलाह मिली। काफी हल्का महसूस हुआ।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">SR</div>
-                        <div class="reviewer-info">
-                            <h4>स्नेहा रॉय (22 वर्ष)</h4>
-                            <span>कोलकाता</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"ब्रेकअप के बाद बहुत अकेलापन महसूस हो रहा था। यहाँ इतनी अच्छी और प्रैक्टिकल सलाह मिली कि अब मेरा कॉन्फिडेंस वापस आ गया है। मैं <strong>महीने में 2-3 बार</strong> जरूर सेशंस लेती हूँ।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar female">PS</div>
-                        <div class="reviewer-info">
-                            <h4>प्रिया सिंह (25 वर्ष)</h4>
-                            <span>जयपुर</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"बिना किसी झिझक के अपने दिल का बोझ हल्का करने की सबसे सेफ जगह। गाइडेंस बहुत ही फ्रेंडली और रिस्पेक्टफुल थी।"</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">VP</div>
-                        <div class="reviewer-info">
-                            <h4>विकास पटेल (27 वर्ष)</h4>
-                            <span>सूरत</span>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                    <p>"100% भरोसेमंद और गोपनीय। स्लॉट बुकिंग और व्हाट्सएप ऑटोमेशन बहुत स्मूथ काम करता है।"</p>
                 </div>
 
             </div>
@@ -747,10 +856,56 @@
 
         </div>
 
+        <!-- 4. DilKholDesire Partner Notice Box (Bottom Section) -->
+        <div class="partner-notice-box" id="desire-section">
+            <h3><i class="fa-solid fa-fire"></i> विशेष वैवाहिक, इंटिमेट & मैरिटल वेलनेस (DilKholDesire)</h3>
+            <p>
+                क्या आप अपने निजी वैवाहिक जीवन (Marital Life), पार्टनर के साथ इंटिमेट तालमेल, गुप्त इच्छाओं (Personal Desires) या मानसिक फैंटेसी को लेकर बिना किसी संकोच के बात करना चाहते हैं?<br>
+                DilKholSafe मुख्य रूप से इमोशनल हीलिंग और स्ट्रेस रिलीफ परामर्श देता है। यदि आप विशेष रूप से अपने <strong>इंटिमेट रिलेशनशिप, मैरिटल वेलनेस, या अपनी सीक्रेट फैंटेसी गाइडेंस</strong> के लिए प्राइवेट परामर्श चाहते हैं, तो हमारे विशेष अधिकृत प्लैटफ़ॉर्म <strong>"DilKholDesire" (दिल खोल डिजायर)</strong> पर कनेक्ट करें। यहाँ आपकी हर बात 100% गोपनीय और सम्मानित रहेगी।
+            </p>
+            <a href="#" class="partner-btn">DilKholDesire पर प्राइवेट परामर्श लें <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- Hidden Admin Panel Modal -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-content">
+            <span class="close-admin" onclick="closeAdmin()">&times;</span>
+            <h2 style="color:var(--primary); margin-bottom:15px;"><i class="fa-solid fa-user-gear"></i> DilKholSafe - Admin Dashboard</h2>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" onclick="switchTab('bookingsTab')">📋 Booking Records (<span id="bookingCount">0</span>)</button>
+            </div>
+
+            <!-- Bookings List Tab -->
+            <div id="bookingsTab">
+                <button class="btn-clear" onclick="clearBookings()"><i class="fa-solid fa-trash"></i> Clear All Records</button>
+                <div style="overflow-x:auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date/Time Saved</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Service Selected</th>
+                                <th>Preferred Date</th>
+                                <th>Preferred Time</th>
+                                <th>UTR Ref</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingTableBody">
+                            <!-- Dynamic Bookings -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer>
+    <footer id="footerTag" onclick="handleFooterClick()">
         <p>© 2026 <strong>DilKholSafe</strong>. All Rights Reserved.</p>
         <p style="margin-top: 4px; opacity: 0.7;">Official Support Handle: @dilkholsafesupport_humraaz</p>
     </footer>
@@ -779,9 +934,37 @@
             var tenMinutes = 60 * 9.75,
                 display = document.querySelector('#countdown');
             startTimer(tenMinutes, display);
+            loadAdminData();
         };
 
-        // WhatsApp Direct Trigger Function + Save Booking for admin.html
+        // Triple Click on Footer to Open Admin Panel
+        var footerClicks = 0;
+        function handleFooterClick() {
+            footerClicks++;
+            if (footerClicks >= 3) {
+                openAdmin();
+                footerClicks = 0;
+            }
+            setTimeout(function() { footerClicks = 0; }, 1500);
+        }
+
+        // Key Combo Ctrl + Shift + A to Open Admin Panel
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                openAdmin();
+            }
+        });
+
+        function openAdmin() {
+            document.getElementById('adminModal').style.display = 'block';
+            loadAdminData();
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        // WhatsApp Direct Trigger Function + Admin Record Saving
         function sendToWhatsApp() {
             var name = document.getElementById('custName').value.trim();
             var phone = document.getElementById('custPhone').value.trim();
@@ -795,7 +978,7 @@
                 return;
             }
 
-            // Save record in browser storage so your admin.html can also read it
+            // Save Record in Local Storage for Admin Dashboard
             var bookingObj = {
                 timestamp: new Date().toLocaleString(),
                 name: name,
@@ -810,7 +993,7 @@
             existingBookings.unshift(bookingObj);
             localStorage.setItem('dk_bookings', JSON.stringify(existingBookings));
 
-            // Redirect to WhatsApp with full details
+            // WhatsApp Message
             var textMessage = "Hello DilKholSafe Support! I want to confirm my booking.%0A%0A" +
                               "*--- Booking Details ---*%0A" +
                               "👤 *Name:* " + encodeURIComponent(name) + "%0A" +
@@ -826,6 +1009,41 @@
             var waUrl = "https://wa.me/" + waNumber + "?text=" + textMessage;
 
             window.open(waUrl, '_blank');
+        }
+
+        // Load Admin Bookings
+        function loadAdminData() {
+            var existingBookings = JSON.parse(localStorage.getItem('dk_bookings') || '[]');
+            document.getElementById('bookingCount').innerText = existingBookings.length;
+
+            var tbody = document.getElementById('bookingTableBody');
+            tbody.innerHTML = '';
+
+            if (existingBookings.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">No Bookings Recorded Yet.</td></tr>';
+                return;
+            }
+
+            existingBookings.forEach(function(b, idx) {
+                var row = '<tr>' +
+                            '<td>' + (idx + 1) + '</td>' +
+                            '<td>' + b.timestamp + '</td>' +
+                            '<td><strong>' + b.name + '</strong></td>' +
+                            '<td><a href="https://wa.me/91' + b.phone + '" target="_blank">' + b.phone + '</a></td>' +
+                            '<td>' + b.service + '</td>' +
+                            '<td>' + b.date + '</td>' +
+                            '<td>' + b.time + '</td>' +
+                            '<td>' + b.utr + '</td>' +
+                          '</tr>';
+                tbody.innerHTML += row;
+            });
+        }
+
+        function clearBookings() {
+            if (confirm("Are you sure you want to delete all saved booking records?")) {
+                localStorage.removeItem('dk_bookings');
+                loadAdminData();
+            }
         }
     </script>
 
