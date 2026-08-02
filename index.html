@@ -511,48 +511,78 @@
             background: #1eb857;
         }
 
-        /* DilKholDesire Partner Notice Box */
-        .partner-notice-box {
-            background: #fff5f5;
-            border: 1px solid #fecdd3;
-            border-radius: 14px;
-            padding: 20px;
+        /* Interactive Scratch Card Section */
+        .scratch-section-wrapper {
             margin-top: 40px;
             text-align: center;
         }
 
-        .partner-notice-box h3 {
-            color: #be123c;
-            font-size: 16px;
-            margin-bottom: 8px;
+        .scratch-card-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            min-height: 260px;
+            background: #fff5f5;
+            border: 2px dashed #fecdd3;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(225, 29, 72, 0.08);
+        }
+
+        .scratch-revealed-content {
+            padding: 25px 20px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 100%;
+        }
+
+        .scratch-revealed-content h3 {
+            color: #be123c;
+            font-size: 17px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
             gap: 8px;
         }
 
-        .partner-notice-box p {
+        .scratch-revealed-content p {
             font-size: 12px;
             color: #4c0519;
-            max-width: 750px;
-            margin: 0 auto 15px auto;
             line-height: 1.6;
+            margin-bottom: 15px;
         }
 
         .partner-btn {
             background: #be123c;
             color: white;
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 20px;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
             display: inline-block;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(190, 18, 60, 0.3);
         }
 
         .partner-btn:hover {
             background: #9f1239;
+            transform: translateY(-2px);
+        }
+
+        canvas#scratchCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 10;
+            touch-action: none;
         }
 
         /* Footer */
@@ -865,14 +895,25 @@
 
         </div>
 
-        <!-- 4. DilKholDesire Partner Notice Box (Bottom Section) -->
-        <div class="partner-notice-box" id="desire-section">
-            <h3><i class="fa-solid fa-fire"></i> विशेष वैवाहिक, इंटिमेट & मैरिटल वेलनेस (DilKholDesire)</h3>
-            <p>
-                क्या आप अपने निजी वैवाहिक जीवन (Marital Life), पार्टनर के साथ इंटिमेट तालमेल, गुप्त इच्छाओं (Personal Desires) या मानसिक फैंटेसी को लेकर बिना किसी संकोच के बात करना चाहते हैं?<br>
-                DilKholSafe मुख्य रूप से इमोशनल हीलिंग और स्ट्रेस रिलीफ परामर्श देता है। यदि आप विशेष रूप से अपने <strong>इंटिमेट रिलेशनशिप, मैरिटल वेलनेस, या अपनी सीक्रेट फैंटेसी गाइडेंस</strong> के लिए प्राइवेट परामर्श चाहते हैं, तो हमारे विशेष अधिकृत प्लैटफ़ॉर्म <strong>"DilKholDesire" (दिल खोल डिजायर)</strong> पर कनेक्ट करें। यहाँ आपकी हर बात 100% गोपनीय और सम्मानित रहेगी।
-            </p>
-            <a href="https://dilkholdesire.in" target="_blank" class="partner-btn">DilKholDesire पर प्राइवेट परामर्श लें <i class="fa-solid fa-arrow-right"></i></a>
+        <!-- 4. Interactive Secret Scratch Card (Bottom Section) -->
+        <div class="scratch-section-wrapper" id="desire-section">
+            <div class="scratch-card-container" id="scratchContainer">
+                
+                <!-- Content Revealed After Scratch -->
+                <div class="scratch-revealed-content">
+                    <h3><i class="fa-solid fa-fire"></i> DilKholDesire - VIP मैरिटल & पर्सनल गाइडेंस (18+)</h3>
+                    <p>
+                        क्या आप अपनी मैरिड लाइफ, कपल्स इंटिमेसी, सीक्रेट फैंटेसीज़ (Secret Fantasies) या मन की दबी इच्छाओं पर बिना किसी झिझक के एक्सपर्ट से बात करना चाहते हैं?<br>
+                        हमारे विशेष अधिकृत पोर्टल <strong>DilKholDesire</strong> पर आपको मिलती है 100% प्राइवेसी और सम्मान के साथ सीक्रेट गाइडेंस।
+                    </p>
+                    <a href="https://dilkholdesire.in" target="_blank" class="partner-btn">
+                        🔥 DilKholDesire पोर्टल पर जाएँ & डिटेल्स देखें <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Interactive Scratch Layer Canvas -->
+                <canvas id="scratchCanvas"></canvas>
+            </div>
         </div>
 
     </div>
@@ -944,7 +985,74 @@
                 display = document.querySelector('#countdown');
             startTimer(tenMinutes, display);
             loadAdminData();
+            initScratchCard();
         };
+
+        // Interactive Canvas Scratch Card Logic
+        function initScratchCard() {
+            var container = document.getElementById('scratchContainer');
+            var canvas = document.getElementById('scratchCanvas');
+            var ctx = canvas.getContext('2d');
+
+            var width = container.offsetWidth;
+            var height = container.offsetHeight;
+
+            canvas.width = width;
+            canvas.height = height;
+
+            // Draw Metallic Gold Cover Surface
+            var grad = ctx.createLinearGradient(0, 0, width, height);
+            grad.addColorStop(0, '#d4af37');
+            grad.addColorStop(0.3, '#fff3a8');
+            grad.addColorStop(0.5, '#aa7c11');
+            grad.addColorStop(0.8, '#fbf0b9');
+            grad.addColorStop(1, '#d4af37');
+
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, width, height);
+
+            // Add Decorative Scratch Text on Cover
+            ctx.fillStyle = '#3a1563';
+            ctx.font = 'bold 15px Poppins, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('🎁 VIP सेक्रेट परामर्श एवं स्पेशल मैरिटल गाइडेंस (18+)', width / 2, height / 2 - 12);
+
+            ctx.fillStyle = '#6b21a8';
+            ctx.font = '600 12px Poppins, sans-serif';
+            ctx.fillText('👆 उंगली या माउस से रगड़कर (Scratch करके) अनलॉक करें!', width / 2, height / 2 + 18);
+
+            var isDrawing = false;
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                var rect = canvas.getBoundingClientRect();
+                var x = (e.clientX || e.touches[0].clientX) - rect.left;
+                var y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 28, 0, Math.PI * 2, false);
+                ctx.fill();
+            }
+
+            function startScratch(e) {
+                isDrawing = true;
+                scratch(e);
+            }
+
+            function stopScratch() {
+                isDrawing = false;
+            }
+
+            canvas.addEventListener('mousedown', startScratch);
+            canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('mouseup', stopScratch);
+            canvas.addEventListener('mouseleave', stopScratch);
+
+            canvas.addEventListener('touchstart', startScratch, { passive: true });
+            canvas.addEventListener('touchmove', scratch, { passive: true });
+            canvas.addEventListener('touchend', stopScratch);
+        }
 
         // Triple Click on Footer to Open Admin Panel
         var footerClicks = 0;
