@@ -537,6 +537,8 @@
             align-items: center;
             justify-content: center;
             height: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         .scratch-revealed-content h3 {
@@ -559,7 +561,7 @@
         .partner-btn {
             background: #be123c;
             color: white;
-            padding: 10px 24px;
+            padding: 12px 26px;
             border-radius: 20px;
             text-decoration: none;
             font-size: 13px;
@@ -567,6 +569,9 @@
             display: inline-block;
             transition: 0.3s;
             box-shadow: 0 4px 15px rgba(190, 18, 60, 0.3);
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
         }
 
         .partner-btn:hover {
@@ -714,7 +719,7 @@
 
     <!-- Smart Attention Bar -->
     <div class="attention-bar">
-        <i class="fa-solid fa-bullhorn"></i> 📌 <span>विशेष सूचना: वैवाहिक जीवन, निजी ज़रूरतों एवं विशेष गाइडेंस हेतु साइट को <a href="#desire-section">नीचे (Bottom Section)</a> पूरा पढ़ें।</span>
+        <i class="fa-solid fa-bullhorn"></i> 📌 <span>विशेष सूचना: निजी परामर्श, वैवाहिक सपोर्ट एवं कूपन ऑफर्स हेतु वेबसाइट के <a href="#desire-section">निचले हिस्से (Bottom Section)</a> पर जाएँ।</span>
     </div>
 
     <div class="container">
@@ -906,7 +911,7 @@
                         क्या आप अपनी मैरिड लाइफ, कपल्स इंटिमेसी, सीक्रेट फैंटेसीज़ (Secret Fantasies) या मन की दबी इच्छाओं पर बिना किसी झिझक के एक्सपर्ट से बात करना चाहते हैं?<br>
                         हमारे विशेष अधिकृत पोर्टल <strong>DilKholDesire</strong> पर आपको मिलती है 100% प्राइवेसी और सम्मान के साथ सीक्रेट गाइडेंस।
                     </p>
-                    <a href="https://dilkholdesire.in" target="_blank" class="partner-btn">
+                    <a href="https://dilkholdesire.in" target="_blank" rel="noopener noreferrer" class="partner-btn" onclick="window.open('https://dilkholdesire.in', '_blank');">
                         🔥 DilKholDesire पोर्टल पर जाएँ & डिटेल्स देखें <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
@@ -1022,17 +1027,23 @@
             ctx.fillText('👆 उंगली या माउस से रगड़कर (Scratch करके) अनलॉक करें!', width / 2, height / 2 + 18);
 
             var isDrawing = false;
+            var erasedPixels = 0;
 
             function scratch(e) {
                 if (!isDrawing) return;
                 var rect = canvas.getBoundingClientRect();
-                var x = (e.clientX || e.touches[0].clientX) - rect.left;
-                var y = (e.clientY || e.touches[0].clientY) - rect.top;
+                var x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+                var y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
 
                 ctx.globalCompositeOperation = 'destination-out';
                 ctx.beginPath();
-                ctx.arc(x, y, 28, 0, Math.PI * 2, false);
+                ctx.arc(x, y, 32, 0, Math.PI * 2, false);
                 ctx.fill();
+
+                erasedPixels++;
+                if (erasedPixels > 30) {
+                    canvas.style.pointerEvents = 'none';
+                }
             }
 
             function startScratch(e) {
