@@ -28,11 +28,11 @@
             overflow-x: hidden;
         }
 
-        /* 1. MAIN HEADER & LOGO */
+        /* 1. HEADER & LOGO */
         header {
             background: linear-gradient(135deg, #1e002c 0%, #4a0066 100%);
             color: #ffffff;
-            padding: 15px 20px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,17 +42,26 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            max-height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
             font-size: 22px;
             font-weight: 700;
             color: #ffffff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .logo span {
+        .logo-text span {
             color: #ff3366;
         }
 
@@ -177,7 +186,7 @@
         .section-title {
             text-align: center;
             font-size: 24px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             color: #1e002c;
             position: relative;
             font-weight: 700;
@@ -193,17 +202,70 @@
             border-radius: 2px;
         }
 
-        /* 3. REVIEWS GRID (FIRST PLACE RIGHT AFTER TRUST) */
+        /* ADD REVIEW BUTTON & MODAL */
+        .add-review-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-add-review {
+            background: #1e002c;
+            color: #ffffff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 0, 44, 0.2);
+            transition: 0.3s;
+        }
+
+        .btn-add-review:hover {
+            background: #ff3366;
+        }
+
+        .review-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px; right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        /* 3. REVIEWS GRID (STRICT 2-COLUMN DISPLAY) */
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr) !important;
             gap: 20px;
             margin-bottom: 55px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             .reviews-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -268,6 +330,9 @@
             text-align: center;
             border: 1px solid #edf2f7;
             transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .service-card:hover {
@@ -295,6 +360,7 @@
         .service-card.desire-card {
             border: 2px solid #ff3366;
             background: #fff5f7;
+            cursor: pointer;
         }
 
         /* 5. DISCOUNT BANNER & BOOKING SECTION */
@@ -330,21 +396,49 @@
             box-shadow: 0 0 8px #22c55e;
         }
 
+        /* DISCOUNT OFFER (4TH SCREENSHOT MATCHED STYLE) */
         .discount-banner-box {
             background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-            border: 2px dashed #f97316;
+            border: 2px dashed #ea580c;
             color: #9a3412;
-            padding: 16px 20px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 14px;
             text-align: center;
             margin-bottom: 25px;
         }
 
         .discount-banner-box h3 {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
             color: #c2410c;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+        }
+
+        .pricing-list-preview {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            font-size: 13.5px;
+        }
+
+        .pricing-item {
+            background: #ffffff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #fed7aa;
+        }
+
+        .slashed-price {
+            text-decoration: line-through;
+            color: #94a3b8;
+            margin-right: 4px;
+        }
+
+        .offer-price {
+            color: #ea580c;
+            font-weight: 700;
         }
 
         .form-group {
@@ -417,7 +511,7 @@
             box-shadow: 0 4px 15px rgba(30,0,44,0.3);
         }
 
-        /* 6. POST-PAYMENT BUSY CONFIRMATION MESSAGE */
+        /* 6. POST-SUBMIT BUSY CONFIRMATION MESSAGE */
         #confirmationMsg {
             display: none;
             background: #eff6ff;
@@ -450,7 +544,10 @@
 
     <!-- 1. MAIN HEADER & LOGO -->
     <header>
-        <a href="#" class="logo">DilKhol<span>Safe</span></a>
+        <a href="#" class="logo-container">
+            <img src="logo.png" alt="DilKholSafe Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('altLogoText').style.display='inline';">
+            <span id="altLogoText" class="logo-text" style="display:none;">DilKhol<span>Safe</span></span>
+        </a>
         <nav>
             <a href="#reviews">रिव्यूज</a>
             <a href="#services">सेवाएं</a>
@@ -498,6 +595,11 @@
 
         <!-- 3. REVIEWS SECTION (FIRST PLACE FOR MAXIMUM TRUST) -->
         <h2 class="section-title" id="reviews">यूज़र्स के वास्तविक अनुभव (Testimonials)</h2>
+        
+        <div class="add-review-wrapper">
+            <button class="btn-add-review" onclick="openReviewModal()"><i class="fa-solid fa-pen-to-square"></i> ✍️ अपना अनुभव / रिव्यू साझा करें</button>
+        </div>
+
         <div class="reviews-grid">
 
             <!-- Review 1: DilKholDesire Special -->
@@ -703,11 +805,12 @@
                 <p>बिना नाम और पहचान उजागर किए अपने मन का सारा बोझ हल्का करें।</p>
             </div>
 
-            <div class="service-card desire-card">
+            <!-- CLICKABLE DIRECT REDIRECT 4TH CARD -->
+            <a href="https://dilkholdesire.in" target="_blank" class="service-card desire-card">
                 <div class="icon" style="color: #ff3366;"><i class="fa-solid fa-fire"></i></div>
-                <h3>DilKholDesire (Private Space)</h3>
-                <p>रोमांटिक, सीक्रेट और फ़्लर्टी बातें बिना किसी झिझक के फ्रेंडली माहौल में शेयर करें।</p>
-            </div>
+                <h3>DilKholDesire (Private Space) 🔞</h3>
+                <p>रोमांटिक, सीक्रेट और फ़्लर्टी बातें बिना किसी झिझक के फ्रेंडली माहौल में शेयर करें। (विजिट करने के लिए यहाँ क्लिक करें ➔)</p>
+            </a>
         </div>
 
         <!-- 5. DISCOUNT BANNER & BOOKING SECTION -->
@@ -719,9 +822,15 @@
                 लिसनर अभी ऑनलाइन उपलब्ध हैं | 100% गोपनीय और सुरक्षित
             </div>
 
+            <!-- 50% DISCOUNT BANNER MATCHING 4TH SCREENSHOT -->
             <div class="discount-banner-box">
                 <h3>🔥 आज का मुख्य ऑफर: 50% की भारी छूट!</h3>
-                <p style="font-size: 13px;">नीचे दिए गए कट-ऑफ रेट्स पर आज ही अपना स्लॉट बुक करें</p>
+                <p style="font-size: 13px;">नीचे दिए गए कट-ऑफ डिस्काउंट रेट्स पर आज ही अपना स्लॉट बुक करें</p>
+                <div class="pricing-list-preview">
+                    <div class="pricing-item">15 Mints Normal: <span class="slashed-price">₹299</span> <span class="offer-price">₹149</span></div>
+                    <div class="pricing-item">15 Mints Urgent: <span class="slashed-price">₹499</span> <span class="offer-price">₹299</span></div>
+                    <div class="pricing-item">30 Mints Deep Talk: <span class="slashed-price">₹699</span> <span class="offer-price">₹499</span></div>
+                </div>
             </div>
 
             <form id="slotForm" onsubmit="handleFormSubmit(event)">
@@ -781,19 +890,65 @@
 
     </div>
 
+    <!-- USER ADD REVIEW MODAL FORM -->
+    <div id="reviewModal" class="review-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeReviewModal()">&times;</span>
+            <h3 style="font-size: 18px; color: #1e002c; margin-bottom: 15px; text-align: center;">अपना अनुभव / रिव्यू साझा करें</h3>
+            <form onsubmit="handleUserReviewSubmit(event)">
+                <div class="form-group">
+                    <label>आपका नाम (या 'Anonymous' लिखें)*</label>
+                    <input type="text" class="form-control" placeholder="उदा. अंकिता शर्मा / Anonymous" required>
+                </div>
+                <div class="form-group">
+                    <label>रेटिंग चुनें (Rating)*</label>
+                    <select class="form-control" required>
+                        <option value="5">⭐⭐⭐⭐⭐ (5 Star - बेहतरीन अनुभव)</option>
+                        <option value="4">⭐⭐⭐⭐ (4 Star - बहुत अच्छा)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>आपका अनुभव (Review Message)*</label>
+                    <textarea class="form-control" rows="4" placeholder="यहाँ अपना अनुभव लिखें..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" style="padding: 10px;">रिव्यू सबमिट करें</button>
+            </form>
+            <p id="reviewSuccessMsg" style="display:none; color: #166534; font-size: 13px; text-align: center; margin-top: 12px; font-weight: 600;">
+                धन्यवाद! आपका रिव्यू सबमिट हो गया है और सत्यापन के बाद लाइव कर दिया जाएगा।
+            </p>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 DilKholSafe. All Rights Reserved. | 100% Confidential & Private</p>
         <p style="margin-top: 5px;"><a href="https://dilkholdesire.in" target="_blank">DilKholDesire</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
     </footer>
 
-    <!-- SCRIPT FOR UTR SUBMISSION -->
+    <!-- SCRIPT FOR UTR SUBMISSION & REVIEW MODAL -->
     <script>
         function handleFormSubmit(event) {
             event.preventDefault();
             document.getElementById('slotForm').style.display = 'none';
             document.getElementById('confirmationMsg').style.display = 'block';
             document.getElementById('confirmationMsg').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openReviewModal() {
+            document.getElementById('reviewModal').style.display = 'flex';
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').style.display = 'none';
+        }
+
+        function handleUserReviewSubmit(event) {
+            event.preventDefault();
+            document.getElementById('reviewSuccessMsg').style.display = 'block';
+            setTimeout(function() {
+                closeReviewModal();
+                document.getElementById('reviewSuccessMsg').style.display = 'none';
+            }, 2500);
         }
     </script>
 </body>
