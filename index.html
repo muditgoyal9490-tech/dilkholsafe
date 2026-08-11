@@ -255,7 +255,7 @@
             color: #888;
         }
 
-        /* 3. REVIEWS GRID (STRICT 2-COLUMN DISPLAY) */
+        /* 3. REVIEWS GRID (2-COLUMN) */
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr) !important;
@@ -363,7 +363,7 @@
             cursor: pointer;
         }
 
-        /* 5. DISCOUNT BANNER & BOOKING SECTION */
+        /* 5. BOOKING SECTION & OFFER */
         .booking-section {
             background: #ffffff;
             padding: 32px 25px;
@@ -396,7 +396,6 @@
             box-shadow: 0 0 8px #22c55e;
         }
 
-        /* DISCOUNT OFFER (4TH SCREENSHOT MATCHED STYLE) */
         .discount-banner-box {
             background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
             border: 2px dashed #ea580c;
@@ -468,7 +467,6 @@
             background: #ffffff;
         }
 
-        /* QR PAYMENT BOX */
         .qr-box {
             text-align: center;
             background: #faf5ff;
@@ -511,7 +509,6 @@
             box-shadow: 0 4px 15px rgba(30,0,44,0.3);
         }
 
-        /* 6. POST-SUBMIT BUSY CONFIRMATION MESSAGE */
         #confirmationMsg {
             display: none;
             background: #eff6ff;
@@ -593,7 +590,7 @@
 
     <div class="container">
 
-        <!-- 3. REVIEWS SECTION (FIRST PLACE FOR MAXIMUM TRUST) -->
+        <!-- 3. REVIEWS SECTION -->
         <h2 class="section-title" id="reviews">यूज़र्स के वास्तविक अनुभव (Testimonials)</h2>
         
         <div class="add-review-wrapper">
@@ -602,7 +599,7 @@
 
         <div class="reviews-grid">
 
-            <!-- Review 1: DilKholDesire Special -->
+            <!-- Review 1 -->
             <div class="review-card">
                 <div>
                     <div class="stars">★★★★★</div>
@@ -611,7 +608,7 @@
                 <div class="user-info">अंकिता शर्मा, दिल्ली <span>Unmarried</span></div>
             </div>
 
-            <!-- Review 2: DilKholDesire Special -->
+            <!-- Review 2 -->
             <div class="review-card">
                 <div>
                     <div class="stars">★★★★★</div>
@@ -746,7 +743,7 @@
                 <div class="user-info">काजल बिष्ट, शिमला <span>Student</span></div>
             </div>
 
-            <!-- Review 17: DilKholDesire Special -->
+            <!-- Review 17 -->
             <div class="review-card">
                 <div>
                     <div class="stars">★★★★★</div>
@@ -755,7 +752,7 @@
                 <div class="user-info">गरिमा यादव, वाराणसी <span>Married</span></div>
             </div>
 
-            <!-- Review 18: DilKholDesire Special -->
+            <!-- Review 18 -->
             <div class="review-card">
                 <div>
                     <div class="stars">★★★★★</div>
@@ -764,7 +761,7 @@
                 <div class="user-info">साक्षी राजपूत, भोपाल <span>Married</span></div>
             </div>
 
-            <!-- Review 19: Boy Review 1 -->
+            <!-- Review 19 -->
             <div class="review-card">
                 <div>
                     <div class="stars">★★★★★</div>
@@ -773,7 +770,7 @@
                 <div class="user-info">राहुल गुप्ता, मुंबई <span>Working Professional</span></div>
             </div>
 
-            <!-- Review 20: Boy Review 2 -->
+            <!-- Review 20 -->
             <div class="review-card">
                 <div>
                     <div class="stars">★★★★★</div>
@@ -822,7 +819,7 @@
                 लिसनर अभी ऑनलाइन उपलब्ध हैं | 100% गोपनीय और सुरक्षित
             </div>
 
-            <!-- 50% DISCOUNT BANNER MATCHING 4TH SCREENSHOT -->
+            <!-- 50% DISCOUNT BANNER -->
             <div class="discount-banner-box">
                 <h3>🔥 आज का मुख्य ऑफर: 50% की भारी छूट!</h3>
                 <p style="font-size: 13px;">नीचे दिए गए कट-ऑफ डिस्काउंट रेट्स पर आज ही अपना स्लॉट बुक करें</p>
@@ -853,9 +850,10 @@
                     </select>
                 </div>
 
+                <!-- DROPDOWN WITH DILKHOLDESIRE REDIRECT LOGIC -->
                 <div class="form-group">
                     <label>आप किस बारे में बात करना चाहते हैं? (Select Category)*</label>
-                    <select class="form-control" required>
+                    <select class="form-control" id="categorySelect" onchange="checkCategoryRedirect(this)" required>
                         <option value="emotional">इमोशनल सपोर्ट & तनाव (Emotional Support)</option>
                         <option value="relationship">ब्रेकअप & रिलेशनशिप गाइडेंस (Relationship Guidance)</option>
                         <option value="desire">रोमांटिक, सीक्रेट टॉक & डिजायर्स (DilKholDesire 🔞)</option>
@@ -925,8 +923,16 @@
         <p style="margin-top: 5px;"><a href="https://dilkholdesire.in" target="_blank">DilKholDesire</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
     </footer>
 
-    <!-- SCRIPT FOR UTR SUBMISSION & REVIEW MODAL -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
+        // Check Category Selection for DilKholDesire Redirect
+        function checkCategoryRedirect(selectElement) {
+            if (selectElement.value === 'desire') {
+                alert("रोमांटिक व सीक्रेट टॉक (DilKholDesire) के लिए हमारा एक समर्पित और विशेष प्लेटफॉर्म है। हम आपको 100% प्राइवेसी और बेहतर अनुभव के लिए सीधे हमारी ऑफिशियल वेबसाइट DilKholDesire.in पर कनेक्ट कर रहे हैं... 🔒");
+                window.location.href = "https://dilkholdesire.in";
+            }
+        }
+
         function handleFormSubmit(event) {
             event.preventDefault();
             document.getElementById('slotForm').style.display = 'none';
