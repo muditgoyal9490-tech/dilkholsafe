@@ -417,16 +417,21 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin-top: 10px;
-            font-size: 13.5px;
+            font-size: 13px;
         }
 
         .pricing-item {
             background: #ffffff;
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 8px;
             border: 1px solid #fed7aa;
+        }
+
+        .trial-highlight {
+            border: 2px solid #22c55e;
+            background: #f0fdf4;
         }
 
         .slashed-price {
@@ -522,6 +527,56 @@
             line-height: 1.6;
         }
 
+        /* FLOATING WHATSAPP BUTTON */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            padding: 10px 18px;
+            font-weight: 600;
+            font-size: 13px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            background-color: #1ebe57;
+        }
+
+        /* LIVE BOOKING POPUP */
+        .booking-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #ffffff;
+            border-left: 4px solid #22c55e;
+            padding: 10px 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            z-index: 9998;
+            font-size: 12px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(120px);
+            transition: transform 0.5s ease;
+        }
+
+        .booking-popup.show {
+            transform: translateY(0);
+        }
+
         footer {
             background: #1e002c;
             color: #aaa;
@@ -538,6 +593,21 @@
     </style>
 </head>
 <body>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/919999999999?text=Hello%20DilKholSafe,%20mujhe%20slot%20booking%20ke%20baare%20mein%20poochhna%20hai" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+        <span>चैट पर मदद लें</span>
+    </a>
+
+    <!-- LIVE RECENT BOOKING POPUP -->
+    <div id="bookingPopup" class="booking-popup">
+        <i class="fa-solid fa-circle-check" style="color: #22c55e; font-size: 18px;"></i>
+        <div>
+            <strong id="popupUser">दिल्ली से स्नेहा</strong> ने अभी <span id="popupSlot" style="color: #ff3366; font-weight: 700;">₹49 का ट्रायल स्लॉट</span> बुक किया
+            <div style="font-size: 10px; color: #64748b;" id="popupTime">2 मिनट पहले</div>
+        </div>
+    </div>
 
     <!-- 1. MAIN HEADER & LOGO -->
     <header>
@@ -819,11 +889,12 @@
                 लिसनर अभी ऑनलाइन उपलब्ध हैं | 100% गोपनीय और सुरक्षित
             </div>
 
-            <!-- 50% DISCOUNT BANNER -->
+            <!-- 50% DISCOUNT BANNER WITH ₹49 TRIAL -->
             <div class="discount-banner-box">
                 <h3>🔥 आज का मुख्य ऑफर: 50% की भारी छूट!</h3>
                 <p style="font-size: 13px;">नीचे दिए गए कट-ऑफ डिस्काउंट रेट्स पर आज ही अपना स्लॉट बुक करें</p>
                 <div class="pricing-list-preview">
+                    <div class="pricing-item trial-highlight">⚡ 5 Mints Trial: <span class="slashed-price">₹99</span> <span class="offer-price" style="color: #166534;">₹49</span></div>
                     <div class="pricing-item">15 Mints Normal: <span class="slashed-price">₹299</span> <span class="offer-price">₹149</span></div>
                     <div class="pricing-item">15 Mints Urgent: <span class="slashed-price">₹499</span> <span class="offer-price">₹299</span></div>
                     <div class="pricing-item">30 Mints Deep Talk: <span class="slashed-price">₹699</span> <span class="offer-price">₹499</span></div>
@@ -844,6 +915,7 @@
                 <div class="form-group">
                     <label>सेकंड्स / स्लॉट समय चुनें (Select Service Session)*</label>
                     <select class="form-control" required>
+                        <option value="49" selected>⚡ 5 मिनट - क्विक ट्रायल स्लॉट (1st Time Special Offer: ₹49)</option>
                         <option value="149">15 मिनट - नॉर्मल स्लॉट (पहले: ₹299 ➔ आज का ऑफर: ₹149)</option>
                         <option value="299">15 मिनट - अर्जेंट/तत्काल स्लॉट (पहले: ₹499 ➔ आज का ऑफर: ₹299)</option>
                         <option value="499">30 मिनट - डीप टॉक कंसल्टेशन (पहले: ₹699 ➔ आज का ऑफर: ₹499)</option>
@@ -956,6 +1028,38 @@
                 document.getElementById('reviewSuccessMsg').style.display = 'none';
             }, 2500);
         }
+
+        // LIVE RECENT BOOKING POPUP LOGIC
+        const sampleBookings = [
+            { name: "दिल्ली से अंकिता", slot: "₹49 का ट्रायल स्लॉट", time: "2 मिनट पहले" },
+            { name: "मुंबई से राहुल", slot: "15 मिनट का नॉर्मल स्लॉट", time: "5 मिनट पहले" },
+            { name: "जयपुर से पूजा", slot: "₹49 का ट्रायल स्लॉट", time: "1 मिनट पहले" },
+            { name: "लखनऊ से प्रिया", slot: "30 मिनट डीप टॉक स्लॉट", time: "8 मिनट पहले" }
+        ];
+
+        let popupIndex = 0;
+        function showRecentBookingPopup() {
+            const popup = document.getElementById('bookingPopup');
+            const data = sampleBookings[popupIndex];
+            
+            document.getElementById('popupUser').innerText = data.name;
+            document.getElementById('popupSlot').innerText = data.slot;
+            document.getElementById('popupTime').innerText = data.time;
+
+            popup.classList.add('show');
+
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 4000);
+
+            popupIndex = (popupIndex + 1) % sampleBookings.length;
+        }
+
+        // Show first popup after 3 seconds, then repeat every 12 seconds
+        setTimeout(() => {
+            showRecentBookingPopup();
+            setInterval(showRecentBookingPopup, 12000);
+        }, 3000);
     </script>
 </body>
 </html>
