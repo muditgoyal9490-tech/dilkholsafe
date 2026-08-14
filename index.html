@@ -3,1063 +3,1114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DilKholSafe - 100% गोपनीय और सुरक्षित इमोशनल व पर्सनल सपोर्ट</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>DilKholSafe - 100% सुरक्षित और गोपनीय बातचीत</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --bg-dark: #0f172a;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --gold: #f59e0b;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
             -webkit-tap-highlight-color: transparent;
-        }
-        
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #f8f9fa;
-            color: #2c3e50;
-            line-height: 1.6;
+            background-color: #f8fafc;
+            color: var(--text-main);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* 1. HEADER & LOGO */
+        /* HEADER */
         header {
-            background: linear-gradient(135deg, #1e002c 0%, #4a0066 100%);
-            color: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .logo-container {
+        .logo {
             display: flex;
             align-items: center;
             gap: 10px;
             text-decoration: none;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
         }
 
-        .logo-img {
-            max-height: 48px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .logo-text {
+        .logo i {
+            color: var(--secondary);
             font-size: 22px;
-            font-weight: 700;
-            color: #ffffff;
         }
 
-        .logo-text span {
-            color: #ff3366;
-        }
-
-        nav {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .btn-secret {
-            background: linear-gradient(45deg, #ff0055, #ff5500);
-            color: #ffffff !important;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-weight: 600 !important;
-            font-size: 12.5px !important;
-            box-shadow: 0 0 12px rgba(255, 0, 85, 0.5);
-            animation: pulse 2s infinite;
-            text-decoration: none;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.04); }
-            100% { transform: scale(1); }
-        }
-
-        /* 2. HERO & TRUST SECTION */
-        .hero {
-            background: linear-gradient(rgba(30, 0, 44, 0.88), rgba(74, 0, 102, 0.88)), url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: #ffffff;
-            text-align: center;
-            padding: 55px 20px 45px;
-        }
-
-        .hero-badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 6px 16px;
+        .header-badge {
+            background: #ecfdf5;
+            color: #059669;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 13px;
+            border: 1px solid #a7f3d0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+            color: #fff;
+            padding: 40px 20px 30px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
             display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fbcfe8;
+            font-size: 12px;
+            padding: 5px 14px;
+            border-radius: 30px;
             margin-bottom: 15px;
-            backdrop-filter: blur(5px);
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .hero h1 {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.3;
             margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, #f472b6, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 15px;
-            color: #e0e0e0;
-            max-width: 700px;
+            font-size: 14px;
+            color: #cbd5e1;
+            max-width: 500px;
             margin: 0 auto 20px;
         }
 
-        .trust-bar {
-            background: #ffffff;
-            padding: 18px 0;
-            border-bottom: 1px solid #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            margin-bottom: 35px;
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .trust-container {
-            max-width: 1050px;
-            margin: 0 auto;
+        .hero-features {
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
-            padding: 0 18px;
+            margin-top: 25px;
+            flex-wrap: wrap;
         }
 
-        .trust-item {
+        .hero-feature-item {
+            font-size: 12px;
+            color: #e2e8f0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
         }
 
-        .trust-item i {
-            font-size: 22px;
-            color: #ff3366;
-            background: rgba(255, 51, 102, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        /* CONTAINER */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* SECTION HEADINGS */
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--bg-dark);
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
         }
 
-        .trust-text h4 {
-            font-size: 13.5px;
-            font-weight: 600;
-            color: #1e293b;
+        .section-title p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
-        .trust-text p {
-            font-size: 11.5px;
-            color: #64748b;
-        }
-
-        .container {
-            max-width: 1050px;
-            margin: 0 auto 40px;
-            padding: 0 18px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 25px;
-            color: #1e002c;
-            position: relative;
-            font-weight: 700;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 50px;
-            height: 3px;
-            background: #ff3366;
-            display: block;
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* ADD REVIEW BUTTON & MODAL */
-        .add-review-wrapper {
-            text-align: center;
+        /* SERVICES GRID */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             margin-bottom: 30px;
         }
 
-        .btn-add-review {
-            background: #1e002c;
-            color: #ffffff;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 20px;
-            font-size: 13.5px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(30, 0, 44, 0.2);
-            transition: 0.3s;
-        }
-
-        .btn-add-review:hover {
-            background: #ff3366;
-        }
-
-        .review-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .modal-content {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 16px;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 12px; right: 15px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #888;
-        }
-
-        /* 3. REVIEWS GRID (2-COLUMN) */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 20px;
-            margin-bottom: 55px;
-        }
-
-        @media (max-width: 600px) {
-            .reviews-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        .review-card {
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 14px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid #ff3366;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .review-card .stars {
-            color: #ffc107;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .review-card p {
-            font-size: 13.5px;
-            color: #334155;
-            margin-bottom: 14px;
-            font-style: italic;
-            line-height: 1.6;
-        }
-
-        .review-card .user-info {
-            font-weight: 700;
-            font-size: 13px;
-            color: #1e002c;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 10px;
-        }
-
-        .review-card .user-info span {
-            color: #ff3366;
-            font-weight: 600;
-            font-size: 11.5px;
-            background: #fff1f2;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-
-        /* 4. SERVICES SECTION */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 55px;
-        }
-
         .service-card {
-            background: #ffffff;
-            padding: 25px 20px;
-            border-radius: 14px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: #fff;
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
             text-align: center;
-            border: 1px solid #edf2f7;
-            transition: 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-card .icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-            color: #ff3366;
+        .service-card i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--primary);
         }
 
         .service-card h3 {
-            font-size: 17px;
-            margin-bottom: 8px;
-            color: #1e002c;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-main);
         }
 
         .service-card p {
-            font-size: 13px;
-            color: #64748b;
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.3;
         }
 
-        .service-card.desire-card {
-            border: 2px solid #ff3366;
-            background: #fff5f7;
-            cursor: pointer;
-        }
-
-        /* 5. BOOKING SECTION & OFFER */
-        .booking-section {
-            background: #ffffff;
-            padding: 32px 25px;
-            border-radius: 16px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 40px;
+        /* BOOKING CARD & PLANS */
+        .booking-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px 20px;
             border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
 
-        .status-badge {
-            background: #f0fdf4;
-            color: #166534;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
+        .plan-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .plan-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+            background: #fafafa;
+        }
+
+        .plan-card.active {
+            border-color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .plan-card.highlight {
+            border-color: #f59e0b;
+        }
+
+        .plan-card.active.highlight {
+            border-color: #d97706;
+            background: #fffbeb;
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -9px;
+            right: 14px;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .badge-trial { background: #10b981; }
+        .badge-priority { background: #ef4444; }
+        .badge-popular { background: #f59e0b; }
+
+        .plan-info h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 18px;
-            border: 1px solid #bbf7d0;
+            gap: 6px;
         }
 
-        .status-dot {
-            width: 9px;
-            height: 9px;
-            background: #22c55e;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #22c55e;
+        .plan-info p {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
         }
 
-        .discount-banner-box {
-            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-            border: 2px dashed #ea580c;
-            color: #9a3412;
-            padding: 18px;
-            border-radius: 14px;
-            text-align: center;
-            margin-bottom: 25px;
+        .plan-price {
+            text-align: right;
         }
 
-        .discount-banner-box h3 {
-            font-size: 19px;
-            font-weight: 700;
-            color: #c2410c;
-            margin-bottom: 8px;
+        .plan-price .amount {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-dark);
         }
 
-        .pricing-list-preview {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-
-        .pricing-item {
-            background: #ffffff;
-            padding: 6px 12px;
-            border-radius: 8px;
-            border: 1px solid #fed7aa;
-        }
-
-        .trial-highlight {
-            border: 2px solid #22c55e;
-            background: #f0fdf4;
-        }
-
-        .slashed-price {
-            text-decoration: line-through;
-            color: #94a3b8;
-            margin-right: 4px;
-        }
-
-        .offer-price {
-            color: #ea580c;
-            font-weight: 700;
-        }
-
+        /* FORM INPUTS */
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            text-align: left;
         }
 
         .form-group label {
             display: block;
-            font-size: 13.5px;
+            font-size: 12px;
             font-weight: 600;
             margin-bottom: 6px;
-            color: #334155;
+            color: var(--text-main);
         }
 
         .form-control {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
             font-size: 14px;
             outline: none;
             background: #f8fafc;
+            transition: border-color 0.2s;
         }
 
         .form-control:focus {
-            border-color: #ff3366;
-            background: #ffffff;
+            border-color: var(--primary);
+            background: #fff;
         }
 
-        .qr-box {
-            text-align: center;
-            background: #faf5ff;
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px dashed #d8b4fe;
-            margin: 20px 0;
-        }
-
-        .qr-box img {
-            max-width: 180px;
+        /* PRIVACY BOX */
+        .privacy-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
             border-radius: 10px;
-            margin-bottom: 8px;
-            background: #ffffff;
+            padding: 12px 14px;
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .privacy-box i {
+            color: #16a34a;
+            font-size: 16px;
+            margin-top: 2px;
+        }
+
+        .privacy-box p {
+            font-size: 11.5px;
+            color: #166534;
+            line-height: 1.4;
+        }
+
+        .privacy-box strong {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+
+        /* GUARANTEE BOX */
+        .guarantee-box {
+            background: #faf5ff;
+            border: 1px dashed #d8b4fe;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 11.5px;
+            color: #6b21a8;
+            font-weight: 500;
+        }
+
+        /* PAYMENT BOX & QR */
+        .payment-box {
+            background: #f8fafc;
+            border: 1.5px dashed var(--primary);
+            border-radius: 14px;
+            padding: 18px;
+            margin: 18px 0;
+            text-align: center;
+        }
+
+        .btn-dynamic-pay {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 15px;
+        }
+
+        .btn-dynamic-pay:active {
+            transform: scale(0.98);
+        }
+
+        .qr-wrapper {
+            margin: 10px 0;
+        }
+
+        .qr-wrapper img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            background: #fff;
             padding: 8px;
+            border: 1px solid var(--border);
         }
 
         .upi-id-badge {
-            background: #ffffff;
-            border: 1px solid #d8b4fe;
-            color: #6b21a8;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 13px;
             display: inline-block;
-            margin-top: 6px;
+            background: #e2e8f0;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+            margin-top: 8px;
         }
 
-        .submit-btn {
-            background: linear-gradient(135deg, #1e002c, #4a0066);
-            color: #ffffff;
-            border: none;
+        .btn-submit {
             width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            border: none;
             padding: 15px;
+            border-radius: 12px;
             font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
+            font-weight: 800;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(30,0,44,0.3);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
         }
 
-        #confirmationMsg {
-            display: none;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            color: #1e40af;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14.5px;
-            line-height: 1.6;
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* REVIEWS SECTION */
+        .reviews-section {
+            margin-bottom: 40px;
+        }
+
+        .review-disclaimer {
+            background: #f1f5f9;
+            border-left: 3px solid var(--primary);
+            padding: 8px 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 11px;
+            color: #475569;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .review-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .reviewer-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reviewer-city {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 11px;
+        }
+
+        .review-body {
+            font-size: 12px;
+            color: #334155;
+            line-height: 1.4;
+        }
+
+        /* LIVE BOOKING POPUP TOAST */
+        .toast-notification {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 998;
+            transform: translateY(150px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
         }
 
         /* FLOATING WHATSAPP BUTTON */
-        .whatsapp-float {
+        .floating-wa {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
+            right: 15px;
+            background: #25d366;
             color: #fff;
+            padding: 10px 16px;
             border-radius: 50px;
-            text-align: center;
-            padding: 10px 18px;
-            font-weight: 600;
-            font-size: 13px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
-            z-index: 9999;
             display: flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.05);
-            background-color: #1ebe57;
-        }
-
-        /* LIVE BOOKING POPUP */
-        .booking-popup {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #ffffff;
-            border-left: 4px solid #22c55e;
-            padding: 10px 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-            z-index: 9998;
             font-size: 12px;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transform: translateY(120px);
-            transition: transform 0.5s ease;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: transform 0.2s;
         }
 
-        .booking-popup.show {
-            transform: translateY(0);
+        .floating-wa:active {
+            transform: scale(0.95);
         }
 
+        .floating-wa i {
+            font-size: 18px;
+        }
+
+        /* FOOTER */
         footer {
-            background: #1e002c;
-            color: #aaa;
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 30px 20px 80px;
             text-align: center;
-            padding: 25px 20px;
             font-size: 12px;
         }
 
-        footer a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 5px;
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: #64748b;
+            max-width: 450px;
+            margin: 10px auto 0;
+            line-height: 1.4;
         }
     </style>
 </head>
 <body>
 
-    <!-- FLOATING WHATSAPP BUTTON (WORKING LINK WITH YOUR REAL NUMBER) -->
-    <a href="https://wa.me/918865043022?text=Hello%20DilKholSafe,%20mujhe%20slot%20booking%20ke%20baare%20mein%20poochhna%20hai" target="_blank" class="whatsapp-float">
-        <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
-        <span>चैट पर मदद लें</span>
-    </a>
-
-    <!-- LIVE RECENT BOOKING POPUP -->
-    <div id="bookingPopup" class="booking-popup">
-        <i class="fa-solid fa-circle-check" style="color: #22c55e; font-size: 18px;"></i>
-        <div>
-            <strong id="popupUser">दिल्ली से स्नेहा</strong> ने अभी <span id="popupSlot" style="color: #ff3366; font-weight: 700;">₹49 का ट्रायल स्लॉट</span> बुक किया
-            <div style="font-size: 10px; color: #64748b;" id="popupTime">2 मिनट पहले</div>
-        </div>
-    </div>
-
-    <!-- 1. MAIN HEADER & LOGO -->
+    <!-- HEADER -->
     <header>
-        <a href="#" class="logo-container">
-            <img src="logo.png" alt="DilKholSafe Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('altLogoText').style.display='inline';">
-            <span id="altLogoText" class="logo-text" style="display:none;">DilKhol<span>Safe</span></span>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-shield-heart"></i>
+            DilKholSafe
         </a>
-        <nav>
-            <a href="#reviews">रिव्यूज</a>
-            <a href="#services">सेवाएं</a>
-            <a href="#booking">बुकिंग</a>
-            <a href="https://dilkholdesire.in" class="btn-secret" target="_blank">
-                <i class="fa-solid fa-unlock"></i> Explore Private Space (DilKholDesire 🔞)
-            </a>
-        </nav>
+        <div class="header-badge">
+            <i class="fa-solid fa-lock"></i> 100% Confidential
+        </div>
     </header>
 
-    <!-- 2. HERO & TRUST SECTION -->
+    <!-- HERO -->
     <section class="hero">
-        <span class="hero-badge">🔒 100% गोपनीय और सुरक्षित ज़ोन</span>
-        <h1>अपनी भावनाएं खुलकर साझा करें – बिना किसी जजमेंट के</h1>
-        <p>जब मन भारी हो या कोई बात किसी से शेयर न कर पा रहे हों, तो यहाँ बिना पहचान बताए खुलकर बात करें।</p>
+        <span class="hero-tag">🔒 Anonymous • Safe • Non-Judgmental</span>
+        <h1>दिल की बात कहें, <span>बिना किसी झिझक के</span></h1>
+        <p>जब मन भारी हो और कोई सुनने वाला न हो — हम हैं आपके साथ। 100% सुरक्षित और गोपनीय लिसनिंग सपोर्ट।</p>
+        <a href="#book-section" class="hero-btn">
+            <i class="fa-solid fa-calendar-check"></i> अभी स्लॉट बुक करें
+        </a>
+        
+        <div class="hero-features">
+            <div class="hero-feature-item"><i class="fa-solid fa-circle-check" style="color: #4ade80;"></i> कोई जज नहीं करेगा</div>
+            <div class="hero-feature-item"><i class="fa-solid fa-circle-check" style="color: #4ade80;"></i> असली इंसान, असली सपोर्ट</div>
+            <div class="hero-feature-item"><i class="fa-solid fa-circle-check" style="color: #4ade80;"></i> पूरी गोपनीयता</div>
+        </div>
     </section>
 
-    <div class="trust-bar">
-        <div class="trust-container">
-            <div class="trust-item">
-                <i class="fa-solid fa-user-secret"></i>
-                <div class="trust-text">
-                    <h4>100% एनोनिमस</h4>
-                    <p>नाम या पहचान बताने की ज़रूरत नहीं</p>
-                </div>
-            </div>
-            <div class="trust-item">
-                <i class="fa-solid fa-heart-circle-check"></i>
-                <div class="trust-text">
-                    <h4>नो-जजमेंट ज़ोन</h4>
-                    <p>आपकी हर बात सम्मान से सुनी जाएगी</p>
-                </div>
-            </div>
-            <div class="trust-item">
-                <i class="fa-solid fa-shield-halved"></i>
-                <div class="trust-text">
-                    <h4>100% प्राइवेसी</h4>
-                    <p>पूर्ण सुरक्षा व गोपनीयता की गारंटी</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- MAIN CONTAINER -->
     <div class="container">
 
-        <!-- 3. REVIEWS SECTION -->
-        <h2 class="section-title" id="reviews">यूज़र्स के वास्तविक अनुभव (Testimonials)</h2>
-        
-        <div class="add-review-wrapper">
-            <button class="btn-add-review" onclick="openReviewModal()"><i class="fa-solid fa-pen-to-square"></i> ✍️ अपना अनुभव / रिव्यू साझा करें</button>
+        <!-- SERVICES -->
+        <div class="section-title" style="margin-top: 15px;">
+            <h2><i class="fa-solid fa-hand-holding-heart" style="color: var(--primary);"></i> हम किसमें मदद करते हैं?</h2>
+            <p>आपकी हर उलझन के लिए एक सुरक्षित मंच</p>
         </div>
 
-        <div class="reviews-grid">
-
-            <!-- Review 1 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"मेरी लाइफ में बहुत सी ऐसी पर्सनल और फ्लर्टी बातें थीं जिन्हें मैं किसी दोस्त से भी शेयर करने में शरमाती थी। DilKholSafe पर जब बात की तो लिसनर इतने फ्रेंडली और फ्रैंक थे कि मेरी हिचकिचाहट खत्म हो गई। जब मैंने अपनी सीक्रेट फैंटेसीज़ शेयर करना चाहा, तो उन्होंने मुझे उनके विशेष प्लेटफॉर्म DilKholDesire के बारे में बताया। सच में अपनी दबी हुई बातें शेयर करके दिल बहुत हल्का हो गया!"</p>
-                </div>
-                <div class="user-info">अंकिता शर्मा, दिल्ली <span>Unmarried</span></div>
-            </div>
-
-            <!-- Review 2 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"सिंगल होने की वजह से कभी-कभी रात को बहुत अकेलापन लगता था और दिल करता था कि कोई ऐसा हो जिसके साथ थोड़ी रोमांटिक, फ़्लर्टी और सीक्रेट बातें कर सकूँ। DilKholSafe / DilKholDesire पर मुझे 100% सेफ़ और बिना जज होने वाला माहौल मिला। लिसनर ने मेरी एक-एक बात बहुत रिस्पेक्ट से सुनी। अब जब भी मूड रोमांटिक टॉक का होता है, मैं सीधे यहीं आती हूँ।"</p>
-                </div>
-                <div class="user-info">स्नेहा कपूर, मुंबई <span>Working Girl</span></div>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"जिस इंसान को मैंने अपनी पूरी दुनिया माना था, उसने अचानक एक दिन ब्लॉक कर दिया। मैं हफ़्तों तक कमरे में बंद होकर रोती रही। दोस्तों को बताती तो वो कहते 'छोड़ ना', पर कोई ये नहीं समझ रहा था कि दिल पर क्या गुज़र रही है। यहाँ बात करके लिसनर ने मुझे बिना जज किए घंटों सुना। पहली बार लगा कि मेरी भावनाओं की कोई कद्र है।"</p>
-                </div>
-                <div class="user-info">रिया सेन, कोलकाता <span>Unmarried</span></div>
-            </div>
-
-            <!-- Review 4 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"शादी के 3 साल बाद भी इन-लॉज़ के साथ रोज-रोज की खटपट और पति का सपोर्ट न मिलना... मैं अंदर ही अंदर घुट रही थी। यहाँ बिना किसी डर के अपनी शादीशुदा जिंदगी की बातें शेयर कीं। लिसनर बहुत ही फ्रेंडली और समझदार हैं, बहुत हिम्मत मिली।"</p>
-                </div>
-                <div class="user-info">प्रिया वर्मा, लखनऊ <span>Married</span></div>
-            </div>
-
-            <!-- Review 5 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"सबके सामने हँसती रहती हूँ, लेकिन अकेले में ऐसा लगता है जैसे अंदर से खाली हो चुकी हूँ। यहाँ 30 मिनट बात करके लगा जैसे मन का सारा भारीपन और बोझ उतर गया। लिसनर का टोन बहुत ही कम्फर्टेबल और ओपन था।"</p>
-                </div>
-                <div class="user-info">तन्वी रोहेला, इंदौर <span>Student</span></div>
-            </div>
-
-            <!-- Review 6 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"दोस्त भी अब मेरी बातें सुनकर बोर हो चुके थे। यहाँ मुझे एक ऐसा इंसान मिला जिसने बिना टोके मेरी पूरी बात ध्यान से सुनी। कोई ज्ञान देने नहीं आया, बस दिल से मेरी बात सुनी।"</p>
-                </div>
-                <div class="user-info">पूजा चौधरी, जयपुर <span>Student</span></div>
-            </div>
-
-            <!-- Review 7 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"9 से 6 की जॉब, बॉस का टॉक्सिक बिहेवियर और ऑफिस की पॉलिटिक्स ने मुझे तोड़ दिया था। यहाँ बात करके मन का सारा गुबार बाहर निकला। उन्होंने मुझे सिखाया कि मेंटल पीस को कैसे संभालना है।"</p>
-                </div>
-                <div class="user-info">श्वेता पटेल, अहमदाबाद <span>Corporate Employee</span></div>
-            </div>
-
-            <!-- Review 8 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"नाइट शिफ्ट और अकेले रहने की वजह से लाइफ बहुत आइसोलेटेड हो गई थी। देर रात 2 बजे जब बहुत अकेलापन लगा, तो मैंने साइट पर जाकर बुक किया। तुरंत कनेक्ट हुआ और रात के उस सन्नाटे में एक सच्चा सहारा मिला।"</p>
-                </div>
-                <div class="user-info">ईशा सहगल, गुरुग्राम <span>IT Professional</span></div>
-            </div>
-
-            <!-- Review 9 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"अपनी ही रिलेशनशिप में रोज़-रोज़ नीचा दिखाया जाना और खुद पर शक करना सह रही थी। यहाँ लिसनर से बात करके मुझे अहसास हुआ कि गलती मेरी नहीं थी, मेरी खोई हिम्मत वापस आई।"</p>
-                </div>
-                <div class="user-info">मेधा झा, पटना <span>Married</span></div>
-            </div>
-
-            <!-- Review 10 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"समझ नहीं आ रहा था कि इस रिश्ते में रुकी रहूँ या चुपचाप आगे बढ़ जाऊँ। उन्होंने मेरी उलझन को इतने अच्छे से समझा कि मुझे खुद सही रास्ता दिखने लगा।"</p>
-                </div>
-                <div class="user-info">कृति मल्होत्रा, चंडीगढ़ <span>Teacher</span></div>
-            </div>
-
-            <!-- Review 11 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"मुझे सबसे ज़्यादा डर अपनी प्राइवेसी का था कि कहीं मेरी बातें लीक न हो जाएँ। लेकिन यहाँ का प्राइवेसी सिस्टम देखकर मेरा भरोसा बन गया। मैंने अपनी पास्ट मिस्टेक्स और डर के बारे में खुलकर बात की।"</p>
-                </div>
-                <div class="user-info">नेहा देशपांडे, पुणे <span>Software Engineer</span></div>
-            </div>
-
-            <!-- Review 12 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"लगता था कि दुनिया में कोई मुझे कभी समझ ही नहीं सकता, सब सिर्फ सलाह देते हैं। यहाँ बात करके पहली बार लगा कि कोई सच में मुझे समझ रहा है, जज नहीं कर रहा।"</p>
-                </div>
-                <div class="user-info">दिव्या जोशी, देहरादून <span>Married</span></div>
-            </div>
-
-            <!-- Review 13 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"घरवाले अपनी पसंद थोप रहे हैं और मैं अपनी बात रख भी नहीं पा रही हूँ। यहाँ बात करके मुझे वो इमोशनल सपोर्ट मिला जो इस वक्त मुझे सबसे ज़्यादा चाहिए था।"</p>
-                </div>
-                <div class="user-info">आकांक्षा रेड्डी, बेंगलुरु <span>Architect</span></div>
-            </div>
-
-            <!-- Review 14 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"एक ऐसी गलती हो गई थी जिसका पछतावा मुझे अंदर ही अंदर खाए जा रहा था। यहाँ बिना अपना असली नाम बताए बात की और अपने मन का सारा डर निकाल दिया।"</p>
-                </div>
-                <div class="user-info">अंशिका गुप्ता, नोएडा <span>HR Professional</span></div>
-            </div>
-
-            <!-- Review 15 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"अपनी पहचान छुपाकर खुलकर बात करने की जो सुविधा यहाँ मिलती है, वो बेमिसाल है। मुझे बहुत शांति मिली।"</p>
-                </div>
-                <div class="user-info">सिमोन मसीह, लुधियाना <span>Married</span></div>
-            </div>
-
-            <!-- Review 16 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"प्यार में धोखा खाने के बाद इंसान का सब पर से भरोसा उठ जाता है। यहाँ लिसनर ने मुझे वापस खुद से प्यार करना और संभलना सिखाया।"</p>
-                </div>
-                <div class="user-info">काजल बिष्ट, शिमला <span>Student</span></div>
-            </div>
-
-            <!-- Review 17 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"शादीशुदा जिंदगी में रोमांस और अटेंशन पूरी तरह खत्म हो चुका था और मैं अंदर से बहुत अकेलापन महसूस कर रही थी। DilKholDesire पर कनेक्ट करके मैंने अपने मन की सारी दबी हुई बातें शेयर कीं। यहाँ जो लिसनर हैं वो सच में बहुत समझदार हैं। मुझे वो अटेंशन, रिस्पेक्ट और सुकून मिला।"</p>
-                </div>
-                <div class="user-info">गरिमा यादव, वाराणसी <span>Married</span></div>
-            </div>
-
-            <!-- Review 18 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"मुझे सबसे ज़्यादा डर प्राइवेसी का था। लेकिन यहाँ का प्राइवेसी सिस्टम और लिसनर का सपोर्ट देखकर दिल खुश हो गया। अगर आपके मन में भी कोई ऐसी पर्सनल बात या डिजायर है जो आप किसी को नहीं बता सकते, तो DilKholSafe और DilKholDesire सबसे बेस्ट है।"</p>
-                </div>
-                <div class="user-info">साक्षी राजपूत, भोपाल <span>Married</span></div>
-            </div>
-
-            <!-- Review 19 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"लड़कों से समाज हमेशा कहता है कि 'मजबूत बनो, रोया मत करो'। लेकिन जब जॉब का प्रेशर और ब्रेकअप एक साथ आता है, तो इंसान अंदर से टूट जाता है। यहाँ बिना किसी झिझक के अपना दर्द बाँटा। पहली बार लगा कि हमारे इमोशन्स की भी कोई कद्र करता है।"</p>
-                </div>
-                <div class="user-info">राहुल गुप्ता, मुंबई <span>Working Professional</span></div>
-            </div>
-
-            <!-- Review 20 -->
-            <div class="review-card">
-                <div>
-                    <div class="stars">★★★★★</div>
-                    <p>"बिजनेस में घाटा और पर्सनल लाइफ में उथल-पुथल की वजह से मैं बहुत गहरे तनाव में था। DilKholSafe पर जब 30 मिनट बात की, तो ऐसा लगा जैसे किसी ने मेरे दिमाग से कई किलो का वजन उतार दिया हो। बहुत ही रिलीफ देने वाला एक्सपीरियंस रहा।"</p>
-                </div>
-                <div class="user-info">अमित शर्मा, दिल्ली <span>Businessman</span></div>
-            </div>
-
-        </div>
-
-        <!-- 4. SERVICES SECTION -->
-        <h2 class="section-title" id="services">हमारी सेवाएं</h2>
         <div class="services-grid">
             <div class="service-card">
-                <div class="icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                <h3>इमोशनल सपोर्ट</h3>
-                <p>तनाव, अकेलेपन और ओवरथिंकिंग से राहत पाने के लिए खुलकर बात करें।</p>
+                <i class="fa-solid fa-comment-dots"></i>
+                <h3>सीक्रेट टॉक</h3>
+                <p>वो बातें जो आप परिवार या दोस्तों से नहीं कह पाते।</p>
             </div>
-
             <div class="service-card">
-                <div class="icon"><i class="fa-solid fa-heart-crack"></i></div>
-                <h3>रिलेशनशिप गाइडेंस</h3>
-                <p>ब्रेकअप, लव लाइफ और आपसी उलझनों को सुलझाने के लिए सेफ़ स्पेस।</p>
+                <i class="fa-solid fa-heart-crack"></i>
+                <h3>ब्रेकअप व लव</h3>
+                <p>रिलेशनशिप दर्द, अकेलापन और इमोशनल सपोर्ट।</p>
             </div>
-
             <div class="service-card">
-                <div class="icon"><i class="fa-solid fa-user-lock"></i></div>
-                <h3>सीक्रेट & पर्सनल टॉक</h3>
-                <p>बिना नाम और पहचान उजागर किए अपने मन का सारा बोझ हल्का करें।</p>
+                <i class="fa-solid fa-brain"></i>
+                <h3>स्ट्रेस & डिप्रेशन</h3>
+                <p>करियर का तनाव, ओवरथिंकिंग और मन का भारीपन।</p>
             </div>
-
-            <!-- CLICKABLE DIRECT REDIRECT 4TH CARD -->
-            <a href="https://dilkholdesire.in" target="_blank" class="service-card desire-card">
-                <div class="icon" style="color: #ff3366;"><i class="fa-solid fa-fire"></i></div>
-                <h3>DilKholDesire (Private Space) 🔞</h3>
-                <p>रोमांटिक, सीक्रेट और फ़्लर्टी बातें बिना किसी झिझक के फ्रेंडली माहौल में शेयर करें। (विजिट करने के लिए यहाँ क्लिक करें ➔)</p>
-            </a>
+            <div class="service-card">
+                <i class="fa-solid fa-compass"></i>
+                <h3>लाइफ गाइडेंस</h3>
+                <p>सच्ची सलाह और एक निष्पक्ष दोस्त का नजरिया।</p>
+            </div>
         </div>
 
-        <!-- 5. DISCOUNT BANNER & BOOKING SECTION -->
-        <h2 class="section-title" id="booking">रजिस्ट्रेशन एवं स्लॉट बुकिंग</h2>
-        <div class="booking-section">
-            
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                लिसनर अभी ऑनलाइन उपलब्ध हैं | 100% गोपनीय और सुरक्षित
+        <!-- BOOKING & PRICING SECTION -->
+        <div class="booking-card" id="book-section">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-bolt" style="color: var(--accent);"></i> अपना स्लॉट चुनें</h2>
+                <p>अपनी सुविधा अनुसार समय चुनें और तुरंत जुड़ें</p>
             </div>
 
-            <!-- 50% DISCOUNT BANNER WITH ₹49 TRIAL -->
-            <div class="discount-banner-box">
-                <h3>🔥 आज का मुख्य ऑफर: 50% की भारी छूट!</h3>
-                <p style="font-size: 13px;">नीचे दिए गए कट-ऑफ डिस्काउंट रेट्स पर आज ही अपना स्लॉट बुक करें</p>
-                <div class="pricing-list-preview">
-                    <div class="pricing-item trial-highlight">⚡ 5 Mints Trial: <span class="slashed-price">₹99</span> <span class="offer-price" style="color: #166534;">₹49</span></div>
-                    <div class="pricing-item">15 Mints Normal: <span class="slashed-price">₹299</span> <span class="offer-price">₹149</span></div>
-                    <div class="pricing-item">15 Mints Urgent: <span class="slashed-price">₹499</span> <span class="offer-price">₹299</span></div>
-                    <div class="pricing-item">30 Mints Deep Talk: <span class="slashed-price">₹699</span> <span class="offer-price">₹499</span></div>
+            <!-- PLAN SELECTOR -->
+            <div class="plan-options">
+                
+                <!-- PLAN 1: TRIAL -->
+                <div class="plan-card" onclick="selectPlan(49, 'First-Time Trial (5 Min)', this)">
+                    <span class="plan-badge badge-trial">⭐ First-Time Users Only</span>
+                    <div class="plan-info">
+                        <h4>5 मिनट ट्रायल स्लॉट</h4>
+                        <p>केवल पहली बार बात करने वाले नए यूज़र्स के लिए (One Time)</p>
+                    </div>
+                    <div class="plan-price">
+                        <div class="amount">₹49</div>
+                    </div>
                 </div>
+
+                <!-- PLAN 2: REGULAR 15 MIN -->
+                <div class="plan-card active" onclick="selectPlan(149, 'Regular Talk (15 Min)', this)">
+                    <div class="plan-info">
+                        <h4>15 मिनट सामान्य बातचीत</h4>
+                        <p>सामान्य बातचीत और मन की बात साझा करने हेतु</p>
+                    </div>
+                    <div class="plan-price">
+                        <div class="amount">₹149</div>
+                    </div>
+                </div>
+
+                <!-- PLAN 3: PRIORITY 15 MIN -->
+                <div class="plan-card highlight" onclick="selectPlan(249, 'Priority Talk (15 Min)', this)">
+                    <span class="plan-badge badge-priority">🚨 Urgent Availability</span>
+                    <div class="plan-info">
+                        <h4>15 मिनट Priority Talk 🔥</h4>
+                        <p>बिना इंतज़ार के जल्द से जल्द प्राथमिकता स्लॉट</p>
+                    </div>
+                    <div class="plan-price">
+                        <div class="amount">₹249</div>
+                    </div>
+                </div>
+
+                <!-- PLAN 4: DEEP TALK 30 MIN -->
+                <div class="plan-card highlight" onclick="selectPlan(399, 'Deep Talk (30 Min)', this)">
+                    <span class="plan-badge badge-popular">🥇 Most Recommended</span>
+                    <div class="plan-info">
+                        <h4>30 मिनट Deep Talk Session 🔥</h4>
+                        <p>विस्तृत एवं गहरी बातचीत — बिना किसी हड़बड़ी के सम्पूर्ण समाधान</p>
+                    </div>
+                    <div class="plan-price">
+                        <div class="amount">₹399</div>
+                    </div>
+                </div>
+
             </div>
 
-            <form id="slotForm" onsubmit="handleFormSubmit(event)">
+            <!-- FORM -->
+            <form id="bookingForm" onsubmit="submitBooking(event)">
                 <div class="form-group">
-                    <label>आपका पूरा नाम (Name)*</label>
-                    <input type="text" class="form-control" placeholder="अपना नाम दर्ज करें" required>
+                    <label><i class="fa-solid fa-user"></i> आपका नाम</label>
+                    <input type="text" id="custName" class="form-control" placeholder="अपना नाम दर्ज करें" required>
                 </div>
 
                 <div class="form-group">
-                    <label>मोबाइल नंबर (WhatsApp Number)*</label>
-                    <input type="tel" class="form-control" placeholder="10 अंकों का व्हाट्सएप नंबर" required pattern="[0-9]{10}">
+                    <label><i class="fa-brands fa-whatsapp"></i> आपका WhatsApp नंबर</label>
+                    <input type="tel" id="custPhone" class="form-control" placeholder="10 अंकों का मोबाइल नंबर" required pattern="[0-9]{10}">
                 </div>
 
                 <div class="form-group">
-                    <label>सेकंड्स / स्लॉट समय चुनें (Select Service Session)*</label>
-                    <select class="form-control" required>
-                        <option value="49" selected>⚡ 5 मिनट - क्विक ट्रायल स्लॉट (1st Time Special Offer: ₹49)</option>
-                        <option value="149">15 मिनट - नॉर्मल स्लॉट (पहले: ₹299 ➔ आज का ऑफर: ₹149)</option>
-                        <option value="299">15 मिनट - अर्जेंट/तत्काल स्लॉट (पहले: ₹499 ➔ आज का ऑफर: ₹299)</option>
-                        <option value="499">30 मिनट - डीप टॉक कंसल्टेशन (पहले: ₹699 ➔ आज का ऑफर: ₹499)</option>
+                    <label><i class="fa-solid fa-list-check"></i> बातचीत का विषय (Topic)</label>
+                    <select id="custTopic" class="form-control">
+                        <option value="सीक्रेट टॉक">सीक्रेट टॉक (Secret Talk)</option>
+                        <option value="ब्रेकअप एवं रिलेशनशिप">ब्रेकअप एवं रिलेशनशिप सपोर्ट</option>
+                        <option value="अकेलापन और तनाव">अकेलापन, स्ट्रेस और ओवरथिंकिंग</option>
+                        <option value="करियर एवं पर्सनल गाइडेंस">करियर एवं पर्सनल गाइडेंस</option>
+                        <option value="अन्य विषय">अन्य कोई निजी बात</option>
                     </select>
                 </div>
 
-                <!-- DROPDOWN WITH DILKHOLDESIRE REDIRECT LOGIC -->
-                <div class="form-group">
-                    <label>आप किस बारे में बात करना चाहते हैं? (Select Category)*</label>
-                    <select class="form-control" id="categorySelect" onchange="checkCategoryRedirect(this)" required>
-                        <option value="emotional">इमोशनल सपोर्ट & तनाव (Emotional Support)</option>
-                        <option value="relationship">ब्रेकअप & रिलेशनशिप गाइडेंस (Relationship Guidance)</option>
-                        <option value="desire">रोमांटिक, सीक्रेट टॉक & डिजायर्स (DilKholDesire 🔞)</option>
-                    </select>
+                <!-- PAYMENT BOX WITH 1-CLICK & QR -->
+                <div class="payment-box">
+                    <h4 style="font-size: 14px; color: var(--primary-dark); margin-bottom: 10px;">
+                        <i class="fa-solid fa-qrcode"></i> ऑनलाइन भुगतान (UPI Payment)
+                    </h4>
+                    
+                    <!-- 1-CLICK PAY BUTTON -->
+                    <a href="upi://pay?pa=dilkholsafe@upi&pn=DilKholSafe&am=149&cu=INR&tn=Slot%20Booking" id="payBtn" class="btn-dynamic-pay" onclick="handlePayClick(event)">
+                        <i class="fa-solid fa-bolt"></i> Pay ₹149 via UPI (GPay / PhonePe / Paytm)
+                    </a>
+
+                    <div class="qr-wrapper">
+                        <p style="font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px;">या नीचे दिया गया QR Code स्कैन करें:</p>
+                        <img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=dilkholsafe@upi&pn=DilKholSafe&am=149&cu=INR" alt="DilKholSafe QR Code">
+                        <br>
+                        <span class="upi-id-badge">UPI ID: dilkholsafe@upi</span>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px; margin-bottom: 0;">
+                        <label style="color: #059669;"><i class="fa-solid fa-receipt"></i> UTR / Transaction ID (12 Digit)</label>
+                        <input type="text" id="utrNumber" class="form-control" placeholder="पेमेंट के बाद 12 अंकों का UTR नंबर डालें" required style="border-color: #10b981; background: #fff;">
+                    </div>
                 </div>
 
-                <!-- QR PAYMENT BOX & UPI ID -->
-                <div class="qr-box">
-                    <p style="font-weight: 600; font-size: 14px; color: #4c1d95; margin-bottom: 6px;">क्यूआर कोड से पे करें (Scan & Pay)</p>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=dilkholsafe@upi&pn=DilKholSafe" alt="UPI QR Code">
-                    <br>
-                    <div class="upi-id-badge">UPI ID: dilkholsafe@upi</div>
-                    <p style="font-size: 12px; color: #666; margin-top: 8px;">किसी भी UPI ऐप (GPay, PhonePe, Paytm) से स्कैन करके भुगतान करें</p>
+                <!-- PRIVACY BOX (EXACT USER TEXT) -->
+                <div class="privacy-box">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>
+                        <strong>🔒 आपकी Privacy का सम्मान किया जाता है</strong>
+                        <p>Booking के लिए लिया गया नाम और WhatsApp नंबर निजी रिकॉर्ड एवं आवश्यक communication के लिए उपयोग किया जाता है और सार्वजनिक नहीं किया जाता।</p>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>पेमेंट के बाद 12 अंकों का UTR / Transaction ID दर्ज करें*</label>
-                    <input type="text" class="form-control" placeholder="12-digit UTR Number" required pattern="[0-9]{12}">
+                <!-- REFUND GUARANTEE NOTE -->
+                <div class="guarantee-box">
+                    🛡️ <strong>100% प्राइवेसी एवं सेटिस्फैक्शन गारंटी:</strong> यदि किसी कारणवश आपकी कॉल कनेक्ट नहीं हो पाती है, तो आपकी पूरी फीस तुरंत रिफ़ंड कर दी जाएगी।
                 </div>
 
-                <button type="submit" class="submit-btn">स्लॉट बुक करें और पेमेंट कन्फर्म करें</button>
+                <!-- SUBMIT BUTTON -->
+                <button type="submit" id="submitBtn" class="btn-submit">
+                    <i class="fa-solid fa-check-circle"></i> बुकिंग कन्फर्म करें (Confirm Slot)
+                </button>
             </form>
 
-            <!-- 6. POST-SUBMIT BUSY MESSAGE -->
-            <div id="confirmationMsg">
-                <h3 style="color: #15803d; margin-bottom: 8px; font-size: 18px;">बुकिंग एवं यूटीआर (UTR) प्राप्त हो गया है! 🟢</h3>
-                <p>हमारे लिसनर अभी एक लाइव सेशन में हैं। जैसे ही सेशन खत्म होता है, आपसे तुरंत व्हाट्सएप पर संपर्क किया जाएगा। धन्यवाद!</p>
-                <p style="margin-top: 14px; font-size: 13px;">रोमांटिक व सीक्रेट बातों के लिए विजिट करें: <a href="https://dilkholdesire.in" target="_blank" style="color: #ff3366; font-weight: 700;">DilKholDesire.in</a></p>
+        </div>
+
+        <!-- REVIEWS SECTION -->
+        <div class="reviews-section">
+            <div class="section-title">
+                <h2>💬 Customer Reviews</h2>
+            </div>
+
+            <!-- REVIEWS DISCLAIMER (EXACT USER TEXT) -->
+            <div class="review-disclaimer">
+                ये reviews customers ने अपनी इच्छा से साझा किए हैं। जिन customers ने अपना नाम साझा करने की अनुमति दी है, उनके नाम के साथ review प्रदर्शित किया गया है।
+            </div>
+
+            <!-- 20 ORIGINAL REVIEWS -->
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">पूजा शर्मा <span class="reviewer-city">• दिल्ली</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"बहुत दिनों से दिल में घुटन थी, किसी से कह नहीं पा रही थी। 30 मिनट बात करके लगा जैसे मन का सारा भारी बोझ उतर गया।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">राहुल वर्मा <span class="reviewer-city">• मुंबई</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"ब्रेकअप के बाद बहुत अकेला महसूस हो रहा था। यहाँ बिना किसी जजमेंट के मुझे सुना गया। थैंक यू DilKholSafe!"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">अमित कुमार <span class="reviewer-city">• लखनऊ</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"15 मिनट अर्जेंट स्लॉट लिया था। सच में बहुत जल्दी बात हो गई और मन बिल्कुल शांत हो गया।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">नेहा सिंह <span class="reviewer-city">• जयपुर</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"प्राइवेसी की जो गारंटी दी थी, वो 100% सही निकली। बहुत ही सुरक्षित माहौल है बात करने के लिए।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">विकास मल्होत्रा <span class="reviewer-city">• चंडीगढ़</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"करियर का बहुत ज्यादा तनाव था। एक निष्पक्ष नजरिया मिला जिससे काफी क्लैरिटी आई।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">प्रिया गुप्ता <span class="reviewer-city">• पुणे</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"5 मिनट का ट्रायल लिया था, इतना अच्छा लगा कि तुरंत 30 मिनट का सेशन बुक कर लिया। बेस्ट सर्विस!"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">संदीप यादव <span class="reviewer-city">• गुरुग्राम</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"रात को 12 बजे भी रिस्पॉन्स मिला। जब कोई साथ नहीं था तब इन्होंने पूरा साथ दिया।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">अंजलि मेहता <span class="reviewer-city">• इंदौर</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"बहुत ही हमदर्दी और प्यार से सुनते हैं। लगता ही नहीं कि किसी अजनबी से बात हो रही है।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">रोहित जैन <span class="reviewer-city">• अहमदाबाद</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"पैसा वसूल सर्विस! बिना डरे सब कुछ कह सका जो सालों से अंदर दबा हुआ था।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">दिव्या राज <span class="reviewer-city">• बेंगलुरु</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"अगर आप भी अकेलेपन से जूझ रहे हैं, तो एक बार जरूर बात करें। बहुत हल्का महसूस होगा।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">गौरव चौधरी <span class="reviewer-city">• नोएडा</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"दोस्त और परिवार कई बार जज कर लेते हैं, लेकिन यहाँ दिल खोलकर बात की जा सकती है।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">स्नेहा पाठक <span class="reviewer-city">• कोलकाता</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"लिसनर बहुत धैर्यवान और समझदार हैं। मुझे खुद को समझने में बहुत मदद मिली।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">करण सक्सेना <span class="reviewer-city">• गाजियाबाद</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"बहुत सरल और सीधी प्रक्रिया है। पेमेंट करते ही स्लॉट कंफर्म हो गया।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">मोनिका अग्रवाल <span class="reviewer-city">• मेरठ</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"एक ऐसा कोना जहाँ कोई आपको छोटा या गलत साबित नहीं करता। दिल से धन्यवाद!"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">दीपक मिश्रा <span class="reviewer-city">• वाराणसी</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"30 मिनट का डीप टॉक सेशन कमाल का रहा। अब बहुत पॉजिटिव फील कर रहा हूँ।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">रितिका जोशी <span class="reviewer-city">• देहरादून</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"सीक्रेट टॉक के लिए यह सबसे भरोसेमंद जगह है। मेरी सारी बातें पूरी तरह गोपनीय रहीं।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">अजय सिंह <span class="reviewer-city">• लुधियाना</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"प्रायोरिटी स्लॉट से तुरंत बात हो गई। इमरजेंसी के समय बहुत काम आया।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">तान्या कपूर <span class="reviewer-city">• भोपाल</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"मन की उलझनें सुलझ गईं। एक सच्चे दोस्त की तरह साथ दिया।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">मनीष रावत <span class="reviewer-city">• फरीदाबाद</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"हर किसी को कभी न कभी अपनी बात किसी से कहनी होती है, DilKholSafe बेस्ट ऑप्शन है।"</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">सिमरन कौर <span class="reviewer-city">• मोहाली</span></span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p class="review-body">"सुरक्षित, गोपनीय और 100% सुकून देने वाला अनुभव। 5 स्टार रेटिंग!"</p>
             </div>
 
         </div>
 
     </div>
 
-    <!-- USER ADD REVIEW MODAL FORM -->
-    <div id="reviewModal" class="review-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeReviewModal()">&times;</span>
-            <h3 style="font-size: 18px; color: #1e002c; margin-bottom: 15px; text-align: center;">अपना अनुभव / रिव्यू साझा करें</h3>
-            <form onsubmit="handleUserReviewSubmit(event)">
-                <div class="form-group">
-                    <label>आपका नाम (या 'Anonymous' लिखें)*</label>
-                    <input type="text" class="form-control" placeholder="उदा. अंकिता शर्मा / Anonymous" required>
-                </div>
-                <div class="form-group">
-                    <label>रेटिंग चुनें (Rating)*</label>
-                    <select class="form-control" required>
-                        <option value="5">⭐⭐⭐⭐⭐ (5 Star - बेहतरीन अनुभव)</option>
-                        <option value="4">⭐⭐⭐⭐ (4 Star - बहुत अच्छा)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>आपका अनुभव (Review Message)*</label>
-                    <textarea class="form-control" rows="4" placeholder="यहाँ अपना अनुभव लिखें..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn" style="padding: 10px;">रिव्यू सबमिट करें</button>
-            </form>
-            <p id="reviewSuccessMsg" style="display:none; color: #166534; font-size: 13px; text-align: center; margin-top: 12px; font-weight: 600;">
-                धन्यवाद! आपका रिव्यू सबमिट हो गया है और सत्यापन के बाद लाइव कर दिया जाएगा।
-            </p>
+    <!-- LIVE BOOKING NOTIFICATION TOAST -->
+    <div id="liveToast" class="toast-notification">
+        <div class="toast-avatar" id="toastAvatar">R</div>
+        <div>
+            <div style="font-weight: 700;" id="toastName">राहुल ने स्लॉट बुक किया</div>
+            <div style="font-size: 10px; color: #94a3b8;" id="toastTime">2 मिनट पहले • मुंबई</div>
         </div>
     </div>
+
+    <!-- FLOATING WHATSAPP BUTTON (NUMBER 8865043022) -->
+    <a href="https://wa.me/918865043022?text=Hello%20DilKholSafe,%20mujhe%20booking%20aur%20payment%20me%20help%20chahiye" target="_blank" class="floating-wa">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>💬 बुकिंग और पेमेंट में सहायता चाहिए? चैट करें</span>
+    </a>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 DilKholSafe. All Rights Reserved. | 100% Confidential & Private</p>
-        <p style="margin-top: 5px;"><a href="https://dilkholdesire.in" target="_blank">DilKholDesire</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+        <p><strong>DilKholSafe</strong> &copy; 2026. All Rights Reserved.</p>
+        <p class="footer-note">
+            DilKholSafe एक गोपनीय लिसनिंग और इमोशनल सपोर्ट मंच है। यह कोई मेडिकल या मनोरोग चिकित्सा (Psychiatric) सेवा नहीं है। हम आपकी प्राइवेसी और भावनाओं का पूरा सम्मान करते हैं।
+        </p>
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Check Category Selection for DilKholDesire Redirect
-        function checkCategoryRedirect(selectElement) {
-            if (selectElement.value === 'desire') {
-                alert("रोमांटिक व सीक्रेट टॉक (DilKholDesire) के लिए हमारा एक समर्पित और विशेष प्लेटफॉर्म है। हम आपको 100% प्राइवेसी और बेहतर अनुभव के लिए सीधे हमारी ऑफिशियल वेबसाइट DilKholDesire.in पर कनेक्ट कर रहे हैं... 🔒");
-                window.location.href = "https://dilkholdesire.in";
+        let currentAmount = 149;
+        let currentPlanName = "Regular Talk (15 Min)";
+        let userIP = "Fetching...";
+
+        // Fetch User IP Address
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => { userIP = data.ip; })
+            .catch(err => { userIP = "Unavailable"; });
+
+        function selectPlan(amount, planName, element) {
+            currentAmount = amount;
+            currentPlanName = planName;
+
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Dynamic UPI Intent Link
+            const payBtn = document.getElementById('payBtn');
+            const upiUrl = `upi://pay?pa=dilkholsafe@upi&pn=DilKholSafe&am=${amount}&cu=INR&tn=${encodeURIComponent(planName)}`;
+            payBtn.href = upiUrl;
+            payBtn.innerHTML = `<i class="fa-solid fa-bolt"></i> Pay ₹${amount} via UPI (GPay / PhonePe / Paytm)`;
+
+            // Dynamic QR Code
+            const qrImg = document.getElementById('qrImg');
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiUrl)}`;
+        }
+
+        function handlePayClick(event) {
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+
+            if (!name || !phone) {
+                alert("कृपया पहले ऊपर अपना नाम और WhatsApp नंबर भर लें।");
+                event.preventDefault();
+                document.getElementById('custName').focus();
+                return false;
             }
+            return true;
         }
 
-        function handleFormSubmit(event) {
+        function submitBooking(event) {
             event.preventDefault();
-            document.getElementById('slotForm').style.display = 'none';
-            document.getElementById('confirmationMsg').style.display = 'block';
-            document.getElementById('confirmationMsg').scrollIntoView({ behavior: 'smooth' });
-        }
 
-        function openReviewModal() {
-            document.getElementById('reviewModal').style.display = 'flex';
-        }
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const topic = document.getElementById('custTopic').value;
+            const utr = document.getElementById('utrNumber').value.trim();
 
-        function closeReviewModal() {
-            document.getElementById('reviewModal').style.display = 'none';
-        }
+            if (utr.length < 6) {
+                alert("कृपया वैध UTR / Transaction ID दर्ज करें।");
+                return;
+            }
 
-        function handleUserReviewSubmit(event) {
-            event.preventDefault();
-            document.getElementById('reviewSuccessMsg').style.display = 'block';
-            setTimeout(function() {
-                closeReviewModal();
-                document.getElementById('reviewSuccessMsg').style.display = 'none';
-            }, 2500);
-        }
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> कन्फर्म किया जा रहा है...';
+            submitBtn.disabled = true;
 
-        // LIVE RECENT BOOKING POPUP LOGIC
-        const sampleBookings = [
-            { name: "दिल्ली से अंकिता", slot: "₹49 का ट्रायल स्लॉट", time: "2 मिनट पहले" },
-            { name: "मुंबई से राहुल", slot: "15 मिनट का नॉर्मल स्लॉट", time: "5 मिनट पहले" },
-            { name: "जयपुर से पूजा", slot: "₹49 का ट्रायल स्लॉट", time: "1 मिनट पहले" },
-            { name: "लखनऊ से प्रिया", slot: "30 मिनट डीप टॉक स्लॉट", time: "8 मिनट पहले" }
-        ];
-
-        let popupIndex = 0;
-        function showRecentBookingPopup() {
-            const popup = document.getElementById('bookingPopup');
-            const data = sampleBookings[popupIndex];
-            
-            document.getElementById('popupUser').innerText = data.name;
-            document.getElementById('popupSlot').innerText = data.slot;
-            document.getElementById('popupTime').innerText = data.time;
-
-            popup.classList.add('show');
+            // WhatsApp Message Forward Data
+            const message = `*🔔 NEW SLOT BOOKING - DilKholSafe*%0A%0A` +
+                            `👤 *Name:* ${name}%0A` +
+                            `📱 *WhatsApp:* ${phone}%0A` +
+                            `🎯 *Service:* ${topic}%0A` +
+                            `⏱️ *Plan:* ${currentPlanName} (₹${currentAmount})%0A` +
+                            `💳 *UTR / Txn ID:* ${utr}%0A` +
+                            `🌐 *IP Address:* ${userIP}%0A` +
+                            `⏰ *Time:* ${new Date().toLocaleString('en-IN')}`;
 
             setTimeout(() => {
-                popup.classList.remove('show');
-            }, 4000);
-
-            popupIndex = (popupIndex + 1) % sampleBookings.length;
+                alert("धन्यवाद! आपका स्लॉट सफलतापूर्वक दर्ज कर लिया गया है। आपको WhatsApp पर कनेक्ट किया जा रहा है...");
+                window.location.href = `https://wa.me/918865043022?text=${message}`;
+            }, 1000);
         }
 
-        // Show first popup after 3 seconds, then repeat every 12 seconds
-        setTimeout(() => {
-            showRecentBookingPopup();
-            setInterval(showRecentBookingPopup, 12000);
-        }, 3000);
+        // Live Fake Notification System
+        const liveUsers = [
+            { name: "अमित कुमार", city: "लखनऊ", time: "2 मिनट पहले", plan: "₹249 Priority" },
+            { name: "पूजा शर्मा", city: "दिल्ली", time: "4 मिनट पहले", plan: "₹399 Deep Talk" },
+            { name: "विकास", city: "चंडीगढ़", time: "1 मिनट पहले", plan: "₹49 Trial" },
+            { name: "प्रिया गुप्ता", city: "पुणे", time: "3 मिनट पहले", plan: "₹149 Regular" },
+            { name: "रोहित", city: "अहमदाबाद", time: "5 मिनट पहले", plan: "₹249 Priority" }
+        ];
+
+        let toastIndex = 0;
+        function showLiveNotification() {
+            const toast = document.getElementById('liveToast');
+            const data = liveUsers[toastIndex];
+            
+            document.getElementById('toastAvatar').innerText = data.name[0];
+            document.getElementById('toastName').innerText = `${data.name} ने स्लॉट बुक किया (${data.plan})`;
+            document.getElementById('toastTime').innerText = `${data.time} • ${data.city}`;
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+
+            toastIndex = (toastIndex + 1) % liveUsers.length;
+        }
+
+        // Run toast every 12 seconds
+        setInterval(showLiveNotification, 12000);
+        setTimeout(showLiveNotification, 3000);
     </script>
 </body>
 </html>
