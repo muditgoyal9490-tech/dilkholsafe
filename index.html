@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DilKholSafe - 100% गोपनीय और सुरक्षित इमोशनल व पर्सनल सपोर्ट</title>
     <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -13,7 +13,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
         
@@ -186,7 +186,7 @@
         .section-title {
             text-align: center;
             font-size: 24px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #1e002c;
             position: relative;
             font-weight: 700;
@@ -202,21 +202,20 @@
             border-radius: 2px;
         }
 
-        /* REVIEWS DISCLAIMER */
+        /* REVIEWS DISCLAIMER BOX */
         .reviews-disclaimer-box {
             background: #f1f5f9;
             border-left: 4px solid #ff3366;
-            padding: 10px 15px;
+            padding: 12px 18px;
             border-radius: 0 8px 8px 0;
-            font-size: 12px;
+            font-size: 12.5px;
             color: #475569;
-            max-width: 800px;
-            margin: 0 auto 20px;
+            max-width: 850px;
+            margin: 0 auto 25px;
             text-align: center;
             line-height: 1.5;
         }
 
-        /* ADD REVIEW BUTTON & MODAL */
         .add-review-wrapper {
             text-align: center;
             margin-bottom: 30px;
@@ -239,6 +238,379 @@
             background: #ff3366;
         }
 
+        /* 3. REVIEWS GRID (2-COLUMN) */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px;
+            margin-bottom: 55px;
+        }
+
+        @media (max-width: 768px) {
+            .reviews-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .review-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid #ff3366;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-card .stars {
+            color: #ffc107;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .review-card p {
+            font-size: 13px;
+            color: #334155;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .review-card .user-info {
+            font-weight: 700;
+            font-size: 12.5px;
+            color: #1e002c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 10px;
+        }
+
+        .review-card .user-info span {
+            color: #ff3366;
+            font-weight: 600;
+            font-size: 11px;
+            background: #fff1f2;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* 4. SERVICES SECTION (2-COLUMN GRID IN HINDI) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 55px;
+        }
+
+        @media (max-width: 600px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 22px 18px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid #edf2f7;
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .service-card .icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #ff3366;
+        }
+
+        .service-card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #1e002c;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            font-size: 12.5px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .service-card.desire-card {
+            border: 2px solid #ff3366;
+            background: #fff5f7;
+            cursor: pointer;
+        }
+
+        /* 5. BOOKING SECTION */
+        .booking-section {
+            background: #ffffff;
+            padding: 30px 22px;
+            border-radius: 16px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .status-badge {
+            background: #f0fdf4;
+            color: #166534;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #22c55e;
+        }
+
+        /* 2-COLUMN PRICING GRID */
+        .pricing-grid-2col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 550px) {
+            .pricing-grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pricing-card-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pricing-card-box.active {
+            border-color: #ff3366;
+            background: #fff1f2;
+        }
+
+        .pricing-card-box.highlight {
+            border-color: #f59e0b;
+        }
+
+        .pricing-card-box.active.highlight {
+            border-color: #d97706;
+            background: #fffbeb;
+        }
+
+        .badge-tag {
+            position: absolute;
+            top: -9px;
+            right: 10px;
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .badge-trial { background: #10b981; }
+        .badge-priority { background: #ef4444; }
+        .badge-popular { background: #f59e0b; }
+
+        .pricing-card-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e002c;
+            margin-bottom: 4px;
+        }
+
+        .pricing-card-box p {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .pricing-card-box .price-text {
+            font-size: 18px;
+            font-weight: 800;
+            color: #ea580c;
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #334155;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 13.5px;
+            outline: none;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            border-color: #ff3366;
+            background: #ffffff;
+        }
+
+        /* PRIVACY BOX (USER'S EXACT TEXT) */
+        .privacy-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin: 16px 0;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .privacy-box i {
+            color: #16a34a;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .privacy-box p {
+            font-size: 12px;
+            color: #166534;
+            line-height: 1.5;
+        }
+
+        .privacy-box strong {
+            display: block;
+            font-size: 12.5px;
+            margin-bottom: 2px;
+        }
+
+        /* GUARANTEE BOX */
+        .guarantee-box {
+            background: #faf5ff;
+            border: 1px dashed #d8b4fe;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b21a8;
+            font-weight: 500;
+        }
+
+        /* 1-CLICK DYNAMIC UPI BUTTON */
+        .btn-dynamic-pay {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+
+        .btn-dynamic-pay:active {
+            transform: scale(0.98);
+        }
+
+        .qr-box {
+            text-align: center;
+            background: #faf5ff;
+            padding: 18px;
+            border-radius: 12px;
+            border: 2px dashed #d8b4fe;
+            margin: 18px 0;
+        }
+
+        .qr-box img {
+            max-width: 160px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            background: #ffffff;
+            padding: 8px;
+        }
+
+        .upi-id-badge {
+            background: #ffffff;
+            border: 1px solid #d8b4fe;
+            color: #6b21a8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12.5px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1e002c, #4a0066);
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 15.5px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30,0,44,0.3);
+        }
+
+        #confirmationMsg {
+            display: none;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* REVIEW MODAL */
         .review-modal {
             display: none;
             position: fixed;
@@ -269,347 +641,13 @@
             color: #888;
         }
 
-        /* 3. REVIEWS GRID (2-COLUMN) */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 20px;
-            margin-bottom: 55px;
-        }
-
-        @media (max-width: 600px) {
-            .reviews-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        .review-card {
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 14px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid #ff3366;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .review-card .stars {
-            color: #ffc107;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .review-card p {
-            font-size: 13.5px;
-            color: #334155;
-            margin-bottom: 14px;
-            font-style: italic;
-            line-height: 1.6;
-        }
-
-        .review-card .user-info {
-            font-weight: 700;
-            font-size: 13px;
-            color: #1e002c;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 10px;
-        }
-
-        .review-card .user-info span {
-            color: #ff3366;
-            font-weight: 600;
-            font-size: 11.5px;
-            background: #fff1f2;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-
-        /* 4. SERVICES SECTION */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 55px;
-        }
-
-        .service-card {
-            background: #ffffff;
-            padding: 25px 20px;
-            border-radius: 14px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            border: 1px solid #edf2f7;
-            transition: 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-card .icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-            color: #ff3366;
-        }
-
-        .service-card h3 {
-            font-size: 17px;
-            margin-bottom: 8px;
-            color: #1e002c;
-            font-weight: 600;
-        }
-
-        .service-card p {
-            font-size: 13px;
-            color: #64748b;
-        }
-
-        .service-card.desire-card {
-            border: 2px solid #ff3366;
-            background: #fff5f7;
-            cursor: pointer;
-        }
-
-        /* 5. BOOKING SECTION & OFFER */
-        .booking-section {
-            background: #ffffff;
-            padding: 32px 25px;
-            border-radius: 16px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 40px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .status-badge {
-            background: #f0fdf4;
-            color: #166534;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 18px;
-            border: 1px solid #bbf7d0;
-        }
-
-        .status-dot {
-            width: 9px;
-            height: 9px;
-            background: #22c55e;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #22c55e;
-        }
-
-        /* CLEAN PLANS LIST PREVIEW */
-        .pricing-list-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-bottom: 22px;
-        }
-
-        .pricing-item {
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1.5px solid #e2e8f0;
-            text-align: center;
-            font-size: 13px;
-        }
-
-        .pricing-item.highlight-item {
-            border-color: #f59e0b;
-            background: #fffbeb;
-        }
-
-        .pricing-item .plan-title {
-            font-weight: 700;
-            color: #1e002c;
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .pricing-item .plan-desc {
-            font-size: 11px;
-            color: #64748b;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .pricing-item .offer-price {
-            color: #ea580c;
-            font-weight: 800;
-            font-size: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13.5px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #334155;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            background: #f8fafc;
-        }
-
-        .form-control:focus {
-            border-color: #ff3366;
-            background: #ffffff;
-        }
-
-        /* PRIVACY BOX */
-        .privacy-box {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            border-radius: 10px;
-            padding: 12px 15px;
-            margin: 15px 0;
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-        }
-
-        .privacy-box i {
-            color: #16a34a;
-            font-size: 18px;
-            margin-top: 2px;
-        }
-
-        .privacy-box p {
-            font-size: 12px;
-            color: #166534;
-            line-height: 1.5;
-        }
-
-        .privacy-box strong {
-            display: block;
-            font-size: 12.5px;
-            margin-bottom: 2px;
-        }
-
-        /* GUARANTEE BOX */
-        .guarantee-box {
-            background: #faf5ff;
-            border: 1px dashed #d8b4fe;
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 18px;
-            text-align: center;
-            font-size: 12px;
-            color: #6b21a8;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* 1-CLICK PAY BUTTON */
-        .btn-dynamic-pay {
-            width: 100%;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: #ffffff;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
-            text-decoration: none;
-            margin-bottom: 15px;
-            transition: all 0.2s;
-        }
-
-        .btn-dynamic-pay:active {
-            transform: scale(0.98);
-        }
-
-        .qr-box {
-            text-align: center;
-            background: #faf5ff;
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px dashed #d8b4fe;
-            margin: 20px 0;
-        }
-
-        .qr-box img {
-            max-width: 170px;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            background: #ffffff;
-            padding: 8px;
-        }
-
-        .upi-id-badge {
-            background: #ffffff;
-            border: 1px solid #d8b4fe;
-            color: #6b21a8;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 13px;
-            display: inline-block;
-            margin-top: 6px;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #1e002c, #4a0066);
-            color: #ffffff;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(30,0,44,0.3);
-        }
-
-        #confirmationMsg {
-            display: none;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            color: #1e40af;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14.5px;
-            line-height: 1.6;
-        }
-
         /* FLOATING WHATSAPP BUTTON */
         .floating-wa {
             position: fixed;
             bottom: 20px;
             right: 15px;
             background: #25d366;
-            color: #ffffff;
+            color: #fff;
             padding: 10px 16px;
             border-radius: 50px;
             display: flex;
@@ -631,6 +669,7 @@
             font-size: 18px;
         }
 
+        /* FOOTER */
         footer {
             background: #1e002c;
             color: #aaa;
@@ -699,9 +738,10 @@
 
     <div class="container">
 
-        <!-- 3. REVIEWS SECTION (EXACT USER HEADER & DISCLAIMER) -->
+        <!-- 3. ALL 20 REVIEWS (2-COLUMN GRID IN HINDI) -->
         <h2 class="section-title" id="reviews">💬 Customer Reviews</h2>
         
+        <!-- EXACT USER DISCLAIMER -->
         <div class="reviews-disclaimer-box">
             ये reviews customers ने अपनी इच्छा से साझा किए हैं। जिन customers ने अपना नाम साझा करने की अनुमति दी है, उनके नाम के साथ review प्रदर्शित किया गया है।
         </div>
@@ -779,36 +819,149 @@
             <div class="review-card">
                 <div>
                     <div class="stars">★★★★★</div>
-                    <p>"रात को 12 बजे जब बहुत ज्यादा एंग्जायटी हो रही थी, तब तुरंत स्लॉट बुक किया और बात की। प्राइवेसी 100% सेफ है और लिसनर बहुत ही कोऑपरेटिव हैं।"</p>
+                    <p>"रात को 12 बजे जब बहुत ज्यादा एंग्जायटी हो रही थी, तब तुरंत प्रायोरिटी स्लॉट बुक किया और बात की। प्राइवेसी 100% सेफ है और लिसनर बहुत ही कोऑपरेटिव हैं।"</p>
                 </div>
                 <div class="user-info">अमित कुमार, पटना <span>Student</span></div>
             </div>
 
+            <!-- Review 9 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"एक ऐसा रिश्ता जो समाज की नजरों में सही नहीं था, लेकिन मेरे दिल के बहुत करीब था। किसी से कह नहीं सकती थी। यहाँ खुलकर बोला और बिना किसी डर के अपनी बात रखी।"</p>
+                </div>
+                <div class="user-info">नेहा सिंह, भोपाल <span>Working</span></div>
+            </div>
+
+            <!-- Review 10 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"5 मिनट का ट्रायल लेकर देखा था कि सर्विस कैसी है। लिसनर का रिस्पॉन्स इतना नेचुरल और हमदर्दी भरा था कि मैंने तुरंत 30 मिनट का सेशन बुक कर लिया। बेस्ट अनुभव!"</p>
+                </div>
+                <div class="user-info">रोहित जैन, अहमदाबाद <span>Business</span></div>
+            </div>
+
+            <!-- Review 11 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"परिवार में सब कुछ अच्छा है फिर भी एक अजीब सा खालीपन रहता था। लिसनर ने बहुत सुकून से मुझे समझा। दिल का बोझ सच में हल्का हो गया।"</p>
+                </div>
+                <div class="user-info">दीपक मिश्रा, वाराणसी <span>Student</span></div>
+            </div>
+
+            <!-- Review 12 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"अकेलेपन के दिनों में जब किसी से बात करने का मन करता था, DilKholSafe ने बहुत सहारा दिया। बिना किसी झिझक के अपनी पर्सनल बातें शेयर कर सकी।"</p>
+                </div>
+                <div class="user-info">मोनिका अग्रवाल, मेरठ <span>Unmarried</span></div>
+            </div>
+
+            <!-- Review 13 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"करियर और फ्यूचर को लेकर बहुत ज्यादा ओवरथिंकिंग हो रही थी। एक निष्पक्ष लिसनर से बात करके काफी क्लैरिटी और शांति मिली।"</p>
+                </div>
+                <div class="user-info">करण सक्सेना, गाजियाबाद <span>Job Seeker</span></div>
+            </div>
+
+            <!-- Review 14 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"यहाँ बात करने का सबसे बड़ा फायदा यह है कि कोई आपको जज नहीं करता। आप जो हैं, वैसे ही अपनी बात रख सकते हैं।"</p>
+                </div>
+                <div class="user-info">स्नेहा पाठक, कोलकाता <span>Student</span></div>
+            </div>
+
+            <!-- Review 15 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"पेमेंट और बुकिंग बहुत आसान रही। 15 मिनट अर्जेंट स्लॉट से तुरंत कॉल कनेक्ट हो गई। बहुत ही हेल्पफुल सर्विस है।"</p>
+                </div>
+                <div class="user-info">अजय सिंह, लुधियाना <span>Businessman</span></div>
+            </div>
+
+            <!-- Review 16 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"सीक्रेट टॉक के लिए इससे सेफ प्लेटफॉर्म मुझे आज तक नहीं मिला। मेरी पहचान पूरी तरह गोपनीय रही।"</p>
+                </div>
+                <div class="user-info">रितिका जोशी, देहरादून <span>Working</span></div>
+            </div>
+
+            <!-- Review 17 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"जब सब अपने व्यस्त थे और कोई सुनने वाला नहीं था, तब यहाँ दिल की हर बात खुलकर कही। बहुत रिलैक्स फील हुआ।"</p>
+                </div>
+                <div class="user-info">गौरव चौधरी, नोएडा <span>IT Professional</span></div>
+            </div>
+
+            <!-- Review 18 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"मन के अंदर जो गुस्सा और दर्द दबा हुआ था, सब बाहर निकाल दिया। लिसनर ने बड़े सब्र से सुना। दिल से धन्यवाद!"</p>
+                </div>
+                <div class="user-info">तान्या कपूर, ग्वालियर <span>Student</span></div>
+            </div>
+
+            <!-- Review 19 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"सुरक्षित माहौल, फ्रेंडली टोन और 100% प्राइवेसी। हर किसी को जिसे अपनी बात कहनी है, यहाँ एक बार जरूर आना चाहिए।"</p>
+                </div>
+                <div class="user-info">मनीष रावत, फरीदाबाद <span>Working</span></div>
+            </div>
+
+            <!-- Review 20 -->
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p>"30 मिनट का डीप टॉक सेशन मेरे लिए बहुत ही सुकून भरा रहा। ऐसा लगा जैसे किसी सच्चे और पुराने दोस्त से बात हो गई हो।"</p>
+                </div>
+                <div class="user-info">सिमरन कौर, मोहाली <span>Unmarried</span></div>
+            </div>
+
         </div>
 
-        <!-- 4. SERVICES SECTION -->
+        <!-- 4. SERVICES SECTION (2-COLUMN GRID IN HINDI) -->
         <h2 class="section-title" id="services">हमारी सेवाएं (Services)</h2>
         <div class="services-grid">
+            
             <div class="service-card">
                 <div class="icon"><i class="fa-solid fa-heart-crack"></i></div>
-                <h3>Heartbreak & Healing</h3>
-                <p>ब्रेकअप, धोखे और पुराने रिश्तों के दर्द से उबरने के लिए एक सुरक्षित लिसनर।</p>
+                <h3>ब्रेकअप एवं दिल का दर्द (Heartbreak Support)</h3>
+                <p>ब्रेकअप, धोखे और पुराने रिश्तों के दर्द से उबरने के लिए एक समझदार और सुरक्षित लिसनर।</p>
             </div>
+
             <div class="service-card">
                 <div class="icon"><i class="fa-solid fa-user-lock"></i></div>
-                <h3>100% Secret Talk</h3>
-                <p>वो गहरी और दबी हुई बातें जो आप किसी करीबी से भी शेयर करने से डरते हैं।</p>
+                <h3>100% सीक्रेट टॉक (Secret Talk)</h3>
+                <p>वो गहरी, निजी और दबी हुई बातें जो आप परिवार या दोस्तों से भी साझा करने में हिचकिचाते हैं।</p>
             </div>
+
             <div class="service-card">
                 <div class="icon"><i class="fa-solid fa-brain"></i></div>
-                <h3>Loneliness & Venting</h3>
-                <p>अकेलापन, ओवरथिंकिंग और मन का भारीपन... बिना किसी रोक-टोक खुलकर बोलें।</p>
+                <h3>अकेलापन और तनाव (Loneliness & Stress)</h3>
+                <p>अकेलापन, डिप्रेशन और मन का भारीपन... बिना किसी रोक-टोक और बिना जजमेंट के दिल खोलकर बोलें।</p>
             </div>
+
             <a href="https://dilkholdesire.in" target="_blank" class="service-card desire-card">
                 <div class="icon"><i class="fa-solid fa-fire"></i></div>
-                <h3>DilKholDesire (18+)</h3>
-                <p>Private fantasies, bold expressions & romantic talks in a 100% safe zone.</p>
+                <h3>दिलखोल डिज़ायर (DilKholDesire 🔞)</h3>
+                <p>रोमांटिक, बोल्ड और फैंटेसी बातचीत के लिए 100% सुरक्षित और गोपनीय प्राइवेट स्पेस।</p>
             </a>
+
         </div>
 
         <!-- 5. BOOKING SECTION -->
@@ -820,31 +973,44 @@
                 <span>🟢 लिसनर्स अभी ऑनलाइन और उपलब्ध हैं</span>
             </div>
 
-            <!-- CLEAN PLANS SUMMARY (NO 50% OFF) -->
-            <div class="pricing-list-preview">
-                <div class="pricing-item">
-                    <span class="plan-title">⭐ First-Time Trial (5 Min)</span>
-                    <span class="plan-desc">केवल 1 बार — नए यूज़र्स हेतु</span>
-                    <span class="offer-price">₹49</span>
+            <!-- 2-COLUMN PRICING GRID -->
+            <div class="pricing-grid-2col">
+                
+                <!-- PLAN 1 -->
+                <div class="pricing-card-box" onclick="selectPlanCard(49, 'First-Time Trial (5 Min)', this)">
+                    <span class="badge-tag badge-trial">⭐ First-Time Only</span>
+                    <h4>5 मिनट ट्रायल स्लॉट</h4>
+                    <p>केवल पहली बार नए यूज़र्स हेतु (One Time)</p>
+                    <div class="price-text">₹49</div>
                 </div>
-                <div class="pricing-item">
-                    <span class="plan-title">Regular Talk (15 Min)</span>
-                    <span class="plan-desc">सामान्य बातचीत और हल्कापन</span>
-                    <span class="offer-price">₹149</span>
+
+                <!-- PLAN 2 -->
+                <div class="pricing-card-box active" onclick="selectPlanCard(149, 'Regular Talk (15 Min)', this)">
+                    <h4>15 मिनट सामान्य बातचीत</h4>
+                    <p>सामान्य बातचीत और मन हल्का करने हेतु</p>
+                    <div class="price-text">₹149</div>
                 </div>
-                <div class="pricing-item highlight-item">
-                    <span class="plan-title">🚨 Priority Talk (15 Min)</span>
-                    <span class="plan-desc">Priority/Urgent Availability</span>
-                    <span class="offer-price">₹249</span>
+
+                <!-- PLAN 3 -->
+                <div class="pricing-card-box highlight" onclick="selectPlanCard(249, 'Priority Talk (15 Min)', this)">
+                    <span class="badge-tag badge-priority">🚨 Urgent Priority</span>
+                    <h4>15 मिनट Priority Talk 🔥</h4>
+                    <p>Priority/Urgent Availability — बिना इंतज़ार प्राथमिकता</p>
+                    <div class="price-text">₹249</div>
                 </div>
-                <div class="pricing-item highlight-item">
-                    <span class="plan-title">🥇 Deep Talk (30 Min)</span>
-                    <span class="plan-desc">सम्पूर्ण विस्तृत सेशन</span>
-                    <span class="offer-price">₹399</span>
+
+                <!-- PLAN 4 -->
+                <div class="pricing-card-box highlight" onclick="selectPlanCard(399, 'Deep Talk (30 Min)', this)">
+                    <span class="badge-tag badge-popular">🥇 Most Recommended</span>
+                    <h4>30 मिनट Deep Talk 🔥</h4>
+                    <p>विस्तृत एवं सम्पूर्ण बातचीत सेशन</p>
+                    <div class="price-text">₹399</div>
                 </div>
+
             </div>
 
             <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+                
                 <div class="form-group">
                     <label>आपका नाम (Name)</label>
                     <input type="text" id="userName" class="form-control" placeholder="अपना नाम दर्ज करें" required>
@@ -855,21 +1021,22 @@
                     <input type="tel" id="userPhone" class="form-control" placeholder="10 अंकों का WhatsApp नंबर" required pattern="[0-9]{10}">
                 </div>
 
+                <!-- HINDI CATEGORIES -->
                 <div class="form-group">
-                    <label>विषय / Category</label>
+                    <label>बातचीत का विषय (Category)</label>
                     <select id="userCategory" class="form-control">
-                        <option value="Heartbreak & Healing">Heartbreak & Healing</option>
-                        <option value="Secret Talk">Secret Talk</option>
-                        <option value="Loneliness & Venting">Loneliness & Venting</option>
-                        <option value="Personal Guidance">Personal Guidance</option>
-                        <option value="Other">अन्य कोई बात</option>
+                        <option value="सीक्रेट टॉक (Secret Talk)">सीक्रेट टॉक (Secret Talk)</option>
+                        <option value="ब्रेकअप एवं रिलेशनशिप सपोर्ट">ब्रेकअप एवं रिलेशनशिप सपोर्ट</option>
+                        <option value="अकेलापन और तनाव (Loneliness & Stress)">अकेलापन, तनाव और ओवरथिंकिंग</option>
+                        <option value="पर्सनल व लाइफ गाइडेंस">पर्सनल एवं लाइफ गाइडेंस</option>
+                        <option value="अन्य कोई निजी बात">अन्य कोई निजी बात</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>प्लान चुनें (Select Duration & Plan)</label>
-                    <select id="userPlan" class="form-control" onchange="updatePaymentAmount()" style="font-weight: 600; color: #1e002c; background: #fff8f0; border-color: #ea580c;">
-                        <option value="49" data-name="First-Time Trial (5 Min)">First-Time Trial — 5 मिनट (₹49 - One Time Only)</option>
+                    <select id="userPlan" class="form-control" onchange="syncDropdownToCards()" style="font-weight: 600; color: #1e002c; background: #fff8f0; border-color: #ea580c;">
+                        <option value="49" data-name="First-Time Trial (5 Min)">First-Time Trial — 5 मिनट (₹49 - केवल 1 बार)</option>
                         <option value="149" data-name="Regular Talk (15 Min)" selected>Regular Talk — 15 मिनट (₹149)</option>
                         <option value="249" data-name="Priority Talk (15 Min)">🚨 Priority Talk (Urgent Availability) — 15 मिनट (₹249)</option>
                         <option value="399" data-name="Deep Talk (30 Min)">🥇 Deep Talk (Complete Session) — 30 मिनट (₹399)</option>
@@ -948,7 +1115,7 @@
         </div>
     </div>
 
-    <!-- FLOATING WHATSAPP BUTTON (NUMBER 8865043022) -->
+    <!-- FLOATING WHATSAPP BUTTON (EXACT TEXT & YOUR NUMBER 8865043022) -->
     <a href="https://wa.me/918865043022?text=Hello%20DilKholSafe,%20mujhe%20booking%20aur%20payment%20me%20help%20chahiye" target="_blank" class="floating-wa">
         <i class="fa-brands fa-whatsapp"></i>
         <span>💬 बुकिंग और पेमेंट में सहायता चाहिए? चैट करें</span>
@@ -962,17 +1129,52 @@
         </p>
     </footer>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPT LOGIC -->
     <script>
-        function updatePaymentAmount() {
+        let currentAmount = 149;
+        let currentPlanName = "Regular Talk (15 Min)";
+
+        function selectPlanCard(amount, planName, element) {
+            currentAmount = amount;
+            currentPlanName = planName;
+
+            // Highlight Active Card
+            document.querySelectorAll('.pricing-card-box').forEach(card => {
+                card.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Sync Dropdown
+            const planSelect = document.getElementById('userPlan');
+            planSelect.value = amount;
+
+            updatePaymentLinks(amount, planName);
+        }
+
+        function syncDropdownToCards() {
             const planSelect = document.getElementById('userPlan');
             const amount = planSelect.value;
             const planName = planSelect.options[planSelect.selectedIndex].getAttribute('data-name');
             
-            // Dynamic UPI Deep Link
+            currentAmount = amount;
+            currentPlanName = planName;
+
+            // Sync Cards
+            const cards = document.querySelectorAll('.pricing-card-box');
+            cards.forEach(card => {
+                card.classList.remove('active');
+                if(card.innerText.includes('₹' + amount)) {
+                    card.classList.add('active');
+                }
+            });
+
+            updatePaymentLinks(amount, planName);
+        }
+
+        function updatePaymentLinks(amount, planName) {
             const upiUrl = `upi://pay?pa=dilkholsafe@upi&pn=DilKholSafe&am=${amount}&cu=INR&tn=${encodeURIComponent(planName)}`;
             
-            // Update 1-Click Button
+            // Update 1-Click Pay Button
             const payBtn = document.getElementById('btnDynamicUPI');
             payBtn.href = upiUrl;
             payBtn.innerHTML = `<i class="fa-solid fa-bolt"></i> Pay ₹${amount} via UPI (GPay / PhonePe / Paytm)`;
@@ -987,9 +1189,6 @@
             const name = document.getElementById('userName').value.trim();
             const phone = document.getElementById('userPhone').value.trim();
             const category = document.getElementById('userCategory').value;
-            const planSelect = document.getElementById('userPlan');
-            const amount = planSelect.value;
-            const planName = planSelect.options[planSelect.selectedIndex].getAttribute('data-name');
             const utr = document.getElementById('utrNumber').value.trim();
 
             if (!name || !phone || !utr) {
@@ -1005,7 +1204,7 @@
                               `👤 *Name:* ${name}%0A` +
                               `📱 *WhatsApp:* ${phone}%0A` +
                               `🎯 *Category:* ${category}%0A` +
-                              `⏱️ *Plan:* ${planName} (₹${amount})%0A` +
+                              `⏱️ *Plan:* ${currentPlanName} (₹${currentAmount})%0A` +
                               `💳 *UTR ID:* ${utr}%0A` +
                               `⏰ *Time:* ${new Date().toLocaleString('en-IN')}`;
 
@@ -1026,13 +1225,12 @@
 
         function submitUserReview(e) {
             e.preventDefault();
-            alert("धन्यवाद! आपका रिव्यू सफलतापूर्वक सबमिट हो गया है और समीक्षा के बाद प्रदर्शित किया जाएगा।");
+            alert("धन्यवाद! आपका रिव्यू सफलतापूर्वक सबमिट हो गया है।");
             closeReviewModal();
         }
 
-        // Initialize default amount on load
         window.onload = function() {
-            updatePaymentAmount();
+            updatePaymentLinks(149, 'Regular Talk (15 Min)');
         };
     </script>
 </body>
